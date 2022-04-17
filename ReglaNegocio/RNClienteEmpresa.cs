@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,7 +17,7 @@ namespace ReglaNegocio
         const string estadoInactivo = "0";
         public void Registrar(ClienteEmpresa empresa)
         {
-            string sql = $@"INSERT INTO ClienteEmpresa( CodigoCategoriaCliente, RazonSocial, RUC, Telefono, Correo, CodigoDistrito, 
+            string sql = $@"INSERT INTO clienteempresa(CodigoCategoriaCliente, RazonSocial, RUC, Telefono, correo, CodigoDistrito, 
                               Direccion, Vigente) 
                           VALUES({empresa.Categoria.Codigo}, '{empresa.RazonSocial}', '{empresa.RUC}', '{empresa.Telefono}',
                                   '{empresa.Correo}', {empresa.Distrito.Codigo}, '{empresa.Direccion }', 
@@ -24,10 +25,10 @@ namespace ReglaNegocio
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -41,7 +42,7 @@ namespace ReglaNegocio
 
         public void Actualizar(ClienteEmpresa empresa)
         {
-            string sql = $@"UPDATE ClienteEmpresa 
+            string sql = $@"UPDATE clienteempresa 
                         SET CodigoCategoriaCliente = {empresa.Categoria.Codigo}, RazonSocial = '{empresa.RazonSocial}', 
                             RUC = '{empresa.RUC}', Telefono = '{empresa.Telefono}', Correo = '{empresa.Correo}',
                             CodigoDistrito = {empresa.Distrito.Codigo}, Direccion = '{empresa.Direccion}', 
@@ -49,10 +50,10 @@ namespace ReglaNegocio
                         WHERE Codigo = {empresa.Codigo}";
             try
             {
-                using(SqlConnection cn = new SqlConnection(cadenaConexion))
+                using(MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using(SqlCommand cmd = new SqlCommand(sql, cn))
+                    using(MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -70,16 +71,16 @@ namespace ReglaNegocio
             ClienteEmpresa empresa = null;
             string sql = $@"SELECT CE.CodigoCategoriaCliente, CE.RazonSocial, CE.RUC, CE.Telefono, CE.Correo, 
                           CE.CodigoDistrito, CE.Direccion, CE.Vigente
-	                      FROM ClienteEmpresa CE 
+	                      FROM clienteempresa CE 
                         WHERE CE.Codigo = {codigo}";
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using(SqlCommand cmd = new SqlCommand(sql, cn))
+                    using(MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using(SqlDataReader dr = cmd.ExecuteReader())
+                        using(MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {
@@ -88,7 +89,7 @@ namespace ReglaNegocio
                                     Codigo = codigo,
                                     Categoria = new CategoriaCliente()
                                     {
-                                        Codigo = dr.GetByte(dr.GetOrdinal("CodigoCategoriaCliente"))
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoCategoriaCliente"))
                                     },
                                     RazonSocial = dr.GetString(dr.GetOrdinal("RazonSocial")),
                                     RUC = dr.GetString(dr.GetOrdinal("RUC")),
@@ -96,7 +97,7 @@ namespace ReglaNegocio
                                     Correo = dr.GetString(dr.GetOrdinal("Correo")),
                                     Distrito = new Distrito
                                     {
-                                        Codigo = dr.GetByte(dr.GetOrdinal("CodigoDistrito"))
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoDistrito"))
                                     },
                                     Direccion = dr.GetString(dr.GetOrdinal("Direccion")),
                                     Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
@@ -119,17 +120,17 @@ namespace ReglaNegocio
         {
             ClienteEmpresa empresa = null;
             string sql = $@"SELECT CE.Codigo, CE.CodigoCategoriaCliente, CE.RazonSocial, CE.Telefono, CE.Correo, 
-                          CE.CodigoDistrito, CE.Direccion, CE.Vigente, CC.Interes
-	                      FROM ClienteEmpresa CE JOIN CategoriaCliente CC ON CE.CodigoCategoriaCliente = CC.Codigo
+                          CE.CodigoDistrito, CE.Direccion, CE.Vigente, CC.InteresAnual
+	                      FROM clienteempresa CE JOIN categoriacliente CC ON CE.CodigoCategoriaCliente = CC.Codigo
                           WHERE CE.RUC = '{documento}'";
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {
@@ -138,15 +139,15 @@ namespace ReglaNegocio
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     Categoria = new CategoriaCliente()
                                     {
-                                        Codigo = dr.GetByte(dr.GetOrdinal("CodigoCategoriaCliente")),
-                                        Interes = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoCategoriaCliente")),
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual"))
                                     },
                                     RazonSocial = dr.GetString(dr.GetOrdinal("RazonSocial")),
                                     Telefono = dr.GetString(dr.GetOrdinal("Telefono")),
                                     Correo = dr.GetString(dr.GetOrdinal("Correo")),
                                     Distrito = new Distrito
                                     {
-                                        Codigo = dr.GetByte(dr.GetOrdinal("CodigoDistrito"))
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoDistrito"))
                                     },
                                     Direccion = dr.GetString(dr.GetOrdinal("Direccion")),
                                     Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
@@ -168,20 +169,20 @@ namespace ReglaNegocio
         public List<ClienteEmpresa> Listar(string razonSocial)
         {
             List<ClienteEmpresa> empresas = null;
-            string sql = $@"SELECT CE.Codigo, CE.RazonSocial, CE.RUC, CE.Vigente, CC.Nombre AS Categoria, CC.Interes, D.Distrito
-	        FROM ClienteEmpresa CE JOIN CategoriaCliente CC ON CC.Codigo = CE.CodigoCategoriaCliente
-		        JOIN Distrito D ON D.Codigo = CE.CodigoDistrito
+            string sql = $@"SELECT CE.Codigo, CE.RazonSocial, CE.RUC, CE.Vigente, CC.Nombre AS Categoria, CC.InteresAnual, D.Distrito
+	        FROM clienteempresa CE JOIN categoriacliente CC ON CC.Codigo = CE.CodigoCategoriaCliente
+		        JOIN distrito D ON D.Codigo = CE.CodigoDistrito
 	        WHERE CE.RazonSocial LIKE '{razonSocial}%'
 	        ORDER BY CE.RazonSocial";
 
             try
             {
-                using(SqlConnection cn = new SqlConnection(cadenaConexion))
+                using(MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using(SqlDataReader dr = cmd.ExecuteReader())
+                        using(MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             empresas = new List<ClienteEmpresa>();
                             while (dr.Read() == true)
@@ -194,7 +195,7 @@ namespace ReglaNegocio
                                     Categoria = new CategoriaCliente()
                                     {
                                         Nombre = dr.GetString(dr.GetOrdinal("Categoria")),
-                                        Interes = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual"))
                                     },
                                     Distrito = new Distrito
                                     {
@@ -220,16 +221,16 @@ namespace ReglaNegocio
         {
             bool existe = false;
             string sql = $@"SELECT Codigo
-	                      FROM ClienteEmpresa 
+	                      FROM clienteempresa 
                         WHERE RUC = '{RUC}'";
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {

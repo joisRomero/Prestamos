@@ -31,8 +31,8 @@ namespace Prestamos
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategoriaCliente));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LblNombre = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.LblDescripcion = new System.Windows.Forms.Label();
@@ -53,6 +53,7 @@ namespace Prestamos
             this.BtnListar = new System.Windows.Forms.Button();
             this.BtnCerrrar = new System.Windows.Forms.Button();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ChkNegociable = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.NudInteres)).BeginInit();
             this.GbCategoria.SuspendLayout();
             this.GbListado.SuspendLayout();
@@ -130,7 +131,7 @@ namespace Prestamos
             // 
             this.BtnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.Image")));
             this.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCancelar.Location = new System.Drawing.Point(194, 288);
+            this.BtnCancelar.Location = new System.Drawing.Point(194, 296);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnCancelar.Size = new System.Drawing.Size(102, 40);
@@ -144,7 +145,7 @@ namespace Prestamos
             // 
             this.BtnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAceptar.Image")));
             this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(79, 288);
+            this.BtnAceptar.Location = new System.Drawing.Point(79, 296);
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnAceptar.Size = new System.Drawing.Size(102, 40);
@@ -156,6 +157,7 @@ namespace Prestamos
             // 
             // GbCategoria
             // 
+            this.GbCategoria.Controls.Add(this.ChkNegociable);
             this.GbCategoria.Controls.Add(this.BtnAceptar);
             this.GbCategoria.Controls.Add(this.BtnCancelar);
             this.GbCategoria.Controls.Add(this.ChkVigente);
@@ -168,7 +170,7 @@ namespace Prestamos
             this.GbCategoria.Enabled = false;
             this.GbCategoria.Location = new System.Drawing.Point(12, 12);
             this.GbCategoria.Name = "GbCategoria";
-            this.GbCategoria.Size = new System.Drawing.Size(324, 336);
+            this.GbCategoria.Size = new System.Drawing.Size(324, 351);
             this.GbCategoria.TabIndex = 0;
             this.GbCategoria.TabStop = false;
             this.GbCategoria.Text = "Categoría";
@@ -200,14 +202,14 @@ namespace Prestamos
             this.DgvListado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvListado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.DgvListado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cdNombre,
@@ -232,9 +234,9 @@ namespace Prestamos
             // CdInteres
             // 
             this.CdInteres.DataPropertyName = "Interes";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N2";
-            this.CdInteres.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            this.CdInteres.DefaultCellStyle = dataGridViewCellStyle4;
             this.CdInteres.HeaderText = "Interés";
             this.CdInteres.Name = "CdInteres";
             this.CdInteres.ReadOnly = true;
@@ -317,6 +319,16 @@ namespace Prestamos
             // 
             this.ErrNotificador.ContainerControl = this;
             // 
+            // ChkNegociable
+            // 
+            this.ChkNegociable.AutoSize = true;
+            this.ChkNegociable.Location = new System.Drawing.Point(20, 260);
+            this.ChkNegociable.Name = "ChkNegociable";
+            this.ChkNegociable.Size = new System.Drawing.Size(80, 17);
+            this.ChkNegociable.TabIndex = 6;
+            this.ChkNegociable.Text = "Negociable";
+            this.ChkNegociable.UseVisualStyleBackColor = true;
+            // 
             // FrmCategoriaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,5 +374,6 @@ namespace Prestamos
         private System.Windows.Forms.ErrorProvider ErrNotificador;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdInteres;
+        private System.Windows.Forms.CheckBox ChkNegociable;
     }
 }

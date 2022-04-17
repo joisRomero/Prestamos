@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades;
+using MySql.Data.MySqlClient;
 
 namespace ReglaNegocio
 {
@@ -15,219 +16,148 @@ namespace ReglaNegocio
 
         public void Registrar(CategoriaCliente categoria)
         {
-            SqlConnection cn = null;
-            SqlCommand cmd = null;
-            string sql = $@"INSERT INTO CategoriaCliente(Nombre, Descripcion, Interes, Vigente)
-                            VALUES( '{categoria.Nombre}', '{categoria.Descripcion}', {categoria.Interes},
-                                    {(categoria.Vigente == true ? 1 : 0)})";
+            
+            string sql = $@"INSERT INTO categoriacliente(Nombre, Descripcion, InteresAnual, Vigente, Negociable)
+                            VALUES( '{categoria.Nombre}', '{categoria.Descripcion}', {categoria.InteresAnual},
+                                    {(categoria.Vigente == true ? 1 : 0)}, {(categoria.Negociable == true ? 1 : 0)})";
             try 
             {
-                cn = new SqlConnection(cadenaConexion);
-                cmd = new SqlCommand(sql, cn);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
             }
         }
 
         public void Actualizar(CategoriaCliente categoria)
         {
-            SqlConnection cn = null;
-            SqlCommand cmd = null;
-            string sql = $@"UPDATE CategoriaCliente 
+
+            string sql = $@"UPDATE categoriacliente 
                             SET Nombre = '{categoria.Nombre}', Descripcion = '{categoria.Descripcion}',
-                                Interes = {categoria.Interes}, Vigente = {(categoria.Vigente == true ? 1 : 0)}
+                                InteresAnual = {categoria.InteresAnual}, Vigente = {(categoria.Vigente == true ? 1 : 0)},
+                                Negociable = {(categoria.Negociable == true ? 1 : 0)}
                             WHERE Codigo = {categoria.Codigo}";
             try
             {
-                cn = new SqlConnection(cadenaConexion);
-                cmd = new SqlCommand(sql, cn);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
             }
         }
 
         public void DarDeBaja(int codigo)
         {
-            SqlConnection cn = null;
-            SqlCommand cmd = null;
-            string sql = $@"UPDATE CategoriaCliente 
+            string sql = $@"UPDATE categoriacliente 
                             SET Vigente = 0
                             WHERE Codigo = {codigo}";
             try
             {
-                cn = new SqlConnection(cadenaConexion);
-                cmd = new SqlCommand(sql, cn);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
             }
         }
 
         public CategoriaCliente Leer(int codigo)
         {
             CategoriaCliente cat = null;
-            string sql = $@"SELECT CC.Nombre, CC.Interes, CC.Descripcion, CC.Vigente
-                        FROM CategoriaCliente CC
+            string sql = $@"SELECT CC.Nombre, CC.InteresAnual, CC.Descripcion, CC.Vigente, CC.Negociable
+                        FROM categoriacliente CC
                         WHERE CC.Codigo = {codigo}";
-
-            SqlConnection cn = new SqlConnection(cadenaConexion);
-            SqlCommand cmd = new SqlCommand(sql, cn);
-            SqlDataReader dr = null;
 
             try
             {
-                cn.Open();
-                dr = cmd.ExecuteReader();
-                if (dr.Read() == true)
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
-                    cat = new CategoriaCliente
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        Codigo = codigo,
-                        Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
-                        Descripcion = dr.GetString(dr.GetOrdinal("Descripcion")),
-                        Interes = (double)dr.GetDecimal(dr.GetOrdinal("Interes")),
-                        Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
-                    };
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read() == true)
+                            {
+                                cat = new CategoriaCliente
+                                {
+                                    Codigo = codigo,
+                                    Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
+                                    Descripcion = dr.GetString(dr.GetOrdinal("Descripcion")),
+                                    InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual")),
+                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente")),
+                                    Negociable = dr.GetBoolean(dr.GetOrdinal("Negociable"))
+                                };
+                            }
+                        }
+                    }
                 }
-                dr.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                if (dr != null && dr.IsClosed == false)
-                {
-                    dr.Close();
-                }
-                dr = null;
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
-            }
-
             return cat;
         }
-
+       
         public List<CategoriaCliente> Listar()
         {
             List<CategoriaCliente> categorias = null;
-            string sql = $@"SELECT CC.Codigo, CC.Nombre, CC.Interes, CC.Vigente
-                            FROM CategoriaCliente CC
+            string sql = $@"SELECT CC.Codigo, CC.Nombre, CC.InteresAnual, CC.Vigente, CC.Negociable
+                            FROM categoriacliente CC
                             ORDER BY CC.Nombre";
-            SqlConnection cn = new SqlConnection(@"Data Source=DESKTOP-IOE6HV8\SQLEXPRESS;Initial Catalog=Prestamos;Integrated Security=True");
-            SqlCommand cmd = new SqlCommand(sql, cn);
-            SqlDataReader dr = null;
-
             try
             {
-                cn.Open();
-                dr = cmd.ExecuteReader();
-                categorias = new List<CategoriaCliente>();
-                while (dr.Read())
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
-                    categorias.Add(new CategoriaCliente()
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        Codigo = dr.GetByte(dr.GetOrdinal("Codigo")),
-                        Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
-                        Interes = (double)dr.GetDecimal(dr.GetOrdinal("Interes")),
-                        Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
-                    });
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            categorias = new List<CategoriaCliente>();
+                            while (dr.Read())
+                            {
+                                categorias.Add(new CategoriaCliente()
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
+                                    Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
+                                    InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual")),
+                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente")),
+                                    Negociable = dr.GetBoolean(dr.GetOrdinal("Negociable"))
+                                });
+                            }
+                        }
+                    }
                 }
-                dr.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                if (dr != null && dr.IsClosed == false)
-                {
-                    dr.Close();
-                }
-                dr = null;
-
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
-            }
-
             return categorias;
         }
 
@@ -235,25 +165,25 @@ namespace ReglaNegocio
         {
             List<CategoriaCliente> categorias = null;
             string sql = $@"SELECT CC.Codigo, CC.Nombre
-                        FROM CategoriaCliente CC
+                        FROM categoriacliente CC
                         WHERE CC.Vigente = 1 
                         ORDER BY CC.Nombre";
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             categorias = new List<CategoriaCliente>();
                             while (dr.Read() == true)
                             {
                                 categorias.Add(new CategoriaCliente()
                                 {
-                                    Codigo = dr.GetByte(dr.GetOrdinal("Codigo")),
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
                                     Vigente = true
                                 });
@@ -275,17 +205,17 @@ namespace ReglaNegocio
         {
             bool existe = false;
             string sql = $@"SELECT Codigo
-                        FROM CategoriaCliente
+                        FROM categoriacliente
                         WHERE Nombre = '{nombre}'";
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read() == true)
                             {
