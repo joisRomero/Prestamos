@@ -46,6 +46,7 @@ namespace Prestamos
             TxtDescripcion.Text = "";
             NudInteres.Value = 0;
             ChkVigente.Checked = true;
+            ChkNegociable.Checked = true;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -104,7 +105,8 @@ namespace Prestamos
                 Nombre = TxtNombre.Text,
                 Descripcion = TxtDescripcion.Text,
                 Interes = (double)NudInteres.Value,
-                Vigente = ChkVigente.Checked
+                Vigente = ChkVigente.Checked,
+                Negociable = ChkNegociable.Checked
             };
             if (this.actual != null)
             {
@@ -130,9 +132,7 @@ namespace Prestamos
                     this.DarFormatoFila(categorias);
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
                 MessageBox.Show("No se pudo obtener las categorías", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

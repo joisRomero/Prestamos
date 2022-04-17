@@ -13,6 +13,7 @@ namespace Entidades
         public string Descripcion { get; set; }
         public double Interes { get; set; } // tasa de interes anual 360 dias
         public bool Vigente { get; set; }
+        public bool Negociable { get; set; }
 
         public override string ToString()
         {
