@@ -31,35 +31,34 @@ namespace Prestamos
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPersonal));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnCerrrar = new System.Windows.Forms.Button();
             this.GbListado = new System.Windows.Forms.GroupBox();
             this.DgvListado = new System.Windows.Forms.DataGridView();
             this.cdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cdApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdDNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdTipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdNumDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cdCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdCorreoLaboral = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cdCelular = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnListar = new System.Windows.Forms.Button();
             this.BtnModificar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.BtnDarDeBaja = new System.Windows.Forms.Button();
             this.GbPersonal = new System.Windows.Forms.GroupBox();
+            this.CmbTipoDocumento = new System.Windows.Forms.ComboBox();
             this.ChkVigente = new System.Windows.Forms.CheckBox();
-            this.TxtCorreoLaboral = new System.Windows.Forms.TextBox();
-            this.TxtCorreoPersonal = new System.Windows.Forms.TextBox();
-            this.TxtDNI = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.TxtCelular = new System.Windows.Forms.TextBox();
-            this.TxtApellidos = new System.Windows.Forms.TextBox();
+            this.TxtCorreo = new System.Windows.Forms.TextBox();
+            this.LblCelular = new System.Windows.Forms.Label();
+            this.LblCorreo = new System.Windows.Forms.Label();
+            this.LblTipoDocumento = new System.Windows.Forms.Label();
             this.TxtDireccion = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.TxtApellidos = new System.Windows.Forms.TextBox();
+            this.TxtNumeroDocumento = new System.Windows.Forms.TextBox();
+            this.LblDireccion = new System.Windows.Forms.Label();
+            this.LblApellidos = new System.Windows.Forms.Label();
+            this.LblNumeroDocumento = new System.Windows.Forms.Label();
             this.TxtNombres = new System.Windows.Forms.TextBox();
             this.LblNombre = new System.Windows.Forms.Label();
             this.BtnCancelar = new System.Windows.Forms.Button();
@@ -96,9 +95,9 @@ namespace Prestamos
             this.GbListado.Controls.Add(this.BtnModificar);
             this.GbListado.Controls.Add(this.BtnNuevo);
             this.GbListado.Controls.Add(this.BtnDarDeBaja);
-            this.GbListado.Location = new System.Drawing.Point(356, 9);
+            this.GbListado.Location = new System.Drawing.Point(368, 9);
             this.GbListado.Name = "GbListado";
-            this.GbListado.Size = new System.Drawing.Size(648, 457);
+            this.GbListado.Size = new System.Drawing.Size(636, 457);
             this.GbListado.TabIndex = 1;
             this.GbListado.TabStop = false;
             this.GbListado.Text = "Listado";
@@ -114,22 +113,21 @@ namespace Prestamos
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DgvListado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvListado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cdNombre,
             this.cdApellidos,
-            this.cdDNI,
-            this.cdDireccion,
+            this.cdTipoDocumento,
+            this.cdNumDocumento,
             this.cdCorreo,
-            this.cdCorreoLaboral,
             this.cdCelular});
             this.DgvListado.Location = new System.Drawing.Point(9, 64);
             this.DgvListado.Margin = new System.Windows.Forms.Padding(2);
@@ -140,7 +138,7 @@ namespace Prestamos
             this.DgvListado.RowHeadersWidth = 51;
             this.DgvListado.RowTemplate.Height = 24;
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvListado.Size = new System.Drawing.Size(633, 342);
+            this.DgvListado.Size = new System.Drawing.Size(621, 342);
             this.DgvListado.TabIndex = 1;
             // 
             // cdNombre
@@ -157,33 +155,26 @@ namespace Prestamos
             this.cdApellidos.Name = "cdApellidos";
             this.cdApellidos.ReadOnly = true;
             // 
-            // cdDNI
+            // cdTipoDocumento
             // 
-            this.cdDNI.DataPropertyName = "DNI";
-            this.cdDNI.HeaderText = "DNI";
-            this.cdDNI.Name = "cdDNI";
-            this.cdDNI.ReadOnly = true;
+            this.cdTipoDocumento.DataPropertyName = "TipoDocumento";
+            this.cdTipoDocumento.HeaderText = "Tipo Documento";
+            this.cdTipoDocumento.Name = "cdTipoDocumento";
+            this.cdTipoDocumento.ReadOnly = true;
             // 
-            // cdDireccion
+            // cdNumDocumento
             // 
-            this.cdDireccion.DataPropertyName = "Direccion";
-            this.cdDireccion.HeaderText = "Dirección";
-            this.cdDireccion.Name = "cdDireccion";
-            this.cdDireccion.ReadOnly = true;
+            this.cdNumDocumento.DataPropertyName = "NumDocumento";
+            this.cdNumDocumento.HeaderText = "Num. Documento";
+            this.cdNumDocumento.Name = "cdNumDocumento";
+            this.cdNumDocumento.ReadOnly = true;
             // 
             // cdCorreo
             // 
-            this.cdCorreo.DataPropertyName = "CorreoPersonal";
-            this.cdCorreo.HeaderText = "Correo personal";
+            this.cdCorreo.DataPropertyName = "Correo";
+            this.cdCorreo.HeaderText = "Correo";
             this.cdCorreo.Name = "cdCorreo";
             this.cdCorreo.ReadOnly = true;
-            // 
-            // cdCorreoLaboral
-            // 
-            this.cdCorreoLaboral.DataPropertyName = "CorreoLaboral";
-            this.cdCorreoLaboral.HeaderText = "Correo laboral";
-            this.cdCorreoLaboral.Name = "cdCorreoLaboral";
-            this.cdCorreoLaboral.ReadOnly = true;
             // 
             // cdCelular
             // 
@@ -197,7 +188,7 @@ namespace Prestamos
             this.BtnListar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnListar.Image = ((System.Drawing.Image)(resources.GetObject("BtnListar.Image")));
             this.BtnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnListar.Location = new System.Drawing.Point(540, 19);
+            this.BtnListar.Location = new System.Drawing.Point(528, 19);
             this.BtnListar.Name = "BtnListar";
             this.BtnListar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
             this.BtnListar.Size = new System.Drawing.Size(102, 40);
@@ -243,7 +234,7 @@ namespace Prestamos
             this.BtnDarDeBaja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnDarDeBaja.Image = ((System.Drawing.Image)(resources.GetObject("BtnDarDeBaja.Image")));
             this.BtnDarDeBaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnDarDeBaja.Location = new System.Drawing.Point(540, 411);
+            this.BtnDarDeBaja.Location = new System.Drawing.Point(528, 411);
             this.BtnDarDeBaja.Name = "BtnDarDeBaja";
             this.BtnDarDeBaja.Size = new System.Drawing.Size(102, 40);
             this.BtnDarDeBaja.TabIndex = 4;
@@ -254,19 +245,19 @@ namespace Prestamos
             // 
             // GbPersonal
             // 
+            this.GbPersonal.Controls.Add(this.CmbTipoDocumento);
             this.GbPersonal.Controls.Add(this.ChkVigente);
-            this.GbPersonal.Controls.Add(this.TxtCorreoLaboral);
-            this.GbPersonal.Controls.Add(this.TxtCorreoPersonal);
-            this.GbPersonal.Controls.Add(this.TxtDNI);
-            this.GbPersonal.Controls.Add(this.label4);
-            this.GbPersonal.Controls.Add(this.label7);
-            this.GbPersonal.Controls.Add(this.label2);
             this.GbPersonal.Controls.Add(this.TxtCelular);
-            this.GbPersonal.Controls.Add(this.TxtApellidos);
+            this.GbPersonal.Controls.Add(this.TxtCorreo);
+            this.GbPersonal.Controls.Add(this.LblCelular);
+            this.GbPersonal.Controls.Add(this.LblCorreo);
+            this.GbPersonal.Controls.Add(this.LblTipoDocumento);
             this.GbPersonal.Controls.Add(this.TxtDireccion);
-            this.GbPersonal.Controls.Add(this.label6);
-            this.GbPersonal.Controls.Add(this.label1);
-            this.GbPersonal.Controls.Add(this.label3);
+            this.GbPersonal.Controls.Add(this.TxtApellidos);
+            this.GbPersonal.Controls.Add(this.TxtNumeroDocumento);
+            this.GbPersonal.Controls.Add(this.LblDireccion);
+            this.GbPersonal.Controls.Add(this.LblApellidos);
+            this.GbPersonal.Controls.Add(this.LblNumeroDocumento);
             this.GbPersonal.Controls.Add(this.TxtNombres);
             this.GbPersonal.Controls.Add(this.LblNombre);
             this.GbPersonal.Controls.Add(this.BtnCancelar);
@@ -274,142 +265,145 @@ namespace Prestamos
             this.GbPersonal.Enabled = false;
             this.GbPersonal.Location = new System.Drawing.Point(10, 8);
             this.GbPersonal.Name = "GbPersonal";
-            this.GbPersonal.Size = new System.Drawing.Size(340, 333);
+            this.GbPersonal.Size = new System.Drawing.Size(352, 333);
             this.GbPersonal.TabIndex = 0;
             this.GbPersonal.TabStop = false;
             this.GbPersonal.Text = "Personal";
             // 
+            // CmbTipoDocumento
+            // 
+            this.CmbTipoDocumento.FormattingEnabled = true;
+            this.CmbTipoDocumento.Items.AddRange(new object[] {
+            "DNI",
+            "Pasaporte",
+            "Carnet de extranjería"});
+            this.CmbTipoDocumento.Location = new System.Drawing.Point(125, 92);
+            this.CmbTipoDocumento.Name = "CmbTipoDocumento";
+            this.CmbTipoDocumento.Size = new System.Drawing.Size(209, 21);
+            this.CmbTipoDocumento.TabIndex = 2;
+            this.CmbTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.CmbTipoDocumento_SelectedIndexChanged);
+            this.CmbTipoDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.CmbTipoDocumento_Validating);
+            // 
             // ChkVigente
             // 
             this.ChkVigente.AutoSize = true;
-            this.ChkVigente.Location = new System.Drawing.Point(99, 239);
+            this.ChkVigente.Location = new System.Drawing.Point(125, 239);
             this.ChkVigente.Name = "ChkVigente";
             this.ChkVigente.Size = new System.Drawing.Size(62, 17);
             this.ChkVigente.TabIndex = 7;
             this.ChkVigente.Text = "Vigente";
             this.ChkVigente.UseVisualStyleBackColor = true;
             // 
-            // TxtCorreoLaboral
-            // 
-            this.TxtCorreoLaboral.Location = new System.Drawing.Point(99, 176);
-            this.TxtCorreoLaboral.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCorreoLaboral.Name = "TxtCorreoLaboral";
-            this.TxtCorreoLaboral.Size = new System.Drawing.Size(210, 20);
-            this.TxtCorreoLaboral.TabIndex = 5;
-            this.TxtCorreoLaboral.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
-            // 
-            // TxtCorreoPersonal
-            // 
-            this.TxtCorreoPersonal.Location = new System.Drawing.Point(99, 147);
-            this.TxtCorreoPersonal.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCorreoPersonal.Name = "TxtCorreoPersonal";
-            this.TxtCorreoPersonal.Size = new System.Drawing.Size(210, 20);
-            this.TxtCorreoPersonal.TabIndex = 4;
-            this.TxtCorreoPersonal.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
-            // 
-            // TxtDNI
-            // 
-            this.TxtDNI.Location = new System.Drawing.Point(99, 89);
-            this.TxtDNI.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtDNI.MaxLength = 8;
-            this.TxtDNI.Name = "TxtDNI";
-            this.TxtDNI.Size = new System.Drawing.Size(210, 20);
-            this.TxtDNI.TabIndex = 2;
-            this.TxtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CelularDNI_KeyPress);
-            this.TxtDNI.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 179);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Correo laboral";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 150);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Correo personal";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 92);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "DNI";
-            // 
             // TxtCelular
             // 
-            this.TxtCelular.Location = new System.Drawing.Point(99, 205);
+            this.TxtCelular.Location = new System.Drawing.Point(125, 176);
             this.TxtCelular.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCelular.MaxLength = 9;
             this.TxtCelular.Name = "TxtCelular";
             this.TxtCelular.Size = new System.Drawing.Size(210, 20);
-            this.TxtCelular.TabIndex = 6;
-            this.TxtCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CelularDNI_KeyPress);
+            this.TxtCelular.TabIndex = 5;
+            this.TxtCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCelular_KeyPress);
             this.TxtCelular.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
+            // 
+            // TxtCorreo
+            // 
+            this.TxtCorreo.Location = new System.Drawing.Point(125, 147);
+            this.TxtCorreo.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCorreo.Name = "TxtCorreo";
+            this.TxtCorreo.Size = new System.Drawing.Size(210, 20);
+            this.TxtCorreo.TabIndex = 4;
+            this.TxtCorreo.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
+            // 
+            // LblCelular
+            // 
+            this.LblCelular.AutoSize = true;
+            this.LblCelular.Location = new System.Drawing.Point(8, 179);
+            this.LblCelular.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCelular.Name = "LblCelular";
+            this.LblCelular.Size = new System.Drawing.Size(39, 13);
+            this.LblCelular.TabIndex = 13;
+            this.LblCelular.Text = "Celular";
+            // 
+            // LblCorreo
+            // 
+            this.LblCorreo.AutoSize = true;
+            this.LblCorreo.Location = new System.Drawing.Point(8, 150);
+            this.LblCorreo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCorreo.Name = "LblCorreo";
+            this.LblCorreo.Size = new System.Drawing.Size(38, 13);
+            this.LblCorreo.TabIndex = 13;
+            this.LblCorreo.Text = "Correo";
+            // 
+            // LblTipoDocumento
+            // 
+            this.LblTipoDocumento.AutoSize = true;
+            this.LblTipoDocumento.Location = new System.Drawing.Point(7, 92);
+            this.LblTipoDocumento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblTipoDocumento.Name = "LblTipoDocumento";
+            this.LblTipoDocumento.Size = new System.Drawing.Size(84, 13);
+            this.LblTipoDocumento.TabIndex = 13;
+            this.LblTipoDocumento.Text = "Tipo documento";
+            // 
+            // TxtDireccion
+            // 
+            this.TxtDireccion.Location = new System.Drawing.Point(125, 205);
+            this.TxtDireccion.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtDireccion.Name = "TxtDireccion";
+            this.TxtDireccion.Size = new System.Drawing.Size(210, 20);
+            this.TxtDireccion.TabIndex = 6;
+            this.TxtDireccion.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
             // 
             // TxtApellidos
             // 
-            this.TxtApellidos.Location = new System.Drawing.Point(99, 60);
+            this.TxtApellidos.Location = new System.Drawing.Point(125, 60);
             this.TxtApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.TxtApellidos.Name = "TxtApellidos";
             this.TxtApellidos.Size = new System.Drawing.Size(210, 20);
             this.TxtApellidos.TabIndex = 1;
             this.TxtApellidos.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
             // 
-            // TxtDireccion
+            // TxtNumeroDocumento
             // 
-            this.TxtDireccion.Location = new System.Drawing.Point(99, 118);
-            this.TxtDireccion.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtDireccion.Name = "TxtDireccion";
-            this.TxtDireccion.Size = new System.Drawing.Size(210, 20);
-            this.TxtDireccion.TabIndex = 3;
-            this.TxtDireccion.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
+            this.TxtNumeroDocumento.Location = new System.Drawing.Point(125, 118);
+            this.TxtNumeroDocumento.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtNumeroDocumento.Name = "TxtNumeroDocumento";
+            this.TxtNumeroDocumento.Size = new System.Drawing.Size(210, 20);
+            this.TxtNumeroDocumento.TabIndex = 3;
+            this.TxtNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumeroDocumento_KeyPress);
+            this.TxtNumeroDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNumeroDocumento_Validating);
             // 
-            // label6
+            // LblDireccion
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 208);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Celular";
+            this.LblDireccion.AutoSize = true;
+            this.LblDireccion.Location = new System.Drawing.Point(7, 208);
+            this.LblDireccion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblDireccion.Name = "LblDireccion";
+            this.LblDireccion.Size = new System.Drawing.Size(52, 13);
+            this.LblDireccion.TabIndex = 13;
+            this.LblDireccion.Text = "Direccion";
             // 
-            // label1
+            // LblApellidos
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 63);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Apellidos";
+            this.LblApellidos.AutoSize = true;
+            this.LblApellidos.Location = new System.Drawing.Point(7, 63);
+            this.LblApellidos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblApellidos.Name = "LblApellidos";
+            this.LblApellidos.Size = new System.Drawing.Size(49, 13);
+            this.LblApellidos.TabIndex = 13;
+            this.LblApellidos.Text = "Apellidos";
             // 
-            // label3
+            // LblNumeroDocumento
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 121);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Dirección";
+            this.LblNumeroDocumento.AutoSize = true;
+            this.LblNumeroDocumento.Location = new System.Drawing.Point(7, 121);
+            this.LblNumeroDocumento.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblNumeroDocumento.Name = "LblNumeroDocumento";
+            this.LblNumeroDocumento.Size = new System.Drawing.Size(88, 13);
+            this.LblNumeroDocumento.TabIndex = 13;
+            this.LblNumeroDocumento.Text = "Num. documento";
             // 
             // TxtNombres
             // 
-            this.TxtNombres.Location = new System.Drawing.Point(99, 31);
+            this.TxtNombres.Location = new System.Drawing.Point(125, 31);
             this.TxtNombres.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNombres.Name = "TxtNombres";
             this.TxtNombres.Size = new System.Drawing.Size(210, 20);
@@ -430,7 +424,7 @@ namespace Prestamos
             // 
             this.BtnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.Image")));
             this.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCancelar.Location = new System.Drawing.Point(207, 278);
+            this.BtnCancelar.Location = new System.Drawing.Point(233, 278);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnCancelar.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -445,7 +439,7 @@ namespace Prestamos
             // 
             this.BtnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAceptar.Image")));
             this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(92, 278);
+            this.BtnAceptar.Location = new System.Drawing.Point(118, 278);
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnAceptar.Size = new System.Drawing.Size(102, 40);
@@ -472,6 +466,7 @@ namespace Prestamos
             this.Name = "FrmPersonal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de personal";
+            this.Load += new System.EventHandler(this.FrmPersonal_Load);
             this.GbListado.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).EndInit();
             this.GbPersonal.ResumeLayout(false);
@@ -491,30 +486,29 @@ namespace Prestamos
         private System.Windows.Forms.Button BtnNuevo;
         private System.Windows.Forms.Button BtnDarDeBaja;
         private System.Windows.Forms.GroupBox GbPersonal;
-        private System.Windows.Forms.TextBox TxtCorreoPersonal;
-        private System.Windows.Forms.TextBox TxtDNI;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TxtCelular;
-        private System.Windows.Forms.TextBox TxtApellidos;
+        private System.Windows.Forms.TextBox TxtCorreo;
+        private System.Windows.Forms.Label LblCorreo;
+        private System.Windows.Forms.Label LblTipoDocumento;
         private System.Windows.Forms.TextBox TxtDireccion;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TxtApellidos;
+        private System.Windows.Forms.TextBox TxtNumeroDocumento;
+        private System.Windows.Forms.Label LblDireccion;
+        private System.Windows.Forms.Label LblApellidos;
+        private System.Windows.Forms.Label LblNumeroDocumento;
         private System.Windows.Forms.TextBox TxtNombres;
         private System.Windows.Forms.Label LblNombre;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.Button BtnAceptar;
-        private System.Windows.Forms.TextBox TxtCorreoLaboral;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox TxtCelular;
+        private System.Windows.Forms.Label LblCelular;
         private System.Windows.Forms.CheckBox ChkVigente;
+        private System.Windows.Forms.ErrorProvider ErrNotificador;
+        private System.Windows.Forms.ComboBox CmbTipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdApellidos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdDNI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdDireccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdTipoDocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cdNumDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdCorreo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdCorreoLaboral;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdCelular;
-        private System.Windows.Forms.ErrorProvider ErrNotificador;
     }
 }
