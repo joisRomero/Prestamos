@@ -85,7 +85,7 @@ namespace Prestamos
                 this.TxtNumeroDocumento.Text = ((ClienteEmpresa)this.Cliente).RUC;
             }
             this.TxtCliente.Text = this.Cliente.Nombre;
-            this.NudInteres.Value = (decimal)this.Cliente.Categoria.Interes;
+            this.NudInteres.Value = (decimal)this.Cliente.Categoria.InteresAnual;
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
@@ -133,7 +133,7 @@ namespace Prestamos
             if (this.Cliente != null)
             {
                 this.TxtCliente.Text = this.Cliente.Nombre;
-                this.NudInteres.Value = (decimal)this.Cliente.Categoria.Interes;
+                this.NudInteres.Value = (decimal)this.Cliente.Categoria.InteresAnual;
             }
             else
             {
@@ -239,9 +239,9 @@ namespace Prestamos
             bool flag = true;
             if (this.Cliente != null)
             {
-                if ((int)NudInteres.Value < Cliente.Categoria.Interes)
+                if ((int)NudInteres.Value < Cliente.Categoria.InteresAnual)
                 {
-                    ErrNotificador.SetError(NudInteres, $"El interés no debe ser menor a {Cliente.Categoria.Interes}%");
+                    ErrNotificador.SetError(NudInteres, $"El interés no debe ser menor a {Cliente.Categoria.InteresAnual}%");
                     flag = false;
                 }
                 if (CboTipoPeriodo.SelectedIndex == -1)
@@ -340,13 +340,13 @@ namespace Prestamos
         {
             if (Cliente != null)
             {
-                if ((int)NudInteres.Value >= Cliente.Categoria.Interes)
+                if ((int)NudInteres.Value >= Cliente.Categoria.InteresAnual)
                 {
                     ErrNotificador.SetError(NudInteres, "");
                 }
                 else
                 {
-                    ErrNotificador.SetError(NudInteres, $"El interés no debe ser menor a {Cliente.Categoria.Interes}%");
+                    ErrNotificador.SetError(NudInteres, $"El interés no debe ser menor a {Cliente.Categoria.InteresAnual}%");
                     e.Cancel = true;
                 }
             }
