@@ -16,36 +16,24 @@ namespace ReglaNegocio
         
         public void Registrar(Distrito distrito)
         {
-            MySqlConnection cn = null;
-            MySqlCommand cmd = null;
+            
             string sql = $@"INSERT INTO distrito(Distrito, Provincia, Departamento, Vigente)
                         VALUES('{distrito.DistritoNombre}', '{distrito.Provincia}', 
                               '{distrito.Departamento}', {(distrito.Vigente == true ? 1 : 0) })";
             try
             {
-                cn = new MySqlConnection(cadenaConexion);
-                cmd = new MySqlCommand(sql, cn);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                using(MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
             }
         }
 
