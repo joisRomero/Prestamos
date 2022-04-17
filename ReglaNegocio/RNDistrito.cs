@@ -43,90 +43,61 @@ namespace ReglaNegocio
             string sql = $@"SELECT Codigo, Distrito, Provincia, Departamento, Vigente
                             FROM distrito
                             ORDER BY Distrito";
-            MySqlConnection cn = new MySqlConnection(cadenaConexion);
-            MySqlCommand cmd = new MySqlCommand(sql, cn);
-            MySqlDataReader dr = null;
 
             try
             {
-                cn.Open();
-                dr = cmd.ExecuteReader();
-                distritos = new List<Distrito>();
-                while (dr.Read() == true)
+                using(MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
-                    distritos.Add(new Distrito()
+                    cn.Open();
+                    using(MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
-                        DistritoNombre = dr.GetString(dr.GetOrdinal("Distrito")),
-                        Provincia = dr.GetString(dr.GetOrdinal("Provincia")),
-                        Departamento = dr.GetString(dr.GetOrdinal("Departamento")),
-                        Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
-                    });
+                        using(MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            distritos = new List<Distrito>();
+                            while (dr.Read() == true)
+                            {
+                                distritos.Add(new Distrito()
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
+                                    DistritoNombre = dr.GetString(dr.GetOrdinal("Distrito")),
+                                    Provincia = dr.GetString(dr.GetOrdinal("Provincia")),
+                                    Departamento = dr.GetString(dr.GetOrdinal("Departamento")),
+                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
+                                });
+                            }
+                            dr.Close();
+                        }
+                    }
                 }
-                dr.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally
-            {
-                if (dr != null && dr.IsClosed == false)
-                {
-                    dr.Close();
-                }
-                dr = null;
-
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
-            }
-
+            
             return distritos;
         }
 
         public void Actualizar(Distrito dis)
         {
-            MySqlConnection cn = null;
-            MySqlCommand cmd = null;
             string sql = $@"UPDATE distrito 
                             SET Distrito = '{dis.DistritoNombre}', Provincia = '{dis.Provincia}',
                                 Departamento = '{dis.Departamento}', Vigente = {(dis.Vigente == true ? 1 : 0)}
                             WHERE Codigo = {dis.Codigo}";
             try
             {
-                cn = new MySqlConnection(cadenaConexion);
-                cmd = new MySqlCommand(sql, cn);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
             }
         }
 
@@ -137,49 +108,36 @@ namespace ReglaNegocio
                             FROM distrito D
                             WHERE D.Codigo = {codigo}";
 
-            MySqlConnection cn = new MySqlConnection(cadenaConexion);
-            MySqlCommand cmd = new MySqlCommand(sql, cn);
-            MySqlDataReader dr = null;
-
             try
             {
-                cn.Open();
-                dr = cmd.ExecuteReader();
-                if (dr.Read() == true)
+                using(MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
-                    dis = new Distrito
+                    cn.Open();
+                    using(MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
-                        DistritoNombre = dr.GetString(dr.GetOrdinal("Distrito")),
-                        Provincia = dr.GetString(dr.GetOrdinal("Provincia")),
-                        Departamento = dr.GetString(dr.GetOrdinal("Departamento")),
-                        Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
-                    };
+                        using(MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read() == true)
+                            {
+                                dis = new Distrito
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
+                                    DistritoNombre = dr.GetString(dr.GetOrdinal("Distrito")),
+                                    Provincia = dr.GetString(dr.GetOrdinal("Provincia")),
+                                    Departamento = dr.GetString(dr.GetOrdinal("Departamento")),
+                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
+                                };
+                            }
+                            dr.Close();
+                        }
+                    }
                 }
-                dr.Close();
+                
+                
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                if (dr != null && dr.IsClosed == false)
-                {
-                    dr.Close();
-                }
-                dr = null;
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
             }
 
             return dis;
@@ -187,36 +145,23 @@ namespace ReglaNegocio
 
         public void DarDeBaja(int codigo)
         {
-            MySqlConnection cn = null;
-            MySqlCommand cmd = null;
             string sql = $@"UPDATE distrito 
                             SET Vigente = 0
                             WHERE Codigo = {codigo}";
             try
             {
-                cn = new MySqlConnection(cadenaConexion);
-                cmd = new MySqlCommand(sql, cn);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            finally
-            {
-                if (cmd != null)
-                {
-                    cmd.Dispose();
-                }
-                cmd = null;
-                if (cn != null && cn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Close();
-                    cn.Dispose();
-                }
-                cn = null;
             }
         }
 
@@ -280,7 +225,7 @@ namespace ReglaNegocio
                             {
                                 distritos.Add(new Distrito()
                                 {
-                                    Codigo = dr.GetByte(dr.GetOrdinal("Codigo")),
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     DistritoNombre = dr.GetString(dr.GetOrdinal("Distrito")),
                                     Vigente = true
                                 });
