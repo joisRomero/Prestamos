@@ -104,7 +104,7 @@ namespace Prestamos
             {
                 Nombre = TxtNombre.Text,
                 Descripcion = TxtDescripcion.Text,
-                Interes = (double)NudInteres.Value,
+                InteresAnual = (double)NudInteres.Value,
                 Vigente = ChkVigente.Checked,
                 Negociable = ChkNegociable.Checked
             };
@@ -175,8 +175,9 @@ namespace Prestamos
                 {
                     this.TxtNombre.Text = this.actual.Nombre;
                     this.TxtDescripcion.Text = this.actual.Descripcion;
-                    this.NudInteres.Value = (Decimal)this.actual.Interes;
+                    this.NudInteres.Value = (Decimal)this.actual.InteresAnual;
                     this.ChkVigente.Checked = this.actual.Vigente;
+                    this.ChkNegociable.Checked = this.actual.Negociable;
                     this.HabilitarControles(true);
                 }
                 else

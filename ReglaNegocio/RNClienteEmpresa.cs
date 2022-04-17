@@ -140,7 +140,7 @@ namespace ReglaNegocio
                                     Categoria = new CategoriaCliente()
                                     {
                                         Codigo = dr.GetInt16(dr.GetOrdinal("CodigoCategoriaCliente")),
-                                        Interes = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
                                     },
                                     RazonSocial = dr.GetString(dr.GetOrdinal("RazonSocial")),
                                     Telefono = dr.GetString(dr.GetOrdinal("Telefono")),
@@ -195,7 +195,7 @@ namespace ReglaNegocio
                                     Categoria = new CategoriaCliente()
                                     {
                                         Nombre = dr.GetString(dr.GetOrdinal("Categoria")),
-                                        Interes = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
                                     },
                                     Distrito = new Distrito
                                     {

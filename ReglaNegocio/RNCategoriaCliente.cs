@@ -18,7 +18,7 @@ namespace ReglaNegocio
         {
             
             string sql = $@"INSERT INTO categoriacliente(Nombre, Descripcion, InteresAnual, Vigente, Negociable)
-                            VALUES( '{categoria.Nombre}', '{categoria.Descripcion}', {categoria.Interes},
+                            VALUES( '{categoria.Nombre}', '{categoria.Descripcion}', {categoria.InteresAnual},
                                     {(categoria.Vigente == true ? 1 : 0)}, {(categoria.Negociable == true ? 1 : 0)})";
             try 
             {
@@ -39,11 +39,10 @@ namespace ReglaNegocio
 
         public void Actualizar(CategoriaCliente categoria)
         {
-            
-           
+
             string sql = $@"UPDATE categoriacliente 
                             SET Nombre = '{categoria.Nombre}', Descripcion = '{categoria.Descripcion}',
-                                Interes = {categoria.Interes}, Vigente = {(categoria.Vigente == true ? 1 : 0)},
+                                InteresAnual = {categoria.InteresAnual}, Vigente = {(categoria.Vigente == true ? 1 : 0)},
                                 Negociable = {(categoria.Negociable == true ? 1 : 0)}
                             WHERE Codigo = {categoria.Codigo}";
             try
@@ -108,7 +107,7 @@ namespace ReglaNegocio
                                     Codigo = codigo,
                                     Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
                                     Descripcion = dr.GetString(dr.GetOrdinal("Descripcion")),
-                                    Interes = (double)dr.GetDecimal(dr.GetOrdinal("Interes")),
+                                    InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual")),
                                     Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente")),
                                     Negociable = dr.GetBoolean(dr.GetOrdinal("Negociable"))
                                 };
@@ -146,7 +145,7 @@ namespace ReglaNegocio
                                 {
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
-                                    Interes = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual")),
+                                    InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual")),
                                     Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente")),
                                     Negociable = dr.GetBoolean(dr.GetOrdinal("Negociable"))
                                 });
