@@ -120,7 +120,7 @@ namespace ReglaNegocio
         {
             ClienteEmpresa empresa = null;
             string sql = $@"SELECT CE.Codigo, CE.CodigoCategoriaCliente, CE.RazonSocial, CE.Telefono, CE.Correo, 
-                          CE.CodigoDistrito, CE.Direccion, CE.Vigente, CC.Interes
+                          CE.CodigoDistrito, CE.Direccion, CE.Vigente, CC.InteresAnual
 	                      FROM clienteempresa CE JOIN categoriacliente CC ON CE.CodigoCategoriaCliente = CC.Codigo
                           WHERE CE.RUC = '{documento}'";
             try
@@ -140,7 +140,7 @@ namespace ReglaNegocio
                                     Categoria = new CategoriaCliente()
                                     {
                                         Codigo = dr.GetInt16(dr.GetOrdinal("CodigoCategoriaCliente")),
-                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual"))
                                     },
                                     RazonSocial = dr.GetString(dr.GetOrdinal("RazonSocial")),
                                     Telefono = dr.GetString(dr.GetOrdinal("Telefono")),
@@ -195,7 +195,7 @@ namespace ReglaNegocio
                                     Categoria = new CategoriaCliente()
                                     {
                                         Nombre = dr.GetString(dr.GetOrdinal("Categoria")),
-                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual"))
                                     },
                                     Distrito = new Distrito
                                     {
