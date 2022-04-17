@@ -88,7 +88,7 @@ namespace ReglaNegocio
         public CategoriaCliente Leer(int codigo)
         {
             CategoriaCliente cat = null;
-            string sql = $@"SELECT CC.Nombre, CC.Interes, CC.Descripcion, CC.Vigente, CC.Negociable
+            string sql = $@"SELECT CC.Nombre, CC.InteresAnual, CC.Descripcion, CC.Vigente, CC.Negociable
                         FROM categoriacliente CC
                         WHERE CC.Codigo = {codigo}";
 
