@@ -17,7 +17,7 @@ namespace ReglaNegocio
         const string estadoInactivo = "0";
         public void Registrar(ClienteEmpresa empresa)
         {
-            string sql = $@"INSERT INTO clientempresa(CodigoCategoriaCliente, RazonSocial, RUC, Telefono, Correo, CodigoDistrito, 
+            string sql = $@"INSERT INTO clienteempresa(CodigoCategoriaCliente, RazonSocial, RUC, Telefono, correo, CodigoDistrito, 
                               Direccion, Vigente) 
                           VALUES({empresa.Categoria.Codigo}, '{empresa.RazonSocial}', '{empresa.RUC}', '{empresa.Telefono}',
                                   '{empresa.Correo}', {empresa.Distrito.Codigo}, '{empresa.Direccion }', 
