@@ -172,19 +172,19 @@ namespace ReglaNegocio
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             categorias = new List<CategoriaCliente>();
                             while (dr.Read() == true)
                             {
                                 categorias.Add(new CategoriaCliente()
                                 {
-                                    Codigo = dr.GetByte(dr.GetOrdinal("Codigo")),
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
                                     Vigente = true
                                 });
