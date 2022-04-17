@@ -14,6 +14,7 @@ namespace Entidades
         public string Apellidos { get; set; }
         public string TipoDocumento { get; set; } // DNI, Carnet de extranjería, Pasaporte
         public string NumeroDocumento { get; set; }
+        public DateTime FechaNacimiento { get; set; }
         public Distrito Distrito { get; set; }
         public string Direccion { get; set; }
         public string CorreoPersonal { get; set; }
