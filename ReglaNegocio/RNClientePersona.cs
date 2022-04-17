@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,19 +18,19 @@ namespace ReglaNegocio
 
         public void Registrar(ClientePersona persona)
         {
-            string sql = $@"INSERT INTO ClientePersona(CodigoCategoriaCliente, CodigoDistrito, Nombres, Apellidos,
-                            TipoDocumento, NumeroDocumento, Direccion, CorreoPersonal, Celular, Vigente) 
+            string sql = $@"INSERT INTO clientepersona(CodigoCategoriaCliente, CodigoDistrito, Nombres, Apellidos,
+                            TipoDocumento, NumeroDocumento,FechaNacimiento, Direccion, CorreoPersonal, Celular, Vigente) 
                           VALUES({persona.Categoria.Codigo}, {persona.Distrito.Codigo}, '{persona.Nombres}', 
-                                  '{persona.Apellidos}', '{persona.TipoDocumento}', '{persona.NumeroDocumento}', 
+                                  '{persona.Apellidos}', '{persona.TipoDocumento}', '{persona.NumeroDocumento}','{persona.FechaNacimiento:yyyyMMdd}',
                                   '{persona.Direccion}', '{persona.CorreoPersonal}', '{persona.Celular}',
                                   {(persona.Vigente == true ? estadoActivo : estadoInactivo)})";
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -43,19 +44,20 @@ namespace ReglaNegocio
 
         public void Actualizar(ClientePersona persona)
         {
-            string sql = $@"UPDATE ClientePersona 
+            string sql = $@"UPDATE clientepersona 
                         SET CodigoCategoriaCliente = {persona.Categoria.Codigo}, CodigoDistrito = {persona.Distrito.Codigo},
                             Nombres = '{persona.Nombres}', Apellidos = '{persona.Apellidos}', TipoDocumento = '{persona.TipoDocumento}',
-                            NumeroDocumento = '{persona.NumeroDocumento}', Direccion = '{persona.Direccion}',
+                            NumeroDocumento = '{persona.NumeroDocumento}', FechaNacimiento = '{persona.FechaNacimiento:yyyyMMdd}'
+                            Direccion = '{persona.Direccion}',
                             CorreoPersonal = '{persona.CorreoPersonal}', Celular = '{persona.Celular}',
                             Vigente = {(persona.Vigente == true ? estadoActivo : estadoInactivo)}
                         WHERE Codigo = {persona.Codigo}";
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -72,17 +74,17 @@ namespace ReglaNegocio
         {
             ClientePersona persona = null;
             string sql = $@"SELECT CP.CodigoCategoriaCliente, CP.CodigoDistrito, CP.Nombres, CP.Apellidos, CP.TipoDocumento, 
-                          CP.NumeroDocumento, CP.Direccion, CP.CorreoPersonal, CP.Celular, CP.Vigente
-	                      FROM ClientePersona CP 
+                          CP.NumeroDocumento, CP.FechaNacimiento,CP.Direccion, CP.CorreoPersonal, CP.Celular, CP.Vigente
+	                      FROM clientepersona CP 
                           WHERE CP.Codigo = {codigo}";
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {
@@ -97,6 +99,7 @@ namespace ReglaNegocio
                                     Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
                                     TipoDocumento = dr.GetString(dr.GetOrdinal("TipoDocumento")),
                                     NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento")),
+                                    FechaNacimiento = dr.GetDateTime(dr.GetOrdinal("FechaNacimiento")),
                                     CorreoPersonal = dr.GetString(dr.GetOrdinal("CorreoPersonal")),
                                     Celular = dr.GetString(dr.GetOrdinal("Celular")),
                                     Distrito = new Distrito
@@ -123,18 +126,18 @@ namespace ReglaNegocio
         public ClientePersona Leer(string numeroDocumento, string tipoDocumento)
         {
             ClientePersona persona = null;
-            string sql = $@"SELECT CP.Codigo, CP.CodigoCategoriaCliente, CP.CodigoDistrito, CP.Nombres, CP.Apellidos,  
+            string sql = $@"SELECT CP.Codigo, CP.CodigoCategoriaCliente, CP.CodigoDistrito, CP.Nombres, CP.Apellidos,CP.FechaNacimiento,  
                           CP.Direccion, CP.CorreoPersonal, CP.Celular, CP.Vigente, CC.Interes
-	                      FROM ClientePersona CP JOIN CategoriaCliente CC ON CP.CodigoCategoriaCliente = CC.Codigo
+	                      FROM clientepersona CP JOIN categoriacliente CC ON CP.CodigoCategoriaCliente = CC.Codigo
                           WHERE CP.NumeroDocumento = '{numeroDocumento}' AND CP.TipoDocumento = '{tipoDocumento}'";
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {
@@ -148,6 +151,7 @@ namespace ReglaNegocio
                                     },
                                     Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
                                     Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
+                                    FechaNacimiento = dr.GetDateTime(dr.GetOrdinal("FechaNacimiento")),
                                     CorreoPersonal = dr.GetString(dr.GetOrdinal("CorreoPersonal")),
                                     Celular = dr.GetString(dr.GetOrdinal("Celular")),
                                     Distrito = new Distrito
@@ -173,21 +177,21 @@ namespace ReglaNegocio
         public List<ClientePersona> Listar(string nombres, string apellidos)
         {
             List<ClientePersona> personas = null;
-            string sql = $@"SELECT CP.Codigo, CP.Nombres, CP.Apellidos, CP.NumeroDocumento, CP.Celular,  CP.Vigente, 
+            string sql = $@"SELECT CP.Codigo, CP.Nombres, CP.Apellidos, CP.NumeroDocumento,CP.Celular,  CP.Vigente, 
 						CC.Nombre AS Categoria, D.Distrito
-	                    FROM ClientePersona CP JOIN CategoriaCliente CC ON CC.Codigo = CP.CodigoCategoriaCliente
-		                JOIN Distrito D ON D.Codigo = CP.CodigoDistrito
+	                    FROM clientepersona CP JOIN categoriacliente CC ON CC.Codigo = CP.CodigoCategoriaCliente
+		                JOIN distrito D ON D.Codigo = CP.CodigoDistrito
 	                    WHERE CP.Nombres LIKE '{nombres}%' AND CP.Apellidos LIKE '{apellidos}%'
 	                    ORDER BY CP.Nombres";
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             personas = new List<ClientePersona>();
                             while (dr.Read() == true)
@@ -228,19 +232,19 @@ namespace ReglaNegocio
             List<ClientePersona> personas = null;
             string sql = $@"SELECT CP.Codigo, CP.Nombres, CP.Apellidos, CP.NumeroDocumento, CP.TipoDocumento, CP.Celular,  CP.Vigente, 
 						CC.Nombre AS Categoria, D.Distrito, CC.Interes
-	                    FROM ClientePersona CP JOIN CategoriaCliente CC ON CC.Codigo = CP.CodigoCategoriaCliente
+	                    FROM clientepersona CP JOIN categoriacliente CC ON CC.Codigo = CP.CodigoCategoriaCliente
 		                JOIN Distrito D ON D.Codigo = CP.CodigoDistrito
 	                    WHERE CP.Nombres LIKE '{nombreCompleto}%' OR CP.Apellidos LIKE '{nombreCompleto}%'
 	                    ORDER BY CP.Nombres";
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             personas = new List<ClientePersona>();
                             while (dr.Read() == true)
@@ -286,12 +290,12 @@ namespace ReglaNegocio
                           WHERE NumeroDocumento = '{numDocumento}'";
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand(sql, cn))
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                     {
-                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {

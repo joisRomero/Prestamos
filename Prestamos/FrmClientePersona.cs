@@ -243,6 +243,7 @@ namespace Prestamos
                 Nombres = this.TxtNombres.Text,
                 Apellidos = this.TxtApellidos.Text,
                 NumeroDocumento = this.TxtNumDocumento.Text,
+                FechaNacimiento = this.DtpFechaNacimiento.Value,
                 Distrito = (Distrito)this.CboDistrito.SelectedItem,
                 Direccion = this.TxtDireccion.Text,
                 CorreoPersonal = this.TxtCorreoPersonal.Text,
@@ -319,6 +320,7 @@ namespace Prestamos
                 this.TxtNombres.Text = this.actual.Nombres;
                 this.TxtApellidos.Text = this.actual.Apellidos;
                 this.TxtNumDocumento.Text = this.actual.NumeroDocumento;
+                this.DtpFechaNacimiento.Value = this.actual.FechaNacimiento;
                 this.CboDepartamento.Text = dis.Departamento;
                 this.CargarProvincias();
                 this.CboProvincia.Text = dis.Provincia;
