@@ -417,7 +417,7 @@ namespace Prestamos
                 List<string> rucEmpresas = new List<string>();
                 for (int i = 0; i < DgvListado.RowCount; i++)
                 {
-                    rucEmpresas.Add(DgvListado.Rows[i].Cells["cdRUC"].ToString());
+                    rucEmpresas.Add(DgvListado.Rows[i].Cells["cdRUC"].Value.ToString());
                 }
                 band = rucEmpresas.Any(r =>
                 {
