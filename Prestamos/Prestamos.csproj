@@ -136,6 +136,12 @@
     <Compile Include="FrmDistrito.Designer.cs">
       <DependentUpon>FrmDistrito.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmIniciarSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIniciarSesion.Designer.cs">
+      <DependentUpon>FrmIniciarSesion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmListaPrestamos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDistrito.resx">
       <DependentUpon>FrmDistrito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIniciarSesion.resx">
+      <DependentUpon>FrmIniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmListaPrestamos.resx">
       <DependentUpon>FrmListaPrestamos.cs</DependentUpon>
