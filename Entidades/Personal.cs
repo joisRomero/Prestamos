@@ -22,7 +22,7 @@ namespace Entidades
         {
             get
             {
-                return $"{Apellidos} {Nombres}";
+                return $"{Nombres} {Apellidos}";
             }
         }
     }

@@ -38,9 +38,9 @@ namespace Prestamos
             this.BtnListar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.DgvListado = new System.Windows.Forms.DataGridView();
-            this.CdPersonal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbUsuario = new System.Windows.Forms.GroupBox();
+            this.BtnBuscarAvanzada = new System.Windows.Forms.Button();
+            this.BtnBuscar = new System.Windows.Forms.Button();
             this.ChkContineAlMenosUnSimbolo = new System.Windows.Forms.CheckBox();
             this.ChkContineAlMenosUnaMinuscula = new System.Windows.Forms.CheckBox();
             this.ChkContineAlMenosUnaMayuscula = new System.Windows.Forms.CheckBox();
@@ -52,13 +52,17 @@ namespace Prestamos
             this.LblConfirmar = new System.Windows.Forms.Label();
             this.TxtClave = new System.Windows.Forms.TextBox();
             this.LblClave = new System.Windows.Forms.Label();
+            this.TxtNombrePersonal = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.LblNombre = new System.Windows.Forms.Label();
             this.TxtPersonal = new System.Windows.Forms.TextBox();
             this.LblPersonal = new System.Windows.Forms.Label();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
-            this.BtnBuscarAvanzada = new System.Windows.Forms.Button();
-            this.BtnBuscar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CboTipoUsuario = new System.Windows.Forms.ComboBox();
+            this.CdPersonal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbListado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.GbUsuario.SuspendLayout();
@@ -70,7 +74,7 @@ namespace Prestamos
             this.BtnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerrar.Image")));
             this.BtnCerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCerrar.Location = new System.Drawing.Point(684, 462);
+            this.BtnCerrar.Location = new System.Drawing.Point(811, 462);
             this.BtnCerrar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCerrar.Name = "BtnCerrar";
             this.BtnCerrar.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
@@ -91,11 +95,11 @@ namespace Prestamos
             this.GbListado.Controls.Add(this.BtnListar);
             this.GbListado.Controls.Add(this.BtnNuevo);
             this.GbListado.Controls.Add(this.DgvListado);
-            this.GbListado.Location = new System.Drawing.Point(344, 11);
+            this.GbListado.Location = new System.Drawing.Point(379, 11);
             this.GbListado.Margin = new System.Windows.Forms.Padding(2);
             this.GbListado.Name = "GbListado";
             this.GbListado.Padding = new System.Windows.Forms.Padding(2);
-            this.GbListado.Size = new System.Drawing.Size(442, 447);
+            this.GbListado.Size = new System.Drawing.Size(534, 447);
             this.GbListado.TabIndex = 1;
             this.GbListado.TabStop = false;
             this.GbListado.Text = "Listado";
@@ -105,7 +109,7 @@ namespace Prestamos
             this.BtnDarDeBaja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnDarDeBaja.Image = ((System.Drawing.Image)(resources.GetObject("BtnDarDeBaja.Image")));
             this.BtnDarDeBaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnDarDeBaja.Location = new System.Drawing.Point(326, 399);
+            this.BtnDarDeBaja.Location = new System.Drawing.Point(418, 399);
             this.BtnDarDeBaja.Margin = new System.Windows.Forms.Padding(2);
             this.BtnDarDeBaja.Name = "BtnDarDeBaja";
             this.BtnDarDeBaja.Size = new System.Drawing.Size(102, 40);
@@ -113,6 +117,7 @@ namespace Prestamos
             this.BtnDarDeBaja.Text = "Dar de baja";
             this.BtnDarDeBaja.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnDarDeBaja.UseVisualStyleBackColor = true;
+            this.BtnDarDeBaja.Click += new System.EventHandler(this.BtnDarDeBaja_Click);
             // 
             // BtnModificar
             // 
@@ -135,7 +140,7 @@ namespace Prestamos
             this.BtnListar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnListar.Image = ((System.Drawing.Image)(resources.GetObject("BtnListar.Image")));
             this.BtnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnListar.Location = new System.Drawing.Point(326, 16);
+            this.BtnListar.Location = new System.Drawing.Point(418, 16);
             this.BtnListar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnListar.Name = "BtnListar";
             this.BtnListar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
@@ -186,25 +191,12 @@ namespace Prestamos
             this.DgvListado.RowHeadersWidth = 51;
             this.DgvListado.RowTemplate.Height = 24;
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvListado.Size = new System.Drawing.Size(413, 328);
+            this.DgvListado.Size = new System.Drawing.Size(505, 328);
             this.DgvListado.TabIndex = 2;
-            // 
-            // CdPersonal
-            // 
-            this.CdPersonal.DataPropertyName = "NombrePersonal";
-            this.CdPersonal.HeaderText = "Personal";
-            this.CdPersonal.Name = "CdPersonal";
-            this.CdPersonal.ReadOnly = true;
-            // 
-            // CdNombre
-            // 
-            this.CdNombre.DataPropertyName = "Nombre";
-            this.CdNombre.HeaderText = "Nombre";
-            this.CdNombre.Name = "CdNombre";
-            this.CdNombre.ReadOnly = true;
             // 
             // GbUsuario
             // 
+            this.GbUsuario.Controls.Add(this.CboTipoUsuario);
             this.GbUsuario.Controls.Add(this.BtnBuscarAvanzada);
             this.GbUsuario.Controls.Add(this.BtnBuscar);
             this.GbUsuario.Controls.Add(this.ChkContineAlMenosUnSimbolo);
@@ -218,6 +210,9 @@ namespace Prestamos
             this.GbUsuario.Controls.Add(this.LblConfirmar);
             this.GbUsuario.Controls.Add(this.TxtClave);
             this.GbUsuario.Controls.Add(this.LblClave);
+            this.GbUsuario.Controls.Add(this.label2);
+            this.GbUsuario.Controls.Add(this.TxtNombrePersonal);
+            this.GbUsuario.Controls.Add(this.label1);
             this.GbUsuario.Controls.Add(this.TxtNombre);
             this.GbUsuario.Controls.Add(this.LblNombre);
             this.GbUsuario.Controls.Add(this.TxtPersonal);
@@ -227,16 +222,44 @@ namespace Prestamos
             this.GbUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.GbUsuario.Name = "GbUsuario";
             this.GbUsuario.Padding = new System.Windows.Forms.Padding(2);
-            this.GbUsuario.Size = new System.Drawing.Size(330, 348);
+            this.GbUsuario.Size = new System.Drawing.Size(365, 400);
             this.GbUsuario.TabIndex = 0;
             this.GbUsuario.TabStop = false;
             this.GbUsuario.Text = "Usuario";
+            // 
+            // BtnBuscarAvanzada
+            // 
+            this.BtnBuscarAvanzada.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscarAvanzada.Image")));
+            this.BtnBuscarAvanzada.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBuscarAvanzada.Location = new System.Drawing.Point(94, 56);
+            this.BtnBuscarAvanzada.Name = "BtnBuscarAvanzada";
+            this.BtnBuscarAvanzada.Padding = new System.Windows.Forms.Padding(50, 0, 50, 0);
+            this.BtnBuscarAvanzada.Size = new System.Drawing.Size(240, 23);
+            this.BtnBuscarAvanzada.TabIndex = 16;
+            this.BtnBuscarAvanzada.Text = "Búsqueda avanzada";
+            this.BtnBuscarAvanzada.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnBuscarAvanzada.UseVisualStyleBackColor = true;
+            this.BtnBuscarAvanzada.Click += new System.EventHandler(this.BtnBuscarAvanzada_Click);
+            // 
+            // BtnBuscar
+            // 
+            this.BtnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscar.Image")));
+            this.BtnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBuscar.Location = new System.Drawing.Point(259, 25);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.BtnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.BtnBuscar.TabIndex = 15;
+            this.BtnBuscar.Text = "Buscar";
+            this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // ChkContineAlMenosUnSimbolo
             // 
             this.ChkContineAlMenosUnSimbolo.AutoCheck = false;
             this.ChkContineAlMenosUnSimbolo.AutoSize = true;
-            this.ChkContineAlMenosUnSimbolo.Location = new System.Drawing.Point(65, 193);
+            this.ChkContineAlMenosUnSimbolo.Location = new System.Drawing.Point(94, 249);
             this.ChkContineAlMenosUnSimbolo.Name = "ChkContineAlMenosUnSimbolo";
             this.ChkContineAlMenosUnSimbolo.Size = new System.Drawing.Size(162, 17);
             this.ChkContineAlMenosUnSimbolo.TabIndex = 11;
@@ -248,7 +271,7 @@ namespace Prestamos
             // 
             this.ChkContineAlMenosUnaMinuscula.AutoCheck = false;
             this.ChkContineAlMenosUnaMinuscula.AutoSize = true;
-            this.ChkContineAlMenosUnaMinuscula.Location = new System.Drawing.Point(65, 177);
+            this.ChkContineAlMenosUnaMinuscula.Location = new System.Drawing.Point(94, 233);
             this.ChkContineAlMenosUnaMinuscula.Name = "ChkContineAlMenosUnaMinuscula";
             this.ChkContineAlMenosUnaMinuscula.Size = new System.Drawing.Size(184, 17);
             this.ChkContineAlMenosUnaMinuscula.TabIndex = 12;
@@ -260,7 +283,7 @@ namespace Prestamos
             // 
             this.ChkContineAlMenosUnaMayuscula.AutoCheck = false;
             this.ChkContineAlMenosUnaMayuscula.AutoSize = true;
-            this.ChkContineAlMenosUnaMayuscula.Location = new System.Drawing.Point(65, 161);
+            this.ChkContineAlMenosUnaMayuscula.Location = new System.Drawing.Point(94, 217);
             this.ChkContineAlMenosUnaMayuscula.Name = "ChkContineAlMenosUnaMayuscula";
             this.ChkContineAlMenosUnaMayuscula.Size = new System.Drawing.Size(187, 17);
             this.ChkContineAlMenosUnaMayuscula.TabIndex = 13;
@@ -275,7 +298,7 @@ namespace Prestamos
             this.ChkMinimo8Caracteres.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.ChkMinimo8Caracteres.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.ChkMinimo8Caracteres.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ChkMinimo8Caracteres.Location = new System.Drawing.Point(65, 145);
+            this.ChkMinimo8Caracteres.Location = new System.Drawing.Point(94, 201);
             this.ChkMinimo8Caracteres.Name = "ChkMinimo8Caracteres";
             this.ChkMinimo8Caracteres.Size = new System.Drawing.Size(123, 17);
             this.ChkMinimo8Caracteres.TabIndex = 14;
@@ -287,7 +310,7 @@ namespace Prestamos
             // 
             this.BtnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.Image")));
             this.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCancelar.Location = new System.Drawing.Point(192, 289);
+            this.BtnCancelar.Location = new System.Drawing.Point(232, 349);
             this.BtnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -302,7 +325,7 @@ namespace Prestamos
             // 
             this.BtnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAceptar.Image")));
             this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(84, 289);
+            this.BtnAceptar.Location = new System.Drawing.Point(124, 349);
             this.BtnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -316,7 +339,7 @@ namespace Prestamos
             // ChkVigente
             // 
             this.ChkVigente.AutoSize = true;
-            this.ChkVigente.Location = new System.Drawing.Point(63, 257);
+            this.ChkVigente.Location = new System.Drawing.Point(94, 317);
             this.ChkVigente.Margin = new System.Windows.Forms.Padding(2);
             this.ChkVigente.Name = "ChkVigente";
             this.ChkVigente.Size = new System.Drawing.Size(62, 17);
@@ -326,18 +349,18 @@ namespace Prestamos
             // 
             // TxtConfirmar
             // 
-            this.TxtConfirmar.Location = new System.Drawing.Point(63, 221);
+            this.TxtConfirmar.Location = new System.Drawing.Point(94, 281);
             this.TxtConfirmar.Margin = new System.Windows.Forms.Padding(2);
             this.TxtConfirmar.Name = "TxtConfirmar";
             this.TxtConfirmar.PasswordChar = '*';
-            this.TxtConfirmar.Size = new System.Drawing.Size(231, 20);
+            this.TxtConfirmar.Size = new System.Drawing.Size(240, 20);
             this.TxtConfirmar.TabIndex = 3;
             this.TxtConfirmar.Validating += new System.ComponentModel.CancelEventHandler(this.TxtConfirmar_Validating);
             // 
             // LblConfirmar
             // 
             this.LblConfirmar.AutoSize = true;
-            this.LblConfirmar.Location = new System.Drawing.Point(4, 223);
+            this.LblConfirmar.Location = new System.Drawing.Point(4, 283);
             this.LblConfirmar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblConfirmar.Name = "LblConfirmar";
             this.LblConfirmar.Size = new System.Drawing.Size(51, 13);
@@ -346,11 +369,11 @@ namespace Prestamos
             // 
             // TxtClave
             // 
-            this.TxtClave.Location = new System.Drawing.Point(63, 116);
+            this.TxtClave.Location = new System.Drawing.Point(94, 176);
             this.TxtClave.Margin = new System.Windows.Forms.Padding(2);
             this.TxtClave.Name = "TxtClave";
             this.TxtClave.PasswordChar = '*';
-            this.TxtClave.Size = new System.Drawing.Size(231, 20);
+            this.TxtClave.Size = new System.Drawing.Size(240, 20);
             this.TxtClave.TabIndex = 2;
             this.TxtClave.TextChanged += new System.EventHandler(this.TxtClave_TextChanged);
             this.TxtClave.Validating += new System.ComponentModel.CancelEventHandler(this.TxtClave_Validating);
@@ -358,43 +381,61 @@ namespace Prestamos
             // LblClave
             // 
             this.LblClave.AutoSize = true;
-            this.LblClave.Location = new System.Drawing.Point(4, 118);
+            this.LblClave.Location = new System.Drawing.Point(4, 178);
             this.LblClave.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblClave.Name = "LblClave";
             this.LblClave.Size = new System.Drawing.Size(34, 13);
             this.LblClave.TabIndex = 0;
             this.LblClave.Text = "Clave";
             // 
+            // TxtNombrePersonal
+            // 
+            this.TxtNombrePersonal.Enabled = false;
+            this.TxtNombrePersonal.Location = new System.Drawing.Point(94, 88);
+            this.TxtNombrePersonal.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtNombrePersonal.Name = "TxtNombrePersonal";
+            this.TxtNombrePersonal.Size = new System.Drawing.Size(240, 20);
+            this.TxtNombrePersonal.TabIndex = 1;
+            this.TxtNombrePersonal.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNombre_Validating);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 90);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nmb. personal";
+            // 
             // TxtNombre
             // 
-            this.TxtNombre.Location = new System.Drawing.Point(63, 87);
+            this.TxtNombre.Location = new System.Drawing.Point(94, 147);
             this.TxtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNombre.Name = "TxtNombre";
-            this.TxtNombre.Size = new System.Drawing.Size(231, 20);
+            this.TxtNombre.Size = new System.Drawing.Size(240, 20);
             this.TxtNombre.TabIndex = 1;
             this.TxtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNombre_Validating);
             // 
             // LblNombre
             // 
             this.LblNombre.AutoSize = true;
-            this.LblNombre.Location = new System.Drawing.Point(4, 89);
+            this.LblNombre.Location = new System.Drawing.Point(4, 149);
             this.LblNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblNombre.Name = "LblNombre";
-            this.LblNombre.Size = new System.Drawing.Size(44, 13);
+            this.LblNombre.Size = new System.Drawing.Size(84, 13);
             this.LblNombre.TabIndex = 0;
-            this.LblNombre.Text = "Nombre";
+            this.LblNombre.Text = "Nmb. de usuario";
             // 
             // TxtPersonal
             // 
             this.TxtPersonal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtPersonal.Enabled = false;
-            this.TxtPersonal.Location = new System.Drawing.Point(63, 27);
+            this.TxtPersonal.Location = new System.Drawing.Point(94, 27);
             this.TxtPersonal.Margin = new System.Windows.Forms.Padding(2);
             this.TxtPersonal.MaxLength = 8;
             this.TxtPersonal.Name = "TxtPersonal";
-            this.TxtPersonal.Size = new System.Drawing.Size(152, 20);
+            this.TxtPersonal.Size = new System.Drawing.Size(161, 20);
             this.TxtPersonal.TabIndex = 0;
-            this.TxtPersonal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPersonal_KeyPress);
             this.TxtPersonal.Validating += new System.ComponentModel.CancelEventHandler(this.TxtPersonal_Validating);
             // 
             // LblPersonal
@@ -411,39 +452,48 @@ namespace Prestamos
             // 
             this.ErrNotificador.ContainerControl = this;
             // 
-            // BtnBuscarAvanzada
+            // label2
             // 
-            this.BtnBuscarAvanzada.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscarAvanzada.Image")));
-            this.BtnBuscarAvanzada.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnBuscarAvanzada.Location = new System.Drawing.Point(65, 56);
-            this.BtnBuscarAvanzada.Name = "BtnBuscarAvanzada";
-            this.BtnBuscarAvanzada.Padding = new System.Windows.Forms.Padding(50, 0, 50, 0);
-            this.BtnBuscarAvanzada.Size = new System.Drawing.Size(229, 23);
-            this.BtnBuscarAvanzada.TabIndex = 16;
-            this.BtnBuscarAvanzada.Text = "Búsqueda avanzada";
-            this.BtnBuscarAvanzada.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnBuscarAvanzada.UseVisualStyleBackColor = true;
-            this.BtnBuscarAvanzada.Click += new System.EventHandler(this.BtnBuscarAvanzada_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 118);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Tipo";
             // 
-            // BtnBuscar
+            // CboTipoUsuario
             // 
-            this.BtnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscar.Image")));
-            this.BtnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnBuscar.Location = new System.Drawing.Point(219, 25);
-            this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.BtnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.BtnBuscar.TabIndex = 15;
-            this.BtnBuscar.Text = "Buscar";
-            this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.CboTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboTipoUsuario.FormattingEnabled = true;
+            this.CboTipoUsuario.Items.AddRange(new object[] {
+            "Limitado",
+            "Administrador"});
+            this.CboTipoUsuario.Location = new System.Drawing.Point(94, 116);
+            this.CboTipoUsuario.Name = "CboTipoUsuario";
+            this.CboTipoUsuario.Size = new System.Drawing.Size(240, 21);
+            this.CboTipoUsuario.TabIndex = 17;
+            // 
+            // CdPersonal
+            // 
+            this.CdPersonal.DataPropertyName = "NombrePersonal";
+            this.CdPersonal.HeaderText = "Personal";
+            this.CdPersonal.Name = "CdPersonal";
+            this.CdPersonal.ReadOnly = true;
+            // 
+            // CdNombre
+            // 
+            this.CdNombre.DataPropertyName = "Nombre";
+            this.CdNombre.HeaderText = "Nombre de usuario";
+            this.CdNombre.Name = "CdNombre";
+            this.CdNombre.ReadOnly = true;
             // 
             // FrmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(796, 512);
+            this.ClientSize = new System.Drawing.Size(923, 512);
             this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.GbListado);
             this.Controls.Add(this.GbUsuario);
@@ -451,7 +501,6 @@ namespace Prestamos
             this.Name = "FrmUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de usuarios";
-            this.Load += new System.EventHandler(this.FrmUsuario_Load);
             this.GbListado.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).EndInit();
             this.GbUsuario.ResumeLayout(false);
@@ -481,8 +530,6 @@ namespace Prestamos
         private System.Windows.Forms.TextBox TxtPersonal;
         private System.Windows.Forms.Label LblPersonal;
         private System.Windows.Forms.ErrorProvider ErrNotificador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CdPersonal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CdNombre;
         private System.Windows.Forms.TextBox TxtConfirmar;
         private System.Windows.Forms.Label LblConfirmar;
         private System.Windows.Forms.CheckBox ChkContineAlMenosUnSimbolo;
@@ -491,5 +538,11 @@ namespace Prestamos
         private System.Windows.Forms.CheckBox ChkMinimo8Caracteres;
         private System.Windows.Forms.Button BtnBuscarAvanzada;
         private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.TextBox TxtNombrePersonal;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox CboTipoUsuario;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CdPersonal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CdNombre;
     }
 }

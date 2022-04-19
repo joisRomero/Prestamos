@@ -343,8 +343,8 @@ namespace Prestamos
 
             if (actual == null)
             {
-                RNClientePersona rn = new RNClientePersona();
-                band = rn.ExistePersona(TxtNumDocumento.Text);
+                RNPersonal rn = new RNPersonal();
+                band = rn.ExistePersonal(TxtNumDocumento.Text);
             }
             else
             {

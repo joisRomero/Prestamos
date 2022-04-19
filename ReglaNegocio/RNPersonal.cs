@@ -38,8 +38,6 @@ namespace ReglaNegocio
             }
             catch (Exception ex)
             {
-
-                Console.WriteLine("===="+ex.Message);
                 throw ex;
             }
         }
@@ -118,7 +116,53 @@ namespace ReglaNegocio
             return personal;
         }
 
-        
+        public Personal Leer(string numeroDocumento)
+        {
+            Personal personal = null;
+            string sql = $@"SELECT P.Nombres, P.Apellidos, P.CodigoTipoDocumento, P.Correo, 
+                            P.Celular, P.Direccion, P.Vigente, P.Codigo
+                            FROM Personal P
+                            WHERE P.NumeroDocumento = {numeroDocumento}";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                personal = new Personal()
+                                {
+                                    NumeroDocumento = numeroDocumento,
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
+                                    Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
+                                    Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
+                                    TipoDocumento = new TipoDocumento()
+                                    {
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoTipoDocumento")),
+                                    },
+                                    Correo = dr.GetString(dr.GetOrdinal("Correo")),
+                                    Celular = dr.GetString(dr.GetOrdinal("Celular")),
+                                    Direccion = dr.GetString(dr.GetOrdinal("Direccion")),
+                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
+                                };
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return personal;
+        }
+
         public List<Personal> Listar()
         {
             List<Personal> personal = null;
@@ -167,6 +211,54 @@ namespace ReglaNegocio
 
             return personal;
         }
+
+        public List<Personal> ListarBusqueda()
+        {
+            List<Personal> personal = null;
+            string sql = $@"SELECT P.Codigo, P.Nombres, P.Apellidos, P.CodigoTipoDocumento, P.NumeroDocumento, P.Vigente
+                            FROM Personal P 
+                            WHERE P.Vigente = 1
+                            ORDER BY P.Nombres";
+
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            personal = new List<Personal>();
+                            while (dr.Read() == true)
+                            {
+                                personal.Add(new Personal()
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
+                                    Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
+                                    Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
+                                    TipoDocumento = new TipoDocumento()
+                                    {
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoTipoDocumento")),
+                                    },
+                                    NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento")),
+                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
+                                });
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return personal;
+        }
+
+
 
         public bool ExistePersonal(string numeroDocumento)
         {

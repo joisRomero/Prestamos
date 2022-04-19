@@ -14,5 +14,13 @@ namespace Entidades
         public string Clave { get; set; }
         public string Tipo  { get; set; }
         public bool Vigente { get; set; }
+
+        public string NombrePersonal
+        {
+            get
+            {
+                return Personal.NombreCompleto;
+            }
+        }
     }
 }

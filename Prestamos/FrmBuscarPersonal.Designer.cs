@@ -29,14 +29,12 @@ namespace Prestamos
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBuscarPersonal));
             this.DgvListado = new System.Windows.Forms.DataGridView();
-            this.CdIdentidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdNumDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnSeleccionar = new System.Windows.Forms.Button();
-            this.TxtPersonal = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
@@ -53,19 +51,19 @@ namespace Prestamos
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DgvListado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvListado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CdIdentidad,
+            this.CdNumDocumento,
             this.CdNombre});
-            this.DgvListado.Location = new System.Drawing.Point(11, 68);
+            this.DgvListado.Location = new System.Drawing.Point(11, 57);
             this.DgvListado.Margin = new System.Windows.Forms.Padding(2);
             this.DgvListado.MultiSelect = false;
             this.DgvListado.Name = "DgvListado";
@@ -74,18 +72,20 @@ namespace Prestamos
             this.DgvListado.RowHeadersWidth = 51;
             this.DgvListado.RowTemplate.Height = 24;
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvListado.Size = new System.Drawing.Size(586, 373);
+            this.DgvListado.Size = new System.Drawing.Size(586, 384);
             this.DgvListado.TabIndex = 0;
             this.DgvListado.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvListado_CellDoubleClick);
             // 
-            // CdIdentidad
+            // CdNumDocumento
             // 
-            this.CdIdentidad.HeaderText = "Identidad";
-            this.CdIdentidad.Name = "CdIdentidad";
-            this.CdIdentidad.ReadOnly = true;
+            this.CdNumDocumento.DataPropertyName = "NumeroDocumento";
+            this.CdNumDocumento.HeaderText = "Nro. Documento";
+            this.CdNumDocumento.Name = "CdNumDocumento";
+            this.CdNumDocumento.ReadOnly = true;
             // 
             // CdNombre
             // 
+            this.CdNombre.DataPropertyName = "NombreCompleto";
             this.CdNombre.HeaderText = "Nombre";
             this.CdNombre.Name = "CdNombre";
             this.CdNombre.ReadOnly = true;
@@ -104,24 +104,6 @@ namespace Prestamos
             this.BtnSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnSeleccionar.UseVisualStyleBackColor = true;
             this.BtnSeleccionar.Click += new System.EventHandler(this.BtnSeleccionar_Click);
-            // 
-            // TxtPersonal
-            // 
-            this.TxtPersonal.Location = new System.Drawing.Point(82, 23);
-            this.TxtPersonal.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtPersonal.Name = "TxtPersonal";
-            this.TxtPersonal.Size = new System.Drawing.Size(389, 20);
-            this.TxtPersonal.TabIndex = 2;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 26);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Personal";
             // 
             // BtnCancelar
             // 
@@ -161,8 +143,6 @@ namespace Prestamos
             this.ClientSize = new System.Drawing.Size(608, 498);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnCancelar);
-            this.Controls.Add(this.TxtPersonal);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.BtnSeleccionar);
             this.Controls.Add(this.DgvListado);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -173,7 +153,6 @@ namespace Prestamos
             this.Text = "Buscar personal";
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -181,11 +160,9 @@ namespace Prestamos
 
         private System.Windows.Forms.DataGridView DgvListado;
         private System.Windows.Forms.Button BtnSeleccionar;
-        private System.Windows.Forms.TextBox TxtPersonal;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button BtnCancelar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CdIdentidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CdNombre;
         private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CdNumDocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CdNombre;
     }
 }
