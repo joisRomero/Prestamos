@@ -8,21 +8,18 @@ namespace Entidades
 {
     public class Usuario
     {
+        public int Codigo { get; set; }
         public Personal Personal { get; set; }
         public string Nombre { get; set; }
         public string Clave { get; set; }
+        public string Tipo  { get; set; }
         public bool Vigente { get; set; }
 
         public string NombrePersonal
         {
             get
             {
-                string dni = "";
-                if (this.Personal != null)
-                {
-                    dni = this.Personal.DNI;
-                }
-                return dni;
+                return Personal.NombreCompleto;
             }
         }
     }

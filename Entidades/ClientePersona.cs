@@ -12,7 +12,7 @@ namespace Entidades
         public int Codigo { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
-        public string TipoDocumento { get; set; } // DNI, Carnet de extranjería, Pasaporte
+        public TipoDocumento TipoDocumento { get; set; } 
         public string NumeroDocumento { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public Distrito Distrito { get; set; }
@@ -62,22 +62,7 @@ namespace Entidades
         {
             get
             {
-                return $"{this.SiglasTipoDocumento} : {this.NumeroDocumento}";
-            }
-        }
-
-        public string SiglasTipoDocumento
-        {
-            get
-            {
-                string siglas = "";
-                switch (this.TipoDocumento)
-                {
-                    case "D": siglas = "DNI"; break;
-                    case "C": siglas = "Carnet extrangería"; break;
-                    case "P": siglas = "Pasaporte"; break;
-                }
-                return siglas;
+                return $"{this.TipoDocumento.Siglas} : {this.NumeroDocumento}";
             }
         }
 

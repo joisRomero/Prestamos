@@ -55,6 +55,8 @@
     <Compile Include="RNDistrito.cs" />
     <Compile Include="RNPersonal.cs" />
     <Compile Include="RNPrestamo.cs" />
+    <Compile Include="RNTipoDocumento.cs" />
+    <Compile Include="RNUsuario.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>

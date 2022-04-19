@@ -19,9 +19,9 @@ namespace ReglaNegocio
         public void Registrar(ClientePersona persona)
         {
             string sql = $@"INSERT INTO clientepersona(CodigoCategoriaCliente, CodigoDistrito, Nombres, Apellidos,
-                            TipoDocumento, NumeroDocumento,FechaNacimiento, Direccion, CorreoPersonal, Celular, Vigente) 
+                            CodigoTipoDocumento, NumeroDocumento,FechaNacimiento, Direccion, Correo, Celular, Vigente) 
                           VALUES({persona.Categoria.Codigo}, {persona.Distrito.Codigo}, '{persona.Nombres}', 
-                                  '{persona.Apellidos}', '{persona.TipoDocumento}', '{persona.NumeroDocumento}','{persona.FechaNacimiento:yyyyMMdd}',
+                                  '{persona.Apellidos}', '{persona.TipoDocumento.Codigo}', '{persona.NumeroDocumento}','{persona.FechaNacimiento:yyyyMMdd}',
                                   '{persona.Direccion}', '{persona.CorreoPersonal}', '{persona.Celular}',
                                   {(persona.Vigente == true ? estadoActivo : estadoInactivo)})";
 
@@ -46,10 +46,10 @@ namespace ReglaNegocio
         {
             string sql = $@"UPDATE clientepersona 
                         SET CodigoCategoriaCliente = {persona.Categoria.Codigo}, CodigoDistrito = {persona.Distrito.Codigo},
-                            Nombres = '{persona.Nombres}', Apellidos = '{persona.Apellidos}', TipoDocumento = '{persona.TipoDocumento}',
-                            NumeroDocumento = '{persona.NumeroDocumento}', FechaNacimiento = '{persona.FechaNacimiento:yyyyMMdd}'
+                            Nombres = '{persona.Nombres}', Apellidos = '{persona.Apellidos}', CodigoTipoDocumento = {persona.TipoDocumento.Codigo},
+                            NumeroDocumento = '{persona.NumeroDocumento}', FechaNacimiento = '{persona.FechaNacimiento:yyyyMMdd}',
                             Direccion = '{persona.Direccion}',
-                            CorreoPersonal = '{persona.CorreoPersonal}', Celular = '{persona.Celular}',
+                            Correo = '{persona.CorreoPersonal}', Celular = '{persona.Celular}',
                             Vigente = {(persona.Vigente == true ? estadoActivo : estadoInactivo)}
                         WHERE Codigo = {persona.Codigo}";
             try
@@ -73,8 +73,8 @@ namespace ReglaNegocio
         public ClientePersona Leer(int codigo)
         {
             ClientePersona persona = null;
-            string sql = $@"SELECT CP.CodigoCategoriaCliente, CP.CodigoDistrito, CP.Nombres, CP.Apellidos, CP.TipoDocumento, 
-                          CP.NumeroDocumento, CP.FechaNacimiento,CP.Direccion, CP.CorreoPersonal, CP.Celular, CP.Vigente
+            string sql = $@"SELECT CP.CodigoCategoriaCliente, CP.CodigoDistrito, CP.Nombres, CP.Apellidos, CP.CodigoTipoDocumento, 
+                          CP.NumeroDocumento, CP.FechaNacimiento,CP.Direccion, CP.Correo, CP.Celular, CP.Vigente
 	                      FROM clientepersona CP 
                           WHERE CP.Codigo = {codigo}";
             try
@@ -93,18 +93,21 @@ namespace ReglaNegocio
                                     Codigo = codigo,
                                     Categoria = new CategoriaCliente()
                                     {
-                                        Codigo = dr.GetByte(dr.GetOrdinal("CodigoCategoriaCliente"))
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoCategoriaCliente"))
                                     },
                                     Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
                                     Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
-                                    TipoDocumento = dr.GetString(dr.GetOrdinal("TipoDocumento")),
+                                    TipoDocumento = new TipoDocumento()
+                                    {
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoTipoDocumento"))
+                                    },                                    
                                     NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento")),
                                     FechaNacimiento = dr.GetDateTime(dr.GetOrdinal("FechaNacimiento")),
-                                    CorreoPersonal = dr.GetString(dr.GetOrdinal("CorreoPersonal")),
+                                    CorreoPersonal = dr.GetString(dr.GetOrdinal("Correo")),
                                     Celular = dr.GetString(dr.GetOrdinal("Celular")),
                                     Distrito = new Distrito
                                     {
-                                        Codigo = dr.GetByte(dr.GetOrdinal("CodigoDistrito"))
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoDistrito"))
                                     },
                                     Direccion = dr.GetString(dr.GetOrdinal("Direccion")),
                                     Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
@@ -123,13 +126,13 @@ namespace ReglaNegocio
             return persona;
         }
 
-        public ClientePersona Leer(string numeroDocumento, string tipoDocumento)
+        public ClientePersona Leer(string numeroDocumento, string codigoTipoDocumento)
         {
             ClientePersona persona = null;
             string sql = $@"SELECT CP.Codigo, CP.CodigoCategoriaCliente, CP.CodigoDistrito, CP.Nombres, CP.Apellidos,CP.FechaNacimiento,  
-                          CP.Direccion, CP.CorreoPersonal, CP.Celular, CP.Vigente, CC.Interes
+                          CP.Direccion, CP.Correo, CP.Celular, CP.Vigente, CC.InteresAnual
 	                      FROM clientepersona CP JOIN categoriacliente CC ON CP.CodigoCategoriaCliente = CC.Codigo
-                          WHERE CP.NumeroDocumento = '{numeroDocumento}' AND CP.TipoDocumento = '{tipoDocumento}'";
+                          WHERE CP.NumeroDocumento = '{numeroDocumento}' AND CP.CodigoTipoDocumento = '{codigoTipoDocumento}'";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
@@ -147,7 +150,7 @@ namespace ReglaNegocio
                                     Categoria = new CategoriaCliente()
                                     {
                                         Codigo = dr.GetByte(dr.GetOrdinal("CodigoCategoriaCliente")),
-                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual"))
                                     },
                                     Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
                                     Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
@@ -174,64 +177,12 @@ namespace ReglaNegocio
 
             return persona;
         }
-        public List<ClientePersona> Listar(string nombres, string apellidos)
-        {
-            List<ClientePersona> personas = null;
-            string sql = $@"SELECT CP.Codigo, CP.Nombres, CP.Apellidos, CP.NumeroDocumento,CP.Celular,  CP.Vigente, 
-						CC.Nombre AS Categoria, D.Distrito
-	                    FROM clientepersona CP JOIN categoriacliente CC ON CC.Codigo = CP.CodigoCategoriaCliente
-		                JOIN distrito D ON D.Codigo = CP.CodigoDistrito
-	                    WHERE CP.Nombres LIKE '{nombres}%' AND CP.Apellidos LIKE '{apellidos}%'
-	                    ORDER BY CP.Nombres";
-
-            try
-            {
-                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
-                {
-                    cn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
-                    {
-                        using (MySqlDataReader dr = cmd.ExecuteReader())
-                        {
-                            personas = new List<ClientePersona>();
-                            while (dr.Read() == true)
-                            {
-                                personas.Add(new ClientePersona()
-                                {
-                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
-                                    Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
-                                    Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
-                                    NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento")),
-                                    Celular = dr.GetString(dr.GetOrdinal("Celular")),
-                                    Categoria = new CategoriaCliente()
-                                    {
-                                        Nombre = dr.GetString(dr.GetOrdinal("Categoria"))
-                                    },
-                                    Distrito = new Distrito
-                                    {
-                                        DistritoNombre = dr.GetString(dr.GetOrdinal("Distrito"))
-                                    },
-                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
-                                });
-                            }
-                            dr.Close();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return personas;
-        }
-
+        
         public List<ClientePersona> Listar(string nombreCompleto)
         {
             List<ClientePersona> personas = null;
-            string sql = $@"SELECT CP.Codigo, CP.Nombres, CP.Apellidos, CP.NumeroDocumento, CP.TipoDocumento, CP.Celular,  CP.Vigente, 
-						CC.Nombre AS Categoria, D.Distrito, CC.Interes
+            string sql = $@"SELECT CP.Codigo, CP.Nombres, CP.Apellidos, CP.NumeroDocumento, CP.CodigoTipoDocumento, CP.Celular,  CP.Vigente, 
+						CC.Nombre AS Categoria, D.Distrito, CC.InteresAnual
 	                    FROM clientepersona CP JOIN categoriacliente CC ON CC.Codigo = CP.CodigoCategoriaCliente
 		                JOIN Distrito D ON D.Codigo = CP.CodigoDistrito
 	                    WHERE CP.Nombres LIKE '{nombreCompleto}%' OR CP.Apellidos LIKE '{nombreCompleto}%'
@@ -254,13 +205,16 @@ namespace ReglaNegocio
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
                                     Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
-                                    TipoDocumento = dr.GetString(dr.GetOrdinal("TipoDocumento")),
+                                    TipoDocumento = new TipoDocumento()
+                                    {
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoTipoDocumento"))
+                                    },
                                     NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento")),
                                     Celular = dr.GetString(dr.GetOrdinal("Celular")),
                                     Categoria = new CategoriaCliente()
                                     {
                                         Nombre = dr.GetString(dr.GetOrdinal("Categoria")),
-                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("Interes"))
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual"))
                                     },
                                     Distrito = new Distrito
                                     {

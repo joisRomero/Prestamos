@@ -57,7 +57,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ReporteResumenClientesDistrito.cs" />
+    <Compile Include="TipoDocumento.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="Utilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">

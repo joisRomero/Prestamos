@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using ReglaNegocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Prestamos
 {
-    public partial class FrmUsuario : Form, ITransferirInformacion
+    public partial class FrmUsuario : Form
     {
         Usuario actual;
         Personal personal;
@@ -33,12 +34,6 @@ namespace Prestamos
             }
         }
 
-        private void BtnBuscar_Click(object sender, EventArgs e)
-        {
-            FrmBuscarPersonal frm = new FrmBuscarPersonal(this);
-            frm.ShowDialog();
-        }
-
         private void BtnNuevoDistrito_Click(object sender, EventArgs e)
         {
             this.actual = null;
@@ -50,7 +45,10 @@ namespace Prestamos
         {
             this.TxtPersonal.Text = "";
             this.TxtNombre.Text = "";
+            this.TxtNombrePersonal.Text = "";
             this.TxtClave.Text = "";
+            this.TxtConfirmar.Text = "";
+            this.CboTipoUsuario.SelectedIndex = -1;
             this.ChkVigente.Checked = true;
         }
 
@@ -79,38 +77,60 @@ namespace Prestamos
             ErrNotificador.SetError(this.ChkMinimo8Caracteres, "");
         }
 
-        public void TransferirPersonal(Personal personal)
-        {
-            this.personal = personal;
-            this.LLenarTxtPersonal();
-        }
 
-        private void LLenarTxtPersonal()
-        {
-            this.TxtPersonal.Text = personal.DNI;
-        }
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
             Usuario usuario;
+            RNUsuario rn;
             if (this.ValidateChildren() == true)
             {
-                if (this.actual == null)
+                usuario = this.CrearEntidad();
+                rn = new RNUsuario();
+
+                try
                 {
-                    usuario = new Usuario();
-                    Program.Usuarios.Add(usuario);
+                    if (this.actual == null)
+                    {
+                        rn.Registrar(usuario);
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(this.TxtClave.Text) == true)
+                        {
+                            rn.ActualizarSinClave(usuario);
+                        }
+                        else
+                        {
+                            rn.ActualizarConClave(usuario);
+                        }
+                        
+                    }
+                    this.HabilitarControles(false);
+                    this.BtnListar.PerformClick();
+                    this.LimpiarControles();
                 }
-                else
+                catch (Exception)
                 {
-                    usuario = this.actual;
+                    MessageBox.Show("No se pudo registrar el personal", this.Text);
                 }
-                usuario.Personal = this.personal;
-                usuario.Nombre = this.TxtNombre.Text;
-                usuario.Clave = this.TxtClave.Text;
-                usuario.Vigente = this.ChkVigente.Checked;
-                this.HabilitarControles(false);
-                this.BtnListar.PerformClick();
-                this.LimpiarControles();
             }
+        }
+
+        private Usuario CrearEntidad()
+        {
+            Usuario usuario = new Usuario()
+            {
+                Personal = this.personal,
+                Tipo = this.CboTipoUsuario.Text.Substring(0,1),
+                Nombre = this.TxtNombre.Text,
+                Clave = Utilidades.Encriptar(this.TxtClave.Text),
+                Vigente = this.ChkVigente.Checked
+            };
+            if (this.actual != null)
+            {
+                usuario.Codigo = this.actual.Codigo;
+            }
+            return usuario;
         }
 
         private void TxtPersonal_Validating(object sender, CancelEventArgs e)
@@ -134,16 +154,28 @@ namespace Prestamos
 
         private bool TieneUsuarioEstePersonal()
         {
-            return actual == null
-                ? Program.Usuarios.Any(u => u.Personal.DNI.Equals(this.TxtPersonal.Text))
-                : Program.Usuarios.Any(u =>
+
+            bool band;
+
+            if (actual == null)
+            {
+                try
                 {
-                    if (actual.Personal.DNI.Equals(u.Personal.DNI))
-                    {
-                        return false;
-                    }
-                    return u.Personal.DNI.Equals(this.TxtPersonal.Text);
-                });
+                    RNUsuario rn = new RNUsuario();
+                    band = rn.EstaRegistradoElUsuario(personal.Codigo);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+            }
+            else
+            {
+                band = false;
+            }
+            
+            return band;
         }
 
         private void TxtNombre_Validating(object sender, CancelEventArgs e)
@@ -154,7 +186,7 @@ namespace Prestamos
                 ErrNotificador.SetError(TxtNombre, "");
                 if (this.EstaRegistradoElNombre() == true)
                 {
-                    ErrNotificador.SetError(TxtNombre, "Nombre ya registrado");
+                    ErrNotificador.SetError(TxtNombre, "Nombre de usuario ya registrado");
                     e.Cancel = true;
                 }
             }
@@ -167,35 +199,72 @@ namespace Prestamos
 
         private bool EstaRegistradoElNombre()
         {
-            return actual == null
-                ? Program.Usuarios.Any(u => TxtNombre.Text.Equals(u.Nombre))
-                : Program.Usuarios.Any(u =>
+            bool band;
+
+            if (actual == null)
+            {
+                try
                 {
-                    if (actual.Nombre.Equals(u.Nombre))
+                    RNUsuario rn = new RNUsuario();
+                    band = rn.EstaRegistradoElNombreDeUsuario(TxtNombre.Text);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+            }
+            else
+            {
+                List<string> nombres = new List<string>();
+                for (int i = 0; i < DgvListado.RowCount; i++)
+                {
+                    nombres.Add(DgvListado.Rows[i].Cells["CdNombre"].Value.ToString());
+                }
+                band = nombres.Any(r =>
+                {
+                    if (actual.Nombre.Equals(r))
                     {
                         return false;
                     }
-                    return TxtNombre.Text.Equals(u.Nombre);
+                    return TxtNombre.Text.Equals(r);
                 });
-        }
+            }
 
-        private void TxtPersonal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = this.SoloNumeros(e);
-        }
-
-        private bool SoloNumeros(KeyPressEventArgs e)
-        {
-            return !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
+            return band;
         }
 
         private void BtnListar_Click(object sender, EventArgs e)
         {
+            RNUsuario rn = new RNUsuario();
+            List<Usuario> usuario;
             this.DgvListado.DataSource = null;
-            if (Program.Usuarios.Count > 0)
+
+            try
             {
-                this.DgvListado.AutoGenerateColumns = false;
-                this.DgvListado.DataSource = Program.Usuarios;
+                usuario = rn.Listar();
+                if (usuario.Count > 0)
+                {
+                    this.DgvListado.AutoGenerateColumns = false;
+                    this.DgvListado.DataSource = usuario;
+                    this.DarFormatoFila(usuario);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo obtener al personal", this.Text);
+            }
+        }
+
+        private void DarFormatoFila(List<Usuario> usuario)
+        {
+            for (int i = 0; i < usuario.Count; i++)
+            {
+                if (usuario[i].Vigente == false)
+                {
+                    DgvListado.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                    DgvListado.Rows[i].DefaultCellStyle.SelectionForeColor = Color.Red;
+                }
             }
         }
 
@@ -215,17 +284,40 @@ namespace Prestamos
 
         private void PresentarDatos()
         {
-            this.TxtPersonal.Text = actual.Personal.DNI;
-            this.TxtNombre.Text = actual.Nombre;
-            this.TxtClave.Text = actual.Clave;
-            this.ChkVigente.Checked = actual.Vigente;
-            this.HabilitarControles(true);
+            RNUsuario rn = new RNUsuario();
+
+            try
+            {
+                this.actual = rn.Leer(this.actual.Codigo);
+                if (this.actual != null)
+                {
+                    this.personal = actual.Personal;
+                    this.TxtPersonal.Text = actual.Personal.NumeroDocumento;
+                    this.TxtNombrePersonal.Text = actual.Personal.NombreCompleto;
+                    this.TxtNombre.Text = actual.Nombre;
+                    this.ChkVigente.Checked = actual.Vigente;
+                    this.HabilitarControles(true);
+
+                    if (actual.Tipo.Equals("L"))
+                    {
+                        CboTipoUsuario.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        CboTipoUsuario.SelectedIndex = 1;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo obtener al personal solicitado", this.Text); ;
+            }
         }
 
         private void TxtClave_Validating(object sender, CancelEventArgs e)
         {
             this.TxtClave.Text = this.TxtClave.Text.Trim();
-            if (string.IsNullOrEmpty(this.TxtClave.Text) == false &&
+            if (actual != null || string.IsNullOrEmpty(this.TxtClave.Text) == false &&
                 ContieneAlmenosOchoDigitos() &&
                 ContieneAlMenosUnaMayuscula() &&
                 ContieneAlMenosUnaMinuscula() &&
@@ -270,7 +362,7 @@ namespace Prestamos
         private void TxtConfirmar_Validating(object sender, CancelEventArgs e)
         {
             TxtConfirmar.Text = TxtConfirmar.Text.Trim();
-            if (string.IsNullOrEmpty(TxtConfirmar.Text) == false)
+            if (actual != null || string.IsNullOrEmpty(TxtConfirmar.Text) == false)
             {
                 if (TxtConfirmar.Text.Equals(TxtConfirmar.Text))
                 {
@@ -291,7 +383,7 @@ namespace Prestamos
 
         private void CheckBoxClave_Validating(object sender, CancelEventArgs e)
         {
-            if (((CheckBox)sender).Checked)
+            if (actual != null|| ((CheckBox)sender).Checked)
             {
                 ErrNotificador.SetError(((CheckBox)sender), "");
             }
@@ -302,14 +394,68 @@ namespace Prestamos
             }
         }
 
-        private void FrmUsuario_Load(object sender, EventArgs e)
-        {
-            BtnListar.PerformClick();
-        }
-
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnBuscarAvanzada_Click(object sender, EventArgs e)
+        {
+            FrmBuscarPersonal frm = new FrmBuscarPersonal();
+            this.personal = frm.Buscar();
+
+            if (this.personal != null)
+            {
+                this.MostrarBusqueda();
+            }
+            else
+            {
+                this.TxtPersonal.Text = "";
+            }
+        }
+
+        private void MostrarBusqueda()
+        {
+            TxtNombrePersonal.Text = personal.NombreCompleto;
+            TxtPersonal.Text = personal.NumeroDocumento;
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            RNPersonal rn;
+            try
+            {
+                rn = new RNPersonal();
+                personal = rn.Leer(TxtPersonal.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo obtener al personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (personal != null)
+            {
+                this.MostrarBusqueda();
+            }
+            else
+            {
+                MessageBox.Show("Personal no registrado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+        }
+
+        private void BtnDarDeBaja_Click(object sender, EventArgs e)
+        {
+            var rpta = MessageBox.Show("¿Está seguro que deseas darle de baja?", "Salir",
+                  MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                  MessageBoxDefaultButton.Button1);
+
+            if (rpta == DialogResult.Yes)
+            {
+                RNUsuario rn = new RNUsuario();
+                Usuario usuario = (Usuario)this.DgvListado.CurrentRow.DataBoundItem;
+                rn.DarDeBaja(usuario.Codigo);
+                BtnListar.PerformClick();
+            }
         }
     }
 }
