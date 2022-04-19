@@ -522,11 +522,11 @@ namespace Prestamos
             }
             if (CboTipoDocumento.SelectedIndex == 2)
             {
-                ValidarCarnetExtrangería();
+                ValidarCarnetExtranjeria();
             }
         }
 
-        private void ValidarCarnetExtrangería()
+        private void ValidarCarnetExtranjeria()
         {
             this.TxtNumDocumento.MaxLength = 9;
         }

@@ -25,13 +25,5 @@ namespace Entidades
                 return $"{Apellidos} {Nombres}";
             }
         }
-
-        public string Identidad
-        {
-            get
-            {
-                return $"{TipoDocumento.Siglas}: {NumeroDocumento}";
-            }
-        }
     }
 }

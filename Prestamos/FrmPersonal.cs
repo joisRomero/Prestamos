@@ -36,7 +36,35 @@ namespace Prestamos
         }
         private void FrmPersonal_Load(object sender, EventArgs e)
         {
+            this.CargarDatosIniciales();
             this.LimpiarControles();
+        }
+
+        private void CargarDatosIniciales()
+        {
+            this.CargarTiposDocumentos();
+        }
+
+        private void CargarTiposDocumentos()
+        {
+            RNTipoDocumento rn = new RNTipoDocumento();
+            List<TipoDocumento> tipoDocumentos;
+
+            try
+            {
+                tipoDocumentos = rn.Listar();
+                this.CboTipoDocumento.DataSource = null;
+                if (tipoDocumentos.Count > 0)
+                {
+                    CboTipoDocumento.DataSource = tipoDocumentos;
+                    this.CboTipoDocumento.DisplayMember = "Nombre";
+                    this.CboTipoDocumento.ValueMember = "Codigo";
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text);
+            }
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
@@ -49,8 +77,8 @@ namespace Prestamos
         {
             this.TxtNombres.Text = "";
             this.TxtApellidos.Text = "";
-            this.CmbTipoDocumento.SelectedIndex = -1;
-            this.TxtNumeroDocumento.Text = "";
+            this.CboTipoDocumento.SelectedIndex = -1;
+            this.TxtNumDocumento.Text = "";
             this.TxtCorreo.Text = "";
             this.TxtCelular.Text = "";
             this.TxtDireccion.Text = "";
@@ -74,8 +102,8 @@ namespace Prestamos
         {
             this.ErrNotificador.SetError(this.TxtNombres, "");
             this.ErrNotificador.SetError(this.TxtApellidos, "");
-            this.ErrNotificador.SetError(this.CmbTipoDocumento, "");
-            this.ErrNotificador.SetError(this.TxtNumeroDocumento, "");
+            this.ErrNotificador.SetError(this.CboTipoDocumento, "");
+            this.ErrNotificador.SetError(this.TxtNumDocumento, "");
             this.ErrNotificador.SetError(this.TxtCorreo, "");
             this.ErrNotificador.SetError(this.TxtCelular, "");
             this.ErrNotificador.SetError(this.TxtDireccion, "");
@@ -117,10 +145,10 @@ namespace Prestamos
             {
                 Nombres = this.TxtNombres.Text,
                 Apellidos = this.TxtApellidos.Text,
-                //CodigoTipoDocumento = this.CmbTipoDocumento.Text.Substring(0, 1),
-                NumeroDocumento = this.TxtNumeroDocumento.Text,
+                TipoDocumento = (TipoDocumento)this.CboTipoDocumento.SelectedItem,
+                NumeroDocumento = this.TxtNumDocumento.Text,
                 Correo = this.TxtCorreo.Text,
-                Celular = this.TxtDireccion.Text,
+                Celular = this.TxtCelular.Text,
                 Direccion = this.TxtDireccion.Text,
                 Vigente = this.ChkVigente.Checked,
             };
@@ -139,7 +167,7 @@ namespace Prestamos
 
             try
             {
-                personal = rn.Listar(TxtNombres.Text, TxtApellidos.Text);
+                personal = rn.Listar();
                 if (personal.Count > 0)
                 {
                     this.DgvListado.AutoGenerateColumns = false;
@@ -190,19 +218,13 @@ namespace Prestamos
                 {
                     this.TxtNombres.Text = this.actual.Nombres;
                     this.TxtApellidos.Text = this.actual.Apellidos;
-                    this.TxtNumeroDocumento.Text = this.actual.NumeroDocumento;
+                    this.CboTipoDocumento.SelectedValue = this.actual.TipoDocumento.Codigo;
+                    this.TxtNumDocumento.Text = this.actual.NumeroDocumento;
                     this.TxtCorreo.Text = this.actual.Correo;
                     this.TxtCelular.Text = this.actual.Celular;
                     this.TxtDireccion.Text = this.actual.Direccion;
                     this.ChkVigente.Checked = this.actual.Vigente;
                     this.HabilitarControles(true);
-
-                    //switch (this.actual.CodigoTipoDocumento)
-                    //{
-                    //    case "D": this.CmbTipoDocumento.SelectedIndex = 0; break;
-                    //    case "P": this.CmbTipoDocumento.SelectedIndex = 1; break;
-                    //    case "C": this.CmbTipoDocumento.SelectedIndex = 2; break;
-                    //}
                 }
             }
             catch (Exception)
@@ -276,41 +298,41 @@ namespace Prestamos
 
         private void TxtNumeroDocumento_Validating(object sender, CancelEventArgs e)
         {
-            this.TxtNumeroDocumento.Text = this.TxtNumeroDocumento.Text.Trim();
-            if (string.IsNullOrEmpty(this.TxtNumeroDocumento.Text) == false)
+            this.TxtNumDocumento.Text = this.TxtNumDocumento.Text.Trim();
+            if (string.IsNullOrEmpty(this.TxtNumDocumento.Text) == false)
             {
-                ErrNotificador.SetError(this.TxtNumeroDocumento, "");
+                ErrNotificador.SetError(this.TxtNumDocumento, "");
 
                 this.ValidarRepeticionNumDocumento(e);
 
-                if (this.CmbTipoDocumento.SelectedIndex == 0 && this.TxtNumeroDocumento.Text.Length < 8)
+                if (this.CboTipoDocumento.SelectedIndex == 0 && this.TxtNumDocumento.Text.Length < 8)
                 {
-                    ErrNotificador.SetError(this.TxtNumeroDocumento, "Ingrese 8 dígitos para el DNI");
+                    ErrNotificador.SetError(this.TxtNumDocumento, "Ingrese 8 dígitos para el DNI");
                     e.Cancel = true;
                 }
-                if (this.CmbTipoDocumento.SelectedIndex == 2 && this.TxtNumeroDocumento.TextLength < 9)
+                if (this.CboTipoDocumento.SelectedIndex == 2 && this.TxtNumDocumento.TextLength < 9)
                 {
-                    ErrNotificador.SetError(this.TxtNumeroDocumento, "Ingrese 9 dígitos para el Carnet de extrangería");
+                    ErrNotificador.SetError(this.TxtNumDocumento, "Ingrese 9 dígitos para el Carnet de extrangería");
                     e.Cancel = true;
                 }
-                if (this.CmbTipoDocumento.SelectedIndex == 1 && this.TxtNumeroDocumento.TextLength < 9)
+                if (this.CboTipoDocumento.SelectedIndex == 1 && this.TxtNumDocumento.TextLength < 9)
                 {
-                    ErrNotificador.SetError(this.TxtNumeroDocumento, "Ingrese 4 letras y 5 números para el Pasaporte");
+                    ErrNotificador.SetError(this.TxtNumDocumento, "Ingrese 4 letras y 5 números para el Pasaporte");
                     e.Cancel = true;
                 }
             }
             else
             {
-                ErrNotificador.SetError(this.TxtNumeroDocumento, "Ingrese número de documento");
+                ErrNotificador.SetError(this.TxtNumDocumento, "Ingrese número de documento");
                 e.Cancel = true;
             }
         }
-        
+
         private void ValidarRepeticionNumDocumento(CancelEventArgs e)
         {
             if (this.ExisteNumDocumentoEnLaLista() == true)
             {
-                this.ErrNotificador.SetError(this.TxtNumeroDocumento, "Número de documento ya registrado");
+                this.ErrNotificador.SetError(this.TxtNumDocumento, "Número de documento ya registrado");
                 e.Cancel = true;
             }
         }
@@ -322,14 +344,14 @@ namespace Prestamos
             if (actual == null)
             {
                 RNClientePersona rn = new RNClientePersona();
-                band = rn.ExistePersona(TxtNumeroDocumento.Text);
+                band = rn.ExistePersona(TxtNumDocumento.Text);
             }
             else
             {
                 List<string> numDocumentos = new List<string>();
                 for (int i = 0; i < DgvListado.RowCount; i++)
                 {
-                    numDocumentos.Add(DgvListado.Rows[i].Cells["cdNumDocumento"].ToString());
+                    numDocumentos.Add(DgvListado.Rows[i].Cells["cdNumDocumento"].Value.ToString());
                 }
                 band = numDocumentos.Any(r =>
                 {
@@ -337,7 +359,7 @@ namespace Prestamos
                     {
                         return false;
                     }
-                    return TxtNumeroDocumento.Text.Equals(r);
+                    return TxtNumDocumento.Text.Equals(r);
                 });
             }
 
@@ -346,31 +368,35 @@ namespace Prestamos
 
         private void TxtNumeroDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this.CmbTipoDocumento.SelectedIndex == 0 || this.CmbTipoDocumento.SelectedIndex == 2)
+            if (this.CboTipoDocumento.Text.Equals("DNI") || this.CboTipoDocumento.Text.Equals("Carnet de extranjería"))
             {
                 e.Handled = SoloNumeros(e);
             }
-            if (this.CmbTipoDocumento.SelectedIndex == 1 && this.TxtNumeroDocumento.TextLength < 4)
+            if (this.CboTipoDocumento.Text.Equals("Pasaporte") && this.TxtNumDocumento.TextLength < 4)
             {
                 e.Handled = SoloLetras(e);
             }
-            if (this.CmbTipoDocumento.SelectedIndex == 1 && this.TxtNumeroDocumento.TextLength > 3)
+            if (this.CboTipoDocumento.Text.Equals("Pasaporte") && this.TxtNumDocumento.TextLength > 3)
             {
                 e.Handled = SoloNumeros(e);
             }
         }
 
-        private void CmbTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CmbTipoDocumento.SelectedIndex == 0)
+            if (!string.IsNullOrEmpty(this.TxtNumDocumento.Text))
+            {
+                this.TxtNumDocumento.Text = "";
+            }
+            if (CboTipoDocumento.SelectedIndex == 0)
             {
                 ValidarDNI();
             }
-            if (CmbTipoDocumento.SelectedIndex == 1)
+            if (CboTipoDocumento.SelectedIndex == 1)
             {
                 ValidarPasaporte();
             }
-            if (CmbTipoDocumento.SelectedIndex == 2)
+            if (CboTipoDocumento.SelectedIndex == 2)
             {
                 ValidarCarnetExtranjeria();
             }
@@ -378,45 +404,24 @@ namespace Prestamos
 
         private void ValidarCarnetExtranjeria()
         {
-            if (!string.IsNullOrEmpty(this.TxtNumeroDocumento.Text))
-            {
-                if (char.IsLetter(this.TxtNumeroDocumento.Text, 0))
-                {
-                    this.TxtNumeroDocumento.Text = "";
-                }
-            }
-            this.TxtNumeroDocumento.MaxLength = 9;
+            this.TxtNumDocumento.MaxLength = 9;
         }
 
         private void ValidarPasaporte()
         {
-            if (!string.IsNullOrEmpty(this.TxtNumeroDocumento.Text))
-            {
-                if (char.IsNumber(this.TxtNumeroDocumento.Text, 0))
-                {
-                    this.TxtNumeroDocumento.Text = "";
-                }
-            }
-            this.TxtNumeroDocumento.MaxLength = 9;
+            this.TxtNumDocumento.MaxLength = 9;
         }
 
         private void ValidarDNI()
         {
-            if (!string.IsNullOrEmpty(this.TxtNumeroDocumento.Text))
-            {
-                if (char.IsLetter(this.TxtNumeroDocumento.Text[0]))
-                {
-                    this.TxtNumeroDocumento.Text = "";
-                }
-            }
-            this.TxtNumeroDocumento.MaxLength = 8;
+            this.TxtNumDocumento.MaxLength = 8;
         }
 
         private void TxtCelular_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = this.SoloNumeros(e);
         }
-        
+
         private bool SoloNumeros(KeyPressEventArgs e)
         {
             return !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar);
@@ -440,7 +445,7 @@ namespace Prestamos
             if (rpta == DialogResult.Yes)
             {
                 RNPersonal rn = new RNPersonal();
-                Personal personal= (Personal)this.DgvListado.CurrentRow.DataBoundItem;
+                Personal personal = (Personal)this.DgvListado.CurrentRow.DataBoundItem;
                 rn.DarDeBaja(personal.Codigo);
                 BtnListar.PerformClick();
             }

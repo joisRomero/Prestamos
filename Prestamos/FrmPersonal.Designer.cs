@@ -31,22 +31,16 @@ namespace Prestamos
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPersonal));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnCerrrar = new System.Windows.Forms.Button();
             this.GbListado = new System.Windows.Forms.GroupBox();
             this.DgvListado = new System.Windows.Forms.DataGridView();
-            this.cdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdTipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdNumDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cdCelular = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnListar = new System.Windows.Forms.Button();
             this.BtnModificar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.BtnDarDeBaja = new System.Windows.Forms.Button();
             this.GbPersonal = new System.Windows.Forms.GroupBox();
-            this.CmbTipoDocumento = new System.Windows.Forms.ComboBox();
+            this.CboTipoDocumento = new System.Windows.Forms.ComboBox();
             this.ChkVigente = new System.Windows.Forms.CheckBox();
             this.TxtCelular = new System.Windows.Forms.TextBox();
             this.TxtCorreo = new System.Windows.Forms.TextBox();
@@ -55,7 +49,7 @@ namespace Prestamos
             this.LblTipoDocumento = new System.Windows.Forms.Label();
             this.TxtDireccion = new System.Windows.Forms.TextBox();
             this.TxtApellidos = new System.Windows.Forms.TextBox();
-            this.TxtNumeroDocumento = new System.Windows.Forms.TextBox();
+            this.TxtNumDocumento = new System.Windows.Forms.TextBox();
             this.LblDireccion = new System.Windows.Forms.Label();
             this.LblApellidos = new System.Windows.Forms.Label();
             this.LblNumeroDocumento = new System.Windows.Forms.Label();
@@ -64,6 +58,11 @@ namespace Prestamos
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdNumDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cdCelular = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbListado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.GbPersonal.SuspendLayout();
@@ -113,19 +112,18 @@ namespace Prestamos
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DgvListado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvListado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cdNombre,
             this.cdApellidos,
-            this.cdTipoDocumento,
             this.cdNumDocumento,
             this.cdCorreo,
             this.cdCelular});
@@ -140,48 +138,6 @@ namespace Prestamos
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvListado.Size = new System.Drawing.Size(621, 342);
             this.DgvListado.TabIndex = 1;
-            // 
-            // cdNombre
-            // 
-            this.cdNombre.DataPropertyName = "Nombres";
-            this.cdNombre.HeaderText = "Nombres";
-            this.cdNombre.Name = "cdNombre";
-            this.cdNombre.ReadOnly = true;
-            // 
-            // cdApellidos
-            // 
-            this.cdApellidos.DataPropertyName = "Apellidos";
-            this.cdApellidos.HeaderText = "Apellidos";
-            this.cdApellidos.Name = "cdApellidos";
-            this.cdApellidos.ReadOnly = true;
-            // 
-            // cdTipoDocumento
-            // 
-            this.cdTipoDocumento.DataPropertyName = "TipoDocumento";
-            this.cdTipoDocumento.HeaderText = "Tipo Documento";
-            this.cdTipoDocumento.Name = "cdTipoDocumento";
-            this.cdTipoDocumento.ReadOnly = true;
-            // 
-            // cdNumDocumento
-            // 
-            this.cdNumDocumento.DataPropertyName = "NumDocumento";
-            this.cdNumDocumento.HeaderText = "Num. Documento";
-            this.cdNumDocumento.Name = "cdNumDocumento";
-            this.cdNumDocumento.ReadOnly = true;
-            // 
-            // cdCorreo
-            // 
-            this.cdCorreo.DataPropertyName = "Correo";
-            this.cdCorreo.HeaderText = "Correo";
-            this.cdCorreo.Name = "cdCorreo";
-            this.cdCorreo.ReadOnly = true;
-            // 
-            // cdCelular
-            // 
-            this.cdCelular.DataPropertyName = "Celular";
-            this.cdCelular.HeaderText = "Celular";
-            this.cdCelular.Name = "cdCelular";
-            this.cdCelular.ReadOnly = true;
             // 
             // BtnListar
             // 
@@ -245,7 +201,7 @@ namespace Prestamos
             // 
             // GbPersonal
             // 
-            this.GbPersonal.Controls.Add(this.CmbTipoDocumento);
+            this.GbPersonal.Controls.Add(this.CboTipoDocumento);
             this.GbPersonal.Controls.Add(this.ChkVigente);
             this.GbPersonal.Controls.Add(this.TxtCelular);
             this.GbPersonal.Controls.Add(this.TxtCorreo);
@@ -254,7 +210,7 @@ namespace Prestamos
             this.GbPersonal.Controls.Add(this.LblTipoDocumento);
             this.GbPersonal.Controls.Add(this.TxtDireccion);
             this.GbPersonal.Controls.Add(this.TxtApellidos);
-            this.GbPersonal.Controls.Add(this.TxtNumeroDocumento);
+            this.GbPersonal.Controls.Add(this.TxtNumDocumento);
             this.GbPersonal.Controls.Add(this.LblDireccion);
             this.GbPersonal.Controls.Add(this.LblApellidos);
             this.GbPersonal.Controls.Add(this.LblNumeroDocumento);
@@ -270,19 +226,16 @@ namespace Prestamos
             this.GbPersonal.TabStop = false;
             this.GbPersonal.Text = "Personal";
             // 
-            // CmbTipoDocumento
+            // CboTipoDocumento
             // 
-            this.CmbTipoDocumento.FormattingEnabled = true;
-            this.CmbTipoDocumento.Items.AddRange(new object[] {
-            "DNI",
-            "Pasaporte",
-            "Carnet de extranjería"});
-            this.CmbTipoDocumento.Location = new System.Drawing.Point(125, 92);
-            this.CmbTipoDocumento.Name = "CmbTipoDocumento";
-            this.CmbTipoDocumento.Size = new System.Drawing.Size(209, 21);
-            this.CmbTipoDocumento.TabIndex = 2;
-            this.CmbTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.CmbTipoDocumento_SelectedIndexChanged);
-            this.CmbTipoDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.CmbTipoDocumento_Validating);
+            this.CboTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboTipoDocumento.FormattingEnabled = true;
+            this.CboTipoDocumento.Location = new System.Drawing.Point(125, 92);
+            this.CboTipoDocumento.Name = "CboTipoDocumento";
+            this.CboTipoDocumento.Size = new System.Drawing.Size(209, 21);
+            this.CboTipoDocumento.TabIndex = 2;
+            this.CboTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.CboTipoDocumento_SelectedIndexChanged);
+            this.CboTipoDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.CmbTipoDocumento_Validating);
             // 
             // ChkVigente
             // 
@@ -298,6 +251,7 @@ namespace Prestamos
             // 
             this.TxtCelular.Location = new System.Drawing.Point(125, 176);
             this.TxtCelular.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCelular.MaxLength = 9;
             this.TxtCelular.Name = "TxtCelular";
             this.TxtCelular.Size = new System.Drawing.Size(210, 20);
             this.TxtCelular.TabIndex = 5;
@@ -361,15 +315,16 @@ namespace Prestamos
             this.TxtApellidos.TabIndex = 1;
             this.TxtApellidos.Validating += new System.ComponentModel.CancelEventHandler(this.Controles_Validating);
             // 
-            // TxtNumeroDocumento
+            // TxtNumDocumento
             // 
-            this.TxtNumeroDocumento.Location = new System.Drawing.Point(125, 118);
-            this.TxtNumeroDocumento.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtNumeroDocumento.Name = "TxtNumeroDocumento";
-            this.TxtNumeroDocumento.Size = new System.Drawing.Size(210, 20);
-            this.TxtNumeroDocumento.TabIndex = 3;
-            this.TxtNumeroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumeroDocumento_KeyPress);
-            this.TxtNumeroDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNumeroDocumento_Validating);
+            this.TxtNumDocumento.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.TxtNumDocumento.Location = new System.Drawing.Point(125, 118);
+            this.TxtNumDocumento.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtNumDocumento.Name = "TxtNumDocumento";
+            this.TxtNumDocumento.Size = new System.Drawing.Size(210, 20);
+            this.TxtNumDocumento.TabIndex = 3;
+            this.TxtNumDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumeroDocumento_KeyPress);
+            this.TxtNumDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNumeroDocumento_Validating);
             // 
             // LblDireccion
             // 
@@ -453,6 +408,41 @@ namespace Prestamos
             // 
             this.ErrNotificador.ContainerControl = this;
             // 
+            // cdNombre
+            // 
+            this.cdNombre.DataPropertyName = "Nombres";
+            this.cdNombre.HeaderText = "Nombres";
+            this.cdNombre.Name = "cdNombre";
+            this.cdNombre.ReadOnly = true;
+            // 
+            // cdApellidos
+            // 
+            this.cdApellidos.DataPropertyName = "Apellidos";
+            this.cdApellidos.HeaderText = "Apellidos";
+            this.cdApellidos.Name = "cdApellidos";
+            this.cdApellidos.ReadOnly = true;
+            // 
+            // cdNumDocumento
+            // 
+            this.cdNumDocumento.DataPropertyName = "NumeroDocumento";
+            this.cdNumDocumento.HeaderText = "Nru. Documento";
+            this.cdNumDocumento.Name = "cdNumDocumento";
+            this.cdNumDocumento.ReadOnly = true;
+            // 
+            // cdCorreo
+            // 
+            this.cdCorreo.DataPropertyName = "Correo";
+            this.cdCorreo.HeaderText = "Correo";
+            this.cdCorreo.Name = "cdCorreo";
+            this.cdCorreo.ReadOnly = true;
+            // 
+            // cdCelular
+            // 
+            this.cdCelular.DataPropertyName = "Celular";
+            this.cdCelular.HeaderText = "Celular";
+            this.cdCelular.Name = "cdCelular";
+            this.cdCelular.ReadOnly = true;
+            // 
             // FrmPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,7 +481,7 @@ namespace Prestamos
         private System.Windows.Forms.Label LblTipoDocumento;
         private System.Windows.Forms.TextBox TxtDireccion;
         private System.Windows.Forms.TextBox TxtApellidos;
-        private System.Windows.Forms.TextBox TxtNumeroDocumento;
+        private System.Windows.Forms.TextBox TxtNumDocumento;
         private System.Windows.Forms.Label LblDireccion;
         private System.Windows.Forms.Label LblApellidos;
         private System.Windows.Forms.Label LblNumeroDocumento;
@@ -503,10 +493,9 @@ namespace Prestamos
         private System.Windows.Forms.Label LblCelular;
         private System.Windows.Forms.CheckBox ChkVigente;
         private System.Windows.Forms.ErrorProvider ErrNotificador;
-        private System.Windows.Forms.ComboBox CmbTipoDocumento;
+        private System.Windows.Forms.ComboBox CboTipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdApellidos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdTipoDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdNumDocumento;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdCorreo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdCelular;
