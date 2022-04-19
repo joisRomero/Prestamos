@@ -11,11 +11,27 @@ namespace Entidades
         public int Codigo { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
-        public string CodigoTipoDocumento { get; set; }
+        public TipoDocumento TipoDocumento{ get; set; }
         public string NumeroDocumento { get; set; }
         public string Correo { get; set; }
         public string Celular { get; set; }
         public string Direccion { get; set; }
         public bool Vigente { get; set; }
+
+        public string NombreCompleto
+        {
+            get
+            {
+                return $"{Apellidos} {Nombres}";
+            }
+        }
+
+        public string Identidad
+        {
+            get
+            {
+                return $"{TipoDocumento.Siglas}: {NumeroDocumento}";
+            }
+        }
     }
 }

@@ -70,12 +70,12 @@ namespace Prestamos
             if (this.Cliente is ClientePersona)
             {
                 this.CboTipoCliente.SelectedIndex = 0;
-                switch (((ClientePersona)this.Cliente).TipoDocumento)
-                {
-                    case "D": this.CboTipoDocumento.SelectedIndex = 0; break;
-                    case "C": this.CboTipoDocumento.SelectedIndex = 1; break;
-                    case "P": this.CboTipoDocumento.SelectedIndex = 2; break;
-                }
+                //switch (((ClientePersona)this.Cliente).TipoDocumento)
+                //{
+                //    case "D": this.CboTipoDocumento.SelectedIndex = 0; break;
+                //    case "C": this.CboTipoDocumento.SelectedIndex = 1; break;
+                //    case "P": this.CboTipoDocumento.SelectedIndex = 2; break;
+                //}
                 this.TxtNumeroDocumento.Text = ((ClientePersona)this.Cliente).NumeroDocumento;
             }
             else

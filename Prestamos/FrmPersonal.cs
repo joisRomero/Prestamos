@@ -117,7 +117,7 @@ namespace Prestamos
             {
                 Nombres = this.TxtNombres.Text,
                 Apellidos = this.TxtApellidos.Text,
-                CodigoTipoDocumento = this.CmbTipoDocumento.Text.Substring(0, 1),
+                //CodigoTipoDocumento = this.CmbTipoDocumento.Text.Substring(0, 1),
                 NumeroDocumento = this.TxtNumeroDocumento.Text,
                 Correo = this.TxtCorreo.Text,
                 Celular = this.TxtDireccion.Text,
@@ -197,12 +197,12 @@ namespace Prestamos
                     this.ChkVigente.Checked = this.actual.Vigente;
                     this.HabilitarControles(true);
 
-                    switch (this.actual.CodigoTipoDocumento)
-                    {
-                        case "D": this.CmbTipoDocumento.SelectedIndex = 0; break;
-                        case "P": this.CmbTipoDocumento.SelectedIndex = 1; break;
-                        case "C": this.CmbTipoDocumento.SelectedIndex = 2; break;
-                    }
+                    //switch (this.actual.CodigoTipoDocumento)
+                    //{
+                    //    case "D": this.CmbTipoDocumento.SelectedIndex = 0; break;
+                    //    case "P": this.CmbTipoDocumento.SelectedIndex = 1; break;
+                    //    case "C": this.CmbTipoDocumento.SelectedIndex = 2; break;
+                    //}
                 }
             }
             catch (Exception)

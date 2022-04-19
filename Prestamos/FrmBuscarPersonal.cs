@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using ReglaNegocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,44 +14,24 @@ namespace Prestamos
 {
     public partial class FrmBuscarPersonal : Form
     {
-        private Personal actual;
-        public ITransferirInformacion interfaz;
-        public FrmBuscarPersonal(ITransferirInformacion interfaz)
+        private Personal Encontrado;
+        private List<Personal> encontrados;
+        public FrmBuscarPersonal()
         {
-            this.interfaz = interfaz;
             InitializeComponent();
         }
 
-        private void FrmBuscarPersonal_Load(object sender, EventArgs e)
+        public Personal Buscar()
         {
-            this.BtnListar.PerformClick();
-        }
-
-        private void BtnListar_Click(object sender, EventArgs e)
-        {
-            List<Personal> encontradas = this.BuscarPeronal();
-            this.DgvListado.DataSource = null;
-            if (encontradas.Count > 0)
-            {
-                this.DgvListado.AutoGenerateColumns = false;
-                this.DgvListado.DataSource = encontradas;
-            }
-        }
-
-        private List<Personal> BuscarPeronal()
-        {
-            var encontradas = (from p in Program.Personal
-                               where p.Nombres.StartsWith(this.TxtPersonal.Text)
-                               select p).ToList();
-            return encontradas;
+            this.ShowDialog();
+            return this.Encontrado;
         }
 
         private void BtnSeleccionar_Click(object sender, EventArgs e)
         {
             if (this.DgvListado.CurrentRow != null)
             {
-                actual = (Personal)this.DgvListado.CurrentRow.DataBoundItem;
-                interfaz.TransferirPersonal(actual);
+                Encontrado = (Personal)this.DgvListado.CurrentRow.DataBoundItem;
                 this.Close();
             } 
             else
@@ -60,29 +41,40 @@ namespace Prestamos
             }
         }
 
-        private void DgvListado_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-            BtnSeleccionar.PerformClick();
-        }
-
         private void DgvListado_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             BtnSeleccionar.PerformClick();
         }
 
-
-        private void TxtPersonal_KeyDown(object sender, KeyEventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            this.Encontrado = null;
+            this.Visible = false;
+        }
+
+        private void LlenarTabla()
+        {
+            this.DgvListado.DataSource = null;
+            if (this.encontrados != null && this.encontrados.Count > 0)
             {
-                this.BtnListar.PerformClick();
+                this.DgvListado.AutoGenerateColumns = false;
+                this.DgvListado.DataSource = this.encontrados;
             }
         }
 
-        private void BtnCancelar_Click(object sender, EventArgs e)
+        private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            RNPersonal rn;
+            try
+            {
+                rn = new RNPersonal();
+                encontrados = rn.Listar();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo obtener la lista del personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            this.LlenarTabla();
         }
     }
 }

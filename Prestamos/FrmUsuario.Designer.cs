@@ -45,7 +45,6 @@ namespace Prestamos
             this.ChkContineAlMenosUnaMinuscula = new System.Windows.Forms.CheckBox();
             this.ChkContineAlMenosUnaMayuscula = new System.Windows.Forms.CheckBox();
             this.ChkMinimo8Caracteres = new System.Windows.Forms.CheckBox();
-            this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.ChkVigente = new System.Windows.Forms.CheckBox();
@@ -58,6 +57,8 @@ namespace Prestamos
             this.TxtPersonal = new System.Windows.Forms.TextBox();
             this.LblPersonal = new System.Windows.Forms.Label();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
+            this.BtnBuscarAvanzada = new System.Windows.Forms.Button();
+            this.BtnBuscar = new System.Windows.Forms.Button();
             this.GbListado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.GbUsuario.SuspendLayout();
@@ -90,11 +91,11 @@ namespace Prestamos
             this.GbListado.Controls.Add(this.BtnListar);
             this.GbListado.Controls.Add(this.BtnNuevo);
             this.GbListado.Controls.Add(this.DgvListado);
-            this.GbListado.Location = new System.Drawing.Point(323, 11);
+            this.GbListado.Location = new System.Drawing.Point(344, 11);
             this.GbListado.Margin = new System.Windows.Forms.Padding(2);
             this.GbListado.Name = "GbListado";
             this.GbListado.Padding = new System.Windows.Forms.Padding(2);
-            this.GbListado.Size = new System.Drawing.Size(463, 447);
+            this.GbListado.Size = new System.Drawing.Size(442, 447);
             this.GbListado.TabIndex = 1;
             this.GbListado.TabStop = false;
             this.GbListado.Text = "Listado";
@@ -104,7 +105,7 @@ namespace Prestamos
             this.BtnDarDeBaja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnDarDeBaja.Image = ((System.Drawing.Image)(resources.GetObject("BtnDarDeBaja.Image")));
             this.BtnDarDeBaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnDarDeBaja.Location = new System.Drawing.Point(347, 399);
+            this.BtnDarDeBaja.Location = new System.Drawing.Point(326, 399);
             this.BtnDarDeBaja.Margin = new System.Windows.Forms.Padding(2);
             this.BtnDarDeBaja.Name = "BtnDarDeBaja";
             this.BtnDarDeBaja.Size = new System.Drawing.Size(102, 40);
@@ -134,7 +135,7 @@ namespace Prestamos
             this.BtnListar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnListar.Image = ((System.Drawing.Image)(resources.GetObject("BtnListar.Image")));
             this.BtnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnListar.Location = new System.Drawing.Point(347, 16);
+            this.BtnListar.Location = new System.Drawing.Point(326, 16);
             this.BtnListar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnListar.Name = "BtnListar";
             this.BtnListar.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
@@ -185,7 +186,7 @@ namespace Prestamos
             this.DgvListado.RowHeadersWidth = 51;
             this.DgvListado.RowTemplate.Height = 24;
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvListado.Size = new System.Drawing.Size(434, 328);
+            this.DgvListado.Size = new System.Drawing.Size(413, 328);
             this.DgvListado.TabIndex = 2;
             // 
             // CdPersonal
@@ -204,11 +205,12 @@ namespace Prestamos
             // 
             // GbUsuario
             // 
+            this.GbUsuario.Controls.Add(this.BtnBuscarAvanzada);
+            this.GbUsuario.Controls.Add(this.BtnBuscar);
             this.GbUsuario.Controls.Add(this.ChkContineAlMenosUnSimbolo);
             this.GbUsuario.Controls.Add(this.ChkContineAlMenosUnaMinuscula);
             this.GbUsuario.Controls.Add(this.ChkContineAlMenosUnaMayuscula);
             this.GbUsuario.Controls.Add(this.ChkMinimo8Caracteres);
-            this.GbUsuario.Controls.Add(this.BtnBuscar);
             this.GbUsuario.Controls.Add(this.BtnCancelar);
             this.GbUsuario.Controls.Add(this.BtnAceptar);
             this.GbUsuario.Controls.Add(this.ChkVigente);
@@ -225,7 +227,7 @@ namespace Prestamos
             this.GbUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.GbUsuario.Name = "GbUsuario";
             this.GbUsuario.Padding = new System.Windows.Forms.Padding(2);
-            this.GbUsuario.Size = new System.Drawing.Size(299, 318);
+            this.GbUsuario.Size = new System.Drawing.Size(330, 348);
             this.GbUsuario.TabIndex = 0;
             this.GbUsuario.TabStop = false;
             this.GbUsuario.Text = "Usuario";
@@ -234,7 +236,7 @@ namespace Prestamos
             // 
             this.ChkContineAlMenosUnSimbolo.AutoCheck = false;
             this.ChkContineAlMenosUnSimbolo.AutoSize = true;
-            this.ChkContineAlMenosUnSimbolo.Location = new System.Drawing.Point(65, 163);
+            this.ChkContineAlMenosUnSimbolo.Location = new System.Drawing.Point(65, 193);
             this.ChkContineAlMenosUnSimbolo.Name = "ChkContineAlMenosUnSimbolo";
             this.ChkContineAlMenosUnSimbolo.Size = new System.Drawing.Size(162, 17);
             this.ChkContineAlMenosUnSimbolo.TabIndex = 11;
@@ -246,7 +248,7 @@ namespace Prestamos
             // 
             this.ChkContineAlMenosUnaMinuscula.AutoCheck = false;
             this.ChkContineAlMenosUnaMinuscula.AutoSize = true;
-            this.ChkContineAlMenosUnaMinuscula.Location = new System.Drawing.Point(65, 147);
+            this.ChkContineAlMenosUnaMinuscula.Location = new System.Drawing.Point(65, 177);
             this.ChkContineAlMenosUnaMinuscula.Name = "ChkContineAlMenosUnaMinuscula";
             this.ChkContineAlMenosUnaMinuscula.Size = new System.Drawing.Size(184, 17);
             this.ChkContineAlMenosUnaMinuscula.TabIndex = 12;
@@ -258,7 +260,7 @@ namespace Prestamos
             // 
             this.ChkContineAlMenosUnaMayuscula.AutoCheck = false;
             this.ChkContineAlMenosUnaMayuscula.AutoSize = true;
-            this.ChkContineAlMenosUnaMayuscula.Location = new System.Drawing.Point(65, 131);
+            this.ChkContineAlMenosUnaMayuscula.Location = new System.Drawing.Point(65, 161);
             this.ChkContineAlMenosUnaMayuscula.Name = "ChkContineAlMenosUnaMayuscula";
             this.ChkContineAlMenosUnaMayuscula.Size = new System.Drawing.Size(187, 17);
             this.ChkContineAlMenosUnaMayuscula.TabIndex = 13;
@@ -273,7 +275,7 @@ namespace Prestamos
             this.ChkMinimo8Caracteres.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
             this.ChkMinimo8Caracteres.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.ChkMinimo8Caracteres.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ChkMinimo8Caracteres.Location = new System.Drawing.Point(65, 115);
+            this.ChkMinimo8Caracteres.Location = new System.Drawing.Point(65, 145);
             this.ChkMinimo8Caracteres.Name = "ChkMinimo8Caracteres";
             this.ChkMinimo8Caracteres.Size = new System.Drawing.Size(123, 17);
             this.ChkMinimo8Caracteres.TabIndex = 14;
@@ -281,21 +283,11 @@ namespace Prestamos
             this.ChkMinimo8Caracteres.UseVisualStyleBackColor = true;
             this.ChkMinimo8Caracteres.Validating += new System.ComponentModel.CancelEventHandler(this.CheckBoxClave_Validating);
             // 
-            // BtnBuscar
-            // 
-            this.BtnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscar.Image")));
-            this.BtnBuscar.Location = new System.Drawing.Point(220, 25);
-            this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(53, 23);
-            this.BtnBuscar.TabIndex = 0;
-            this.BtnBuscar.UseVisualStyleBackColor = true;
-            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
-            // 
             // BtnCancelar
             // 
             this.BtnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.Image")));
             this.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCancelar.Location = new System.Drawing.Point(171, 261);
+            this.BtnCancelar.Location = new System.Drawing.Point(192, 289);
             this.BtnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -310,7 +302,7 @@ namespace Prestamos
             // 
             this.BtnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAceptar.Image")));
             this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(63, 261);
+            this.BtnAceptar.Location = new System.Drawing.Point(84, 289);
             this.BtnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -324,7 +316,7 @@ namespace Prestamos
             // ChkVigente
             // 
             this.ChkVigente.AutoSize = true;
-            this.ChkVigente.Location = new System.Drawing.Point(63, 227);
+            this.ChkVigente.Location = new System.Drawing.Point(63, 257);
             this.ChkVigente.Margin = new System.Windows.Forms.Padding(2);
             this.ChkVigente.Name = "ChkVigente";
             this.ChkVigente.Size = new System.Drawing.Size(62, 17);
@@ -334,18 +326,18 @@ namespace Prestamos
             // 
             // TxtConfirmar
             // 
-            this.TxtConfirmar.Location = new System.Drawing.Point(63, 191);
+            this.TxtConfirmar.Location = new System.Drawing.Point(63, 221);
             this.TxtConfirmar.Margin = new System.Windows.Forms.Padding(2);
             this.TxtConfirmar.Name = "TxtConfirmar";
             this.TxtConfirmar.PasswordChar = '*';
-            this.TxtConfirmar.Size = new System.Drawing.Size(210, 20);
+            this.TxtConfirmar.Size = new System.Drawing.Size(231, 20);
             this.TxtConfirmar.TabIndex = 3;
             this.TxtConfirmar.Validating += new System.ComponentModel.CancelEventHandler(this.TxtConfirmar_Validating);
             // 
             // LblConfirmar
             // 
             this.LblConfirmar.AutoSize = true;
-            this.LblConfirmar.Location = new System.Drawing.Point(4, 193);
+            this.LblConfirmar.Location = new System.Drawing.Point(4, 223);
             this.LblConfirmar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblConfirmar.Name = "LblConfirmar";
             this.LblConfirmar.Size = new System.Drawing.Size(51, 13);
@@ -354,11 +346,11 @@ namespace Prestamos
             // 
             // TxtClave
             // 
-            this.TxtClave.Location = new System.Drawing.Point(63, 86);
+            this.TxtClave.Location = new System.Drawing.Point(63, 116);
             this.TxtClave.Margin = new System.Windows.Forms.Padding(2);
             this.TxtClave.Name = "TxtClave";
             this.TxtClave.PasswordChar = '*';
-            this.TxtClave.Size = new System.Drawing.Size(210, 20);
+            this.TxtClave.Size = new System.Drawing.Size(231, 20);
             this.TxtClave.TabIndex = 2;
             this.TxtClave.TextChanged += new System.EventHandler(this.TxtClave_TextChanged);
             this.TxtClave.Validating += new System.ComponentModel.CancelEventHandler(this.TxtClave_Validating);
@@ -366,7 +358,7 @@ namespace Prestamos
             // LblClave
             // 
             this.LblClave.AutoSize = true;
-            this.LblClave.Location = new System.Drawing.Point(4, 88);
+            this.LblClave.Location = new System.Drawing.Point(4, 118);
             this.LblClave.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblClave.Name = "LblClave";
             this.LblClave.Size = new System.Drawing.Size(34, 13);
@@ -375,17 +367,17 @@ namespace Prestamos
             // 
             // TxtNombre
             // 
-            this.TxtNombre.Location = new System.Drawing.Point(63, 57);
+            this.TxtNombre.Location = new System.Drawing.Point(63, 87);
             this.TxtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNombre.Name = "TxtNombre";
-            this.TxtNombre.Size = new System.Drawing.Size(210, 20);
+            this.TxtNombre.Size = new System.Drawing.Size(231, 20);
             this.TxtNombre.TabIndex = 1;
             this.TxtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNombre_Validating);
             // 
             // LblNombre
             // 
             this.LblNombre.AutoSize = true;
-            this.LblNombre.Location = new System.Drawing.Point(4, 59);
+            this.LblNombre.Location = new System.Drawing.Point(4, 89);
             this.LblNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblNombre.Name = "LblNombre";
             this.LblNombre.Size = new System.Drawing.Size(44, 13);
@@ -418,6 +410,33 @@ namespace Prestamos
             // ErrNotificador
             // 
             this.ErrNotificador.ContainerControl = this;
+            // 
+            // BtnBuscarAvanzada
+            // 
+            this.BtnBuscarAvanzada.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscarAvanzada.Image")));
+            this.BtnBuscarAvanzada.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBuscarAvanzada.Location = new System.Drawing.Point(65, 56);
+            this.BtnBuscarAvanzada.Name = "BtnBuscarAvanzada";
+            this.BtnBuscarAvanzada.Padding = new System.Windows.Forms.Padding(50, 0, 50, 0);
+            this.BtnBuscarAvanzada.Size = new System.Drawing.Size(229, 23);
+            this.BtnBuscarAvanzada.TabIndex = 16;
+            this.BtnBuscarAvanzada.Text = "Búsqueda avanzada";
+            this.BtnBuscarAvanzada.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnBuscarAvanzada.UseVisualStyleBackColor = true;
+            this.BtnBuscarAvanzada.Click += new System.EventHandler(this.BtnBuscarAvanzada_Click);
+            // 
+            // BtnBuscar
+            // 
+            this.BtnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("BtnBuscar.Image")));
+            this.BtnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnBuscar.Location = new System.Drawing.Point(219, 25);
+            this.BtnBuscar.Name = "BtnBuscar";
+            this.BtnBuscar.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.BtnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.BtnBuscar.TabIndex = 15;
+            this.BtnBuscar.Text = "Buscar";
+            this.BtnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnBuscar.UseVisualStyleBackColor = true;
             // 
             // FrmUsuario
             // 
@@ -459,7 +478,6 @@ namespace Prestamos
         private System.Windows.Forms.Label LblClave;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Label LblNombre;
-        private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.TextBox TxtPersonal;
         private System.Windows.Forms.Label LblPersonal;
         private System.Windows.Forms.ErrorProvider ErrNotificador;
@@ -471,5 +489,7 @@ namespace Prestamos
         private System.Windows.Forms.CheckBox ChkContineAlMenosUnaMinuscula;
         private System.Windows.Forms.CheckBox ChkContineAlMenosUnaMayuscula;
         private System.Windows.Forms.CheckBox ChkMinimo8Caracteres;
+        private System.Windows.Forms.Button BtnBuscarAvanzada;
+        private System.Windows.Forms.Button BtnBuscar;
     }
 }

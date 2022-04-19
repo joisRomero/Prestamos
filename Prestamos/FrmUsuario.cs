@@ -33,12 +33,6 @@ namespace Prestamos
             }
         }
 
-        private void BtnBuscar_Click(object sender, EventArgs e)
-        {
-            FrmBuscarPersonal frm = new FrmBuscarPersonal(this);
-            frm.ShowDialog();
-        }
-
         private void BtnNuevoDistrito_Click(object sender, EventArgs e)
         {
             this.actual = null;
@@ -87,7 +81,7 @@ namespace Prestamos
 
         private void LLenarTxtPersonal()
         {
-            this.TxtPersonal.Text = personal.DNI;
+            //this.TxtPersonal.Text = personal.DNI;
         }
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
@@ -134,16 +128,17 @@ namespace Prestamos
 
         private bool TieneUsuarioEstePersonal()
         {
-            return actual == null
-                ? Program.Usuarios.Any(u => u.Personal.DNI.Equals(this.TxtPersonal.Text))
-                : Program.Usuarios.Any(u =>
-                {
-                    if (actual.Personal.DNI.Equals(u.Personal.DNI))
-                    {
-                        return false;
-                    }
-                    return u.Personal.DNI.Equals(this.TxtPersonal.Text);
-                });
+            //return actual == null
+            //    ? Program.Usuarios.Any(u => u.Personal.DNI.Equals(this.TxtPersonal.Text))
+            //    : Program.Usuarios.Any(u =>
+            //    {
+            //        if (actual.Personal.DNI.Equals(u.Personal.DNI))
+            //        {
+            //            return false;
+            //        }
+            //        return u.Personal.DNI.Equals(this.TxtPersonal.Text);
+            //    });
+            return true;
         }
 
         private void TxtNombre_Validating(object sender, CancelEventArgs e)
@@ -215,7 +210,7 @@ namespace Prestamos
 
         private void PresentarDatos()
         {
-            this.TxtPersonal.Text = actual.Personal.DNI;
+            //this.TxtPersonal.Text = actual.Personal.DNI;
             this.TxtNombre.Text = actual.Nombre;
             this.TxtClave.Text = actual.Clave;
             this.ChkVigente.Checked = actual.Vigente;
@@ -310,6 +305,26 @@ namespace Prestamos
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnBuscarAvanzada_Click(object sender, EventArgs e)
+        {
+            FrmBuscarPersonal frm = new FrmBuscarPersonal();
+            this.personal = frm.Buscar();
+            
+            if (this.personal != null)
+            {
+                this.MostrarBusqueda();
+            }
+            else
+            {
+                this.TxtPersonal.Text = "";
+            }
+        }
+
+        private void MostrarBusqueda()
+        {
+            TxtNombre.Text = personal.NombreCompleto;
         }
     }
 }

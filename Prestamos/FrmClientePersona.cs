@@ -45,6 +45,7 @@ namespace Prestamos
             this.CargarCategoriasCliente();
             this.CargarDistritos();
             this.CargarDepartamentos();
+            this.CargarTiposDocumentos();
         }
 
         private void CargarDepartamentos()
@@ -62,11 +63,31 @@ namespace Prestamos
                     this.CboDepartamento.DisplayMember = "Departamento";
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
                 MessageBox.Show("No se puede cargar los departamentos", this.Text);
+            }
+        }
+
+        private void CargarTiposDocumentos()
+        {
+            RNTipoDocumento rn = new RNTipoDocumento();
+            List<TipoDocumento> tipoDocumentos;
+
+            try
+            {
+                tipoDocumentos = rn.Listar();
+                this.CboTipoDocumento.DataSource = null;
+                if (tipoDocumentos.Count > 0)
+                {
+                    CboTipoDocumento.DataSource = tipoDocumentos;
+                    this.CboTipoDocumento.DisplayMember = "Nombre";
+                    this.CboTipoDocumento.ValueMember = "Codigo";
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text);
             }
         }
 
@@ -94,9 +115,7 @@ namespace Prestamos
                     }
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
                 MessageBox.Show("No se pudo cargar los distritos", this.Text);
             }
@@ -125,9 +144,7 @@ namespace Prestamos
                     }
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
                 MessageBox.Show("No se pudo cargar las provincias", this.Text);
             }
@@ -149,9 +166,7 @@ namespace Prestamos
                     this.CboCategoria.ValueMember = "Codigo";
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
                 MessageBox.Show("No se pudo cargar las categorías", this.Text);
             }
@@ -178,6 +193,7 @@ namespace Prestamos
             this.TxtCorreoPersonal.Text = "";
             this.TxtCelular.Text = "";
             this.ChkVigente.Checked = true;
+            this.DtpFechaNacimiento.Value = DateTime.Now;
         }
 
         private void HabilitarControles(bool v)
@@ -249,7 +265,7 @@ namespace Prestamos
                 CorreoPersonal = this.TxtCorreoPersonal.Text,
                 Celular = this.TxtCelular.Text,
                 Vigente = this.ChkVigente.Checked,
-                TipoDocumento = this.CboTipoDocumento.Text.Substring(0, 1)
+                TipoDocumento = (TipoDocumento)this.CboTipoDocumento.SelectedItem
             };
 
             if (this.actual != null)
@@ -267,7 +283,7 @@ namespace Prestamos
             this.DgvListado.DataSource = null;
             try
             {
-                encontradas = rn.Listar(TxtNombres.Text, TxtApellidos.Text);
+                encontradas = rn.Listar(TxtPersona.Text);
                 if (encontradas.Count > 0)
                 {
                     this.DgvListado.AutoGenerateColumns = false;
@@ -319,6 +335,7 @@ namespace Prestamos
                 this.CboCategoria.SelectedValue = this.actual.Categoria.Codigo;
                 this.TxtNombres.Text = this.actual.Nombres;
                 this.TxtApellidos.Text = this.actual.Apellidos;
+                this.CboTipoDocumento.SelectedValue = this.actual.TipoDocumento.Codigo;
                 this.TxtNumDocumento.Text = this.actual.NumeroDocumento;
                 this.DtpFechaNacimiento.Value = this.actual.FechaNacimiento;
                 this.CboDepartamento.Text = dis.Departamento;
@@ -330,13 +347,6 @@ namespace Prestamos
                 this.TxtCorreoPersonal.Text = this.actual.CorreoPersonal;
                 this.TxtCelular.Text = this.actual.Celular;
                 this.ChkVigente.Checked = this.actual.Vigente;
-                
-                switch (this.actual.TipoDocumento)
-                {
-                    case "D": this.CboTipoDocumento.SelectedIndex = 0; break;
-                    case "P": this.CboTipoDocumento.SelectedIndex = 1; break;
-                    case "C": this.CboTipoDocumento.SelectedIndex = 2; break;
-                }
                 this.HabilitarControles(true);
             }
             catch (Exception)
@@ -465,7 +475,7 @@ namespace Prestamos
                 List<string> numDocumentos = new List<string>();
                 for (int i = 0; i < DgvListado.RowCount; i++)
                 {
-                    numDocumentos.Add(DgvListado.Rows[i].Cells["cdNumDocumento"].ToString());
+                    numDocumentos.Add(DgvListado.Rows[i].Cells["cdNumDocumento"].Value.ToString());
                 }
                 band = numDocumentos.Any(r =>
                 {
@@ -482,15 +492,15 @@ namespace Prestamos
 
         private void TxtNumDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this.CboTipoDocumento.SelectedIndex == 0 || this.CboTipoDocumento.SelectedIndex == 2)
+            if (this.CboTipoDocumento.Text.Equals("DNI") || this.CboTipoDocumento.Text.Equals("Carnet de extranjería"))
             {
                 e.Handled = SoloNumeros(e);
             }
-            if (this.CboTipoDocumento.SelectedIndex == 1 && this.TxtNumDocumento.TextLength < 4)
+            if (this.CboTipoDocumento.Text.Equals("Pasaporte") && this.TxtNumDocumento.TextLength < 4)
             {
                 e.Handled = SoloLetras(e);
             }
-            if (this.CboTipoDocumento.SelectedIndex == 1 && this.TxtNumDocumento.TextLength > 3)
+            if (this.CboTipoDocumento.Text.Equals("Pasaporte") && this.TxtNumDocumento.TextLength > 3)
             {
                 e.Handled = SoloNumeros(e);
             }
@@ -498,6 +508,10 @@ namespace Prestamos
 
         private void CboTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(this.TxtNumDocumento.Text))
+            {
+                this.TxtNumDocumento.Text = "";
+            }
             if (CboTipoDocumento.SelectedIndex == 0)
             {
                 ValidarDNI();
@@ -514,37 +528,16 @@ namespace Prestamos
 
         private void ValidarCarnetExtrangería()
         {
-            if (!string.IsNullOrEmpty(this.TxtNumDocumento.Text))
-            {
-                if (char.IsLetter(this.TxtNumDocumento.Text, 0))
-                {
-                    this.TxtNumDocumento.Text = "";
-                }
-            }
             this.TxtNumDocumento.MaxLength = 9;
         }
 
         private void ValidarPasaporte()
         {
-            if (!string.IsNullOrEmpty(this.TxtNumDocumento.Text))
-            {
-                if (char.IsNumber(this.TxtNumDocumento.Text, 0))
-                {
-                    this.TxtNumDocumento.Text = "";
-                }
-            }
             this.TxtNumDocumento.MaxLength = 9;
         }
 
         private void ValidarDNI()
         {
-            if (!string.IsNullOrEmpty(this.TxtNumDocumento.Text))
-            {
-                if (char.IsLetter(this.TxtNumDocumento.Text[0]))
-                {
-                    this.TxtNumDocumento.Text = "";
-                }
-            }
             this.TxtNumDocumento.MaxLength = 8;
         }
 
