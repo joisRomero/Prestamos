@@ -19,7 +19,6 @@ namespace Prestamos
             Application.SetCompatibleTextRenderingDefault(false);
 
             Application.Run(new FrmIniciarSesion());
-            master
         }
     }
 }
