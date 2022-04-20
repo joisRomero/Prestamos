@@ -16,8 +16,8 @@ namespace ReglaNegocio
         public List<TipoDocumento> Listar()
         {
             List<TipoDocumento> tiposDocumentos = null;
-            string sql = $@"SELECT Codigo, Nombre, Siglas, Vigente 
-                            FROM tipodocumento";
+            string sql = $@"SELECT Codigo, Nombre, Siglas
+                            FROM tipodocumento WHERE Vigente = 1";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
@@ -35,7 +35,7 @@ namespace ReglaNegocio
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
                                     Siglas = dr.GetString(dr.GetOrdinal("Siglas")),
-                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente")),
+                                    Vigente = true
                                 });
                             }
                         }
