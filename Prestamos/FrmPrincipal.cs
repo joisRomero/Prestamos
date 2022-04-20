@@ -34,14 +34,14 @@ namespace Prestamos
                 TsbUsuarios.Visible = false;
                 Separador2.Visible = false;
                 MnuSeparador2.Visible = false;
+                Separador3.Visible = false;
+                MnuCuentaBancaria.Visible = false;
+                MnuEntidadBancaria.Visible = false;
             }
             else
             {
                 LblTipoUsuario.Text = "Adminitrador";
             }
-
-
-
         }
 
         #region Iniciar formularios
@@ -127,6 +127,24 @@ namespace Prestamos
             frm.Focus();
         }
 
+        private void MnuEntidadBancaria_Click(object sender, EventArgs e)
+        {
+            FrmEntidadBancaria frm = FrmEntidadBancaria.LlamarFormulario;
+
+            frm.MdiParent = this;
+            frm.Show();
+            frm.Focus();
+        }
+
+        private void MnuCuentaBancaria_Click(object sender, EventArgs e)
+        {
+            FrmCuentaBancaria frm = FrmCuentaBancaria.LlamarFormulario;
+
+            frm.MdiParent = this;
+            frm.Show();
+            frm.Focus();
+        }
+
         #endregion
 
         #region Menú predeterminado
@@ -170,8 +188,15 @@ namespace Prestamos
             this.ConfigurarFrmPrincipal();
         }
 
+        private void MnuCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Sesion.CerrarSesion = true;
+            this.Close();
+        }
+
         private void MnuSalir_Click(object sender, EventArgs e)
         {
+            Sesion.CerrarSesion = false;
             Application.Exit();
         }
 
@@ -319,5 +344,7 @@ namespace Prestamos
                 }
             }
         }
+
+        
     }
 }

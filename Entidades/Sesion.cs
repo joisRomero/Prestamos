@@ -9,5 +9,6 @@ namespace Entidades
     public class Sesion
     {
         public static Usuario Usuario;
+        public static bool CerrarSesion { get; set; }
     }
 }

@@ -71,13 +71,30 @@ namespace Prestamos
                 Sesion.Usuario = rn.Leer(TxtNombreDeUsuario.Text);
                 FrmPrincipal frm = new FrmPrincipal();
                 this.Hide();
-                frm.FormClosed += (s, args) => this.Close();
+                frm.FormClosed += (s, args) =>
+                {
+                    if (Sesion.CerrarSesion)
+                    {
+                        LimpiarControles();
+                        this.Show();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
+                };
                 frm.Show();
             }
             catch (Exception)
             {
                 throw;
             }
+        }
+
+        private void LimpiarControles()
+        {
+            TxtClave.Text = "";
+            TxtNombreDeUsuario.Text = "";
         }
     }
 }

@@ -15,10 +15,22 @@ namespace Prestamos
     public partial class FrmEntidadBancaria : Form
     {
         private EntidadBancaria actual;
-        //private static FrmEntidadBancaria Instancia;
-        public FrmEntidadBancaria()
+        private static FrmEntidadBancaria Instancia;
+        private FrmEntidadBancaria()
         {
             InitializeComponent();
+        }
+
+        public static FrmEntidadBancaria LlamarFormulario
+        {
+            get
+            {
+                if (Instancia == null || Instancia.IsDisposed)
+                {
+                    Instancia = new FrmEntidadBancaria();
+                }
+                return Instancia;
+            }
         }
 
         private void HabilitarControles(bool estado)

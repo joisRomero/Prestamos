@@ -31,7 +31,7 @@ namespace Prestamos
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEntidadBancaria));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GbEntidadBancaria = new System.Windows.Forms.GroupBox();
             this.BtnCancelarEntidadB = new System.Windows.Forms.Button();
             this.BtnAceptarEntidadB = new System.Windows.Forms.Button();
@@ -65,11 +65,11 @@ namespace Prestamos
             this.GbEntidadBancaria.Controls.Add(this.TxtNombre);
             this.GbEntidadBancaria.Controls.Add(this.LblNombreEntidadBancaria);
             this.GbEntidadBancaria.Enabled = false;
-            this.GbEntidadBancaria.Location = new System.Drawing.Point(12, 11);
-            this.GbEntidadBancaria.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GbEntidadBancaria.Location = new System.Drawing.Point(9, 9);
+            this.GbEntidadBancaria.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GbEntidadBancaria.Name = "GbEntidadBancaria";
-            this.GbEntidadBancaria.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbEntidadBancaria.Size = new System.Drawing.Size(412, 242);
+            this.GbEntidadBancaria.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GbEntidadBancaria.Size = new System.Drawing.Size(309, 197);
             this.GbEntidadBancaria.TabIndex = 1;
             this.GbEntidadBancaria.TabStop = false;
             this.GbEntidadBancaria.Text = "Entidad Bancaria";
@@ -78,11 +78,11 @@ namespace Prestamos
             // 
             this.BtnCancelarEntidadB.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelarEntidadB.Image")));
             this.BtnCancelarEntidadB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCancelarEntidadB.Location = new System.Drawing.Point(256, 175);
-            this.BtnCancelarEntidadB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnCancelarEntidadB.Location = new System.Drawing.Point(192, 142);
+            this.BtnCancelarEntidadB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnCancelarEntidadB.Name = "BtnCancelarEntidadB";
-            this.BtnCancelarEntidadB.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.BtnCancelarEntidadB.Size = new System.Drawing.Size(136, 49);
+            this.BtnCancelarEntidadB.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.BtnCancelarEntidadB.Size = new System.Drawing.Size(102, 40);
             this.BtnCancelarEntidadB.TabIndex = 5;
             this.BtnCancelarEntidadB.Text = "Cancelar";
             this.BtnCancelarEntidadB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -93,11 +93,11 @@ namespace Prestamos
             // 
             this.BtnAceptarEntidadB.Image = ((System.Drawing.Image)(resources.GetObject("BtnAceptarEntidadB.Image")));
             this.BtnAceptarEntidadB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAceptarEntidadB.Location = new System.Drawing.Point(112, 175);
-            this.BtnAceptarEntidadB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnAceptarEntidadB.Location = new System.Drawing.Point(84, 142);
+            this.BtnAceptarEntidadB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnAceptarEntidadB.Name = "BtnAceptarEntidadB";
-            this.BtnAceptarEntidadB.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.BtnAceptarEntidadB.Size = new System.Drawing.Size(136, 49);
+            this.BtnAceptarEntidadB.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.BtnAceptarEntidadB.Size = new System.Drawing.Size(102, 40);
             this.BtnAceptarEntidadB.TabIndex = 4;
             this.BtnAceptarEntidadB.Text = "Aceptar";
             this.BtnAceptarEntidadB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -107,47 +107,49 @@ namespace Prestamos
             // ChkVigente
             // 
             this.ChkVigente.AutoSize = true;
-            this.ChkVigente.Location = new System.Drawing.Point(112, 122);
-            this.ChkVigente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChkVigente.Location = new System.Drawing.Point(84, 99);
+            this.ChkVigente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ChkVigente.Name = "ChkVigente";
-            this.ChkVigente.Size = new System.Drawing.Size(78, 21);
+            this.ChkVigente.Size = new System.Drawing.Size(62, 17);
             this.ChkVigente.TabIndex = 3;
             this.ChkVigente.Text = "Vigente";
             this.ChkVigente.UseVisualStyleBackColor = true;
             // 
             // TxtSiglas
             // 
-            this.TxtSiglas.Location = new System.Drawing.Point(112, 70);
-            this.TxtSiglas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TxtSiglas.Location = new System.Drawing.Point(84, 57);
+            this.TxtSiglas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TxtSiglas.Name = "TxtSiglas";
-            this.TxtSiglas.Size = new System.Drawing.Size(279, 22);
+            this.TxtSiglas.Size = new System.Drawing.Size(210, 20);
             this.TxtSiglas.TabIndex = 1;
             this.TxtSiglas.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
             // LblSiglas
             // 
             this.LblSiglas.AutoSize = true;
-            this.LblSiglas.Location = new System.Drawing.Point(8, 73);
+            this.LblSiglas.Location = new System.Drawing.Point(6, 59);
+            this.LblSiglas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblSiglas.Name = "LblSiglas";
-            this.LblSiglas.Size = new System.Drawing.Size(46, 17);
+            this.LblSiglas.Size = new System.Drawing.Size(35, 13);
             this.LblSiglas.TabIndex = 0;
             this.LblSiglas.Text = "Siglas";
             // 
             // TxtNombre
             // 
-            this.TxtNombre.Location = new System.Drawing.Point(112, 33);
-            this.TxtNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TxtNombre.Location = new System.Drawing.Point(84, 27);
+            this.TxtNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TxtNombre.Name = "TxtNombre";
-            this.TxtNombre.Size = new System.Drawing.Size(279, 22);
+            this.TxtNombre.Size = new System.Drawing.Size(210, 20);
             this.TxtNombre.TabIndex = 0;
             this.TxtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
             // LblNombreEntidadBancaria
             // 
             this.LblNombreEntidadBancaria.AutoSize = true;
-            this.LblNombreEntidadBancaria.Location = new System.Drawing.Point(8, 36);
+            this.LblNombreEntidadBancaria.Location = new System.Drawing.Point(6, 29);
+            this.LblNombreEntidadBancaria.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblNombreEntidadBancaria.Name = "LblNombreEntidadBancaria";
-            this.LblNombreEntidadBancaria.Size = new System.Drawing.Size(58, 17);
+            this.LblNombreEntidadBancaria.Size = new System.Drawing.Size(44, 13);
             this.LblNombreEntidadBancaria.TabIndex = 0;
             this.LblNombreEntidadBancaria.Text = "Nombre";
             // 
@@ -156,11 +158,11 @@ namespace Prestamos
             this.BtnCerrarEntidadB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCerrarEntidadB.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerrarEntidadB.Image")));
             this.BtnCerrarEntidadB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCerrarEntidadB.Location = new System.Drawing.Point(987, 566);
-            this.BtnCerrarEntidadB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnCerrarEntidadB.Location = new System.Drawing.Point(740, 460);
+            this.BtnCerrarEntidadB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnCerrarEntidadB.Name = "BtnCerrarEntidadB";
-            this.BtnCerrarEntidadB.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
-            this.BtnCerrarEntidadB.Size = new System.Drawing.Size(136, 49);
+            this.BtnCerrarEntidadB.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.BtnCerrarEntidadB.Size = new System.Drawing.Size(102, 40);
             this.BtnCerrarEntidadB.TabIndex = 4;
             this.BtnCerrarEntidadB.Text = "Cerrar";
             this.BtnCerrarEntidadB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -177,24 +179,24 @@ namespace Prestamos
             this.GbListadoEntidadesB.Controls.Add(this.BtnListarEntidadesB);
             this.GbListadoEntidadesB.Controls.Add(this.BtnNuevaEntidadB);
             this.GbListadoEntidadesB.Controls.Add(this.DgvListado);
-            this.GbListadoEntidadesB.Location = new System.Drawing.Point(430, 11);
-            this.GbListadoEntidadesB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GbListadoEntidadesB.Location = new System.Drawing.Point(322, 9);
+            this.GbListadoEntidadesB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GbListadoEntidadesB.Name = "GbListadoEntidadesB";
-            this.GbListadoEntidadesB.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GbListadoEntidadesB.Size = new System.Drawing.Size(693, 550);
+            this.GbListadoEntidadesB.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GbListadoEntidadesB.Size = new System.Drawing.Size(520, 447);
             this.GbListadoEntidadesB.TabIndex = 3;
             this.GbListadoEntidadesB.TabStop = false;
-            this.GbListadoEntidadesB.Text = "Listado Entidades Bancarias";
+            this.GbListadoEntidadesB.Text = "Listado";
             // 
             // BtnDarDeBajaEntidad
             // 
             this.BtnDarDeBajaEntidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnDarDeBajaEntidad.Image = ((System.Drawing.Image)(resources.GetObject("BtnDarDeBajaEntidad.Image")));
             this.BtnDarDeBajaEntidad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnDarDeBajaEntidad.Location = new System.Drawing.Point(539, 491);
-            this.BtnDarDeBajaEntidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnDarDeBajaEntidad.Location = new System.Drawing.Point(404, 399);
+            this.BtnDarDeBajaEntidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnDarDeBajaEntidad.Name = "BtnDarDeBajaEntidad";
-            this.BtnDarDeBajaEntidad.Size = new System.Drawing.Size(136, 49);
+            this.BtnDarDeBajaEntidad.Size = new System.Drawing.Size(102, 40);
             this.BtnDarDeBajaEntidad.TabIndex = 4;
             this.BtnDarDeBajaEntidad.Text = "Dar de baja";
             this.BtnDarDeBajaEntidad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -206,11 +208,11 @@ namespace Prestamos
             this.BtnModificarEntidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnModificarEntidad.Image = ((System.Drawing.Image)(resources.GetObject("BtnModificarEntidad.Image")));
             this.BtnModificarEntidad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnModificarEntidad.Location = new System.Drawing.Point(161, 491);
-            this.BtnModificarEntidad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnModificarEntidad.Location = new System.Drawing.Point(121, 399);
+            this.BtnModificarEntidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnModificarEntidad.Name = "BtnModificarEntidad";
-            this.BtnModificarEntidad.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.BtnModificarEntidad.Size = new System.Drawing.Size(136, 49);
+            this.BtnModificarEntidad.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.BtnModificarEntidad.Size = new System.Drawing.Size(102, 40);
             this.BtnModificarEntidad.TabIndex = 3;
             this.BtnModificarEntidad.Text = "Modificar";
             this.BtnModificarEntidad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -222,11 +224,11 @@ namespace Prestamos
             this.BtnListarEntidadesB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnListarEntidadesB.Image = ((System.Drawing.Image)(resources.GetObject("BtnListarEntidadesB.Image")));
             this.BtnListarEntidadesB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnListarEntidadesB.Location = new System.Drawing.Point(539, 20);
-            this.BtnListarEntidadesB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnListarEntidadesB.Location = new System.Drawing.Point(404, 16);
+            this.BtnListarEntidadesB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnListarEntidadesB.Name = "BtnListarEntidadesB";
-            this.BtnListarEntidadesB.Padding = new System.Windows.Forms.Padding(13, 0, 20, 0);
-            this.BtnListarEntidadesB.Size = new System.Drawing.Size(136, 49);
+            this.BtnListarEntidadesB.Padding = new System.Windows.Forms.Padding(10, 0, 15, 0);
+            this.BtnListarEntidadesB.Size = new System.Drawing.Size(102, 40);
             this.BtnListarEntidadesB.TabIndex = 0;
             this.BtnListarEntidadesB.Text = "Listar";
             this.BtnListarEntidadesB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -238,11 +240,11 @@ namespace Prestamos
             this.BtnNuevaEntidadB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnNuevaEntidadB.Image = ((System.Drawing.Image)(resources.GetObject("BtnNuevaEntidadB.Image")));
             this.BtnNuevaEntidadB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnNuevaEntidadB.Location = new System.Drawing.Point(20, 491);
-            this.BtnNuevaEntidadB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnNuevaEntidadB.Location = new System.Drawing.Point(15, 399);
+            this.BtnNuevaEntidadB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnNuevaEntidadB.Name = "BtnNuevaEntidadB";
-            this.BtnNuevaEntidadB.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
-            this.BtnNuevaEntidadB.Size = new System.Drawing.Size(136, 49);
+            this.BtnNuevaEntidadB.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.BtnNuevaEntidadB.Size = new System.Drawing.Size(102, 40);
             this.BtnNuevaEntidadB.TabIndex = 2;
             this.BtnNuevaEntidadB.Text = "Nuevo";
             this.BtnNuevaEntidadB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -260,19 +262,19 @@ namespace Prestamos
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DgvListado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvListado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cdEntidadesB});
-            this.DgvListado.Location = new System.Drawing.Point(20, 74);
-            this.DgvListado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DgvListado.Location = new System.Drawing.Point(15, 60);
+            this.DgvListado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DgvListado.MultiSelect = false;
             this.DgvListado.Name = "DgvListado";
             this.DgvListado.ReadOnly = true;
@@ -280,7 +282,7 @@ namespace Prestamos
             this.DgvListado.RowHeadersWidth = 51;
             this.DgvListado.RowTemplate.Height = 24;
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvListado.Size = new System.Drawing.Size(655, 404);
+            this.DgvListado.Size = new System.Drawing.Size(491, 328);
             this.DgvListado.TabIndex = 1;
             // 
             // cdEntidadesB
@@ -297,13 +299,15 @@ namespace Prestamos
             // 
             // FrmEntidadBancaria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(1144, 634);
+            this.ClientSize = new System.Drawing.Size(858, 515);
             this.Controls.Add(this.BtnCerrarEntidadB);
             this.Controls.Add(this.GbListadoEntidadesB);
             this.Controls.Add(this.GbEntidadBancaria);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmEntidadBancaria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entidad Bancaria";
