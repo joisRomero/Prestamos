@@ -15,12 +15,23 @@ namespace Prestamos
     public partial class FrmCuentaBancaria : Form
     {
         private CuentaBancaria actual;
-        // private static FrmCuentaBancaria Instancia;
-        public FrmCuentaBancaria()
+        private static FrmCuentaBancaria Instancia;
+        private FrmCuentaBancaria()
         {
             InitializeComponent();
         }
 
+        public static FrmCuentaBancaria LlamarFormulario
+        {
+            get
+            {
+                if (Instancia == null || Instancia.IsDisposed)
+                {
+                    Instancia = new FrmCuentaBancaria();
+                }
+                return Instancia;
+            }
+        }
         private void ChkVigente_CheckedChanged(object sender, EventArgs e)
         {
 
