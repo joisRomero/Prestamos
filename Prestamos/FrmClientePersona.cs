@@ -46,6 +46,36 @@ namespace Prestamos
             this.CargarDistritos();
             this.CargarDepartamentos();
             this.CargarTiposDocumentos();
+            this.CargarPersonal();
+        }
+
+        private void CargarPersonal()
+        {
+            if (Sesion.Usuario.Tipo.Equals("L"))
+            {
+                this.CboPersonalCartera.Items.Add(Sesion.Usuario.NombrePersonal);
+                this.CboPersonalCartera.Enabled = false;
+            }
+            else
+            {
+                RNPersonal rn = new RNPersonal();
+                List<Personal> personal;
+
+                try
+                {
+                    personal = rn.Listar();
+                    this.CboPersonalCartera.DataSource = null;
+                    if (personal.Count > 0)
+                    {
+                        this.CboPersonalCartera.DataSource = personal;
+                        this.CboPersonalCartera.DisplayMember = "NombreCompleto";
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se puede cargar los departamentos", this.Text);
+                }
+            }
         }
 
         private void CargarDepartamentos()
@@ -177,6 +207,10 @@ namespace Prestamos
             this.actual = null;
             this.HabilitarControles(true);
             this.LimpiarControles();
+            if (Sesion.Usuario.Tipo.Equals("L"))
+            {
+                this.CboPersonalCartera.SelectedIndex = 0;
+            }
         }
 
         private void LimpiarControles()
@@ -194,6 +228,7 @@ namespace Prestamos
             this.TxtCelular.Text = "";
             this.ChkVigente.Checked = true;
             this.DtpFechaNacimiento.Value = DateTime.Now;
+            this.CboPersonalCartera.SelectedIndex = -1;
         }
 
         private void HabilitarControles(bool v)

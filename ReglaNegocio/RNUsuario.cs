@@ -252,7 +252,7 @@ namespace ReglaNegocio
         public bool Login(string nombre, string clave)
         {
             bool estaRegistrado = false;
-            string sql = $@"SELECT codigo FROM usuario WHERE Nombre = '{nombre}' AND Clave = '{clave}'";
+            string sql = $@"SELECT codigo FROM usuario WHERE Nombre = '{nombre}' AND Clave = '{clave}' AND Vigente = 1";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
