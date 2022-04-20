@@ -9,15 +9,17 @@ using System.Threading.Tasks;
 
 namespace ReglaNegocio
 {
-    public class RNEntidadBancaria
+    public class RNCuentaBancaria
     {
         readonly string cadenaConexion = ConfigurationManager.ConnectionStrings["DBConexion"].ConnectionString;
-
-        public void Registrar(EntidadBancaria eb)
+        const string estadoActivo = "1";
+        const string estadoInactivo = "0";
+        public void Registrar(CuentaBancaria cuentaB)
         {
-            string sql = $@"INSERT INTO entidadbancaria(Nombre, Siglas, Vigente)
-                        VALUES('{eb.Nombre}', '{eb.Siglas}', 
-                              {(eb.Vigente == true ? 1 : 0) })";
+            string sql = $@"INSERT INTO cuentabancaria(EntidadBancaria_Codigo, Numero, CCI, Vigente) 
+                          VALUES({cuentaB.EntidadB.Codigo}, '{cuentaB.Numero}', '{cuentaB.CCI}',
+                                  {(cuentaB.Vigente == true ? estadoActivo : estadoInactivo)})";
+
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
@@ -34,52 +36,13 @@ namespace ReglaNegocio
                 throw ex;
             }
         }
-
-        public List<EntidadBancaria> Listar()
+        public void Actualizar(CuentaBancaria cuentaB)
         {
-            List<EntidadBancaria> eb = null;
-            string sql = $@"SELECT Codigo, Nombre, Siglas, Vigente
-                            FROM entidadbancaria
-                            ORDER BY Nombre";
-
-            try
-            {
-                using(MySqlConnection cn = new MySqlConnection(cadenaConexion))
-                {
-                    cn.Open();
-                    using(MySqlCommand cmd = new MySqlCommand(sql, cn))
-                    {
-                        using(MySqlDataReader dr = cmd.ExecuteReader())
-                        {
-                            eb = new List<EntidadBancaria>();
-                            while (dr.Read() == true)
-                            {
-                                eb.Add(new EntidadBancaria()
-                                {
-                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
-                                    Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
-                                    Siglas = dr.GetString(dr.GetOrdinal("Siglas")),
-                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
-                                });
-                            }
-                            dr.Close();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            
-            return eb;
-        }
-        public void Actualizar(EntidadBancaria eb)
-        {
-            string sql = $@"UPDATE entidadbancaria 
-                            SET Nombre = '{eb.Nombre}', Siglas = '{eb.Siglas}',
-                               Vigente = {(eb.Vigente == true ? 1 : 0)}
-                            WHERE Codigo = {eb.Codigo}";
+            string sql = $@"UPDATE cuentabancaria 
+                        SET EntidadBancaria_Codigo = {cuentaB.EntidadB.Codigo}, Numero = '{cuentaB.Numero}', 
+                            CCI = '{cuentaB.CCI}',
+                            Vigente = {(cuentaB.Vigente == true ? estadoActivo : estadoInactivo)}
+                        WHERE Codigo = {cuentaB.Codigo}";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
@@ -90,19 +53,19 @@ namespace ReglaNegocio
                         cmd.ExecuteNonQuery();
                     }
                 }
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public EntidadBancaria Leer(int codigo)
+        public CuentaBancaria Leer(int codigo)
         {
-            EntidadBancaria eb = null;
-            string sql = $@"SELECT EB.Codigo, EB.Nombre, EB.Siglas, EB.Vigente
-                            FROM entidadbancaria EB
-                            WHERE EB.Codigo = {codigo}";
-
+            CuentaBancaria cuentaB = null;
+            string sql = $@"SELECT CB.EntidadBancaria_Codigo, CB.Numero, CB.CCI, CB.Vigente
+	                      FROM cuentabancaria CB 
+                        WHERE CB.Codigo = {codigo}";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
@@ -112,13 +75,17 @@ namespace ReglaNegocio
                     {
                         using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
-                            if (dr.Read() == true)
+                            if (dr.Read())
                             {
-                                eb = new EntidadBancaria
+                                cuentaB = new CuentaBancaria()
                                 {
-                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
-                                    Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
-                                    Siglas = dr.GetString(dr.GetOrdinal("Siglas")),
+                                    Codigo = codigo,
+                                    EntidadB = new EntidadBancaria()
+                                    {
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("EntidadBancaria_Codigo"))
+                                    },
+                                    Numero = dr.GetString(dr.GetOrdinal("Numero")),
+                                    CCI = dr.GetString(dr.GetOrdinal("CCI")),
                                     Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
                                 };
                             }
@@ -126,43 +93,20 @@ namespace ReglaNegocio
                         }
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return eb;
+            return cuentaB;
         }
-        public void DarDeBaja(int codigo)
-        {
-            string sql = $@"UPDATE entidadbancaria 
-                            SET Vigente = 0
-                            WHERE Codigo = {codigo}";
-            try
-            {
-                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
-                {
-                    cn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public bool ExisteEntidadB(EntidadBancaria eb)
+        public bool ExisteNumero(string Numero)
         {
             bool existe = false;
             string sql = $@"SELECT Codigo
-                            FROM entidadbancaria 
-                            WHERE Nombre = '{eb.Nombre}'";
+	                      FROM cuentabancaria
+                        WHERE Numero = '{Numero}'";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
@@ -172,7 +116,7 @@ namespace ReglaNegocio
                     {
                         using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
-                            if (dr.Read() == true)
+                            if (dr.Read())
                             {
                                 existe = true;
                             }
@@ -188,13 +132,44 @@ namespace ReglaNegocio
 
             return existe;
         }
-        public List<EntidadBancaria> ListarVigentes()
+        public bool ExisteCCI(string CCI)
         {
-            List<EntidadBancaria> entidadesB = null;
-            string sql = $@"SELECT EB.Codigo, EB.Nombre
-                        FROM entidadbancaria EB
-                        WHERE EB.Vigente = 1 
-                        ORDER BY EB.Nombre";
+            bool existe = false;
+            string sql = $@"SELECT Codigo
+	                      FROM cuentabancaria
+                        WHERE CCI = '{CCI}'";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                existe = true;
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return existe;
+        }
+        public List<CuentaBancaria> Listar(string entidadB)
+        {
+            List<CuentaBancaria> cuentaB = null;
+            string sql = $@"SELECT CB.Codigo, CB.Numero, CB.CCI, CB.Vigente, EB.Nombre AS Entidad
+	        FROM cuentabancaria CB JOIN entidadbancaria EB ON CB.EntidadBancaria_Codigo = EB.Codigo
+	        WHERE EB.Nombre LIKE '{entidadB}%'
+	        ORDER BY EB.Nombre";
 
             try
             {
@@ -205,14 +180,19 @@ namespace ReglaNegocio
                     {
                         using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
-                            entidadesB = new List<EntidadBancaria>();
+                            cuentaB = new List<CuentaBancaria>();
                             while (dr.Read() == true)
                             {
-                                entidadesB.Add(new EntidadBancaria()
+                                cuentaB.Add(new CuentaBancaria()
                                 {
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
-                                    Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
-                                    Vigente = true
+                                    Numero = dr.GetString(dr.GetOrdinal("Numero")),
+                                    CCI = dr.GetString(dr.GetOrdinal("CCI")),
+                                    EntidadB = new EntidadBancaria()
+                                    {
+                                        Nombre = dr.GetString(dr.GetOrdinal("Entidad"))
+                                    },
+                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
                                 });
                             }
                             dr.Close();
@@ -225,7 +205,7 @@ namespace ReglaNegocio
                 throw ex;
             }
 
-            return entidadesB;
+            return cuentaB;
         }
     }
 }
