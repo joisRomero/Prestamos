@@ -23,9 +23,11 @@ namespace Prestamos
         private void CargarDatosIniciales()
         {
             LblBarraPersonal.Text = Sesion.Usuario.NombrePersonal;
+            LblBarraNombreUsuario.Text = Sesion.Usuario.Nombre;
 
             if (Sesion.Usuario.Tipo.Equals("L"))
             {
+                LblTipoUsuario.Text = "Limitado";
                 MnuPersonal.Visible = false;
                 MnuUsuarios.Visible = false;
                 TsbPersonal.Visible = false;
@@ -33,6 +35,12 @@ namespace Prestamos
                 Separador2.Visible = false;
                 MnuSeparador2.Visible = false;
             }
+            else
+            {
+                LblTipoUsuario.Text = "Adminitrador";
+            }
+
+
 
         }
 

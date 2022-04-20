@@ -31,8 +31,8 @@ namespace Prestamos
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategoriaCliente));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.LblNombre = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.LblDescripcion = new System.Windows.Forms.Label();
@@ -43,17 +43,17 @@ namespace Prestamos
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.GbCategoria = new System.Windows.Forms.GroupBox();
+            this.ChkNegociable = new System.Windows.Forms.CheckBox();
             this.GbListado = new System.Windows.Forms.GroupBox();
             this.DgvListado = new System.Windows.Forms.DataGridView();
-            this.cdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdInteres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnModificar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.BtnDarDeBaja = new System.Windows.Forms.Button();
             this.BtnListar = new System.Windows.Forms.Button();
             this.BtnCerrrar = new System.Windows.Forms.Button();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ChkNegociable = new System.Windows.Forms.CheckBox();
+            this.cdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdInteres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.NudInteres)).BeginInit();
             this.GbCategoria.SuspendLayout();
             this.GbListado.SuspendLayout();
@@ -175,6 +175,16 @@ namespace Prestamos
             this.GbCategoria.TabStop = false;
             this.GbCategoria.Text = "Categoría";
             // 
+            // ChkNegociable
+            // 
+            this.ChkNegociable.AutoSize = true;
+            this.ChkNegociable.Location = new System.Drawing.Point(20, 260);
+            this.ChkNegociable.Name = "ChkNegociable";
+            this.ChkNegociable.Size = new System.Drawing.Size(80, 17);
+            this.ChkNegociable.TabIndex = 6;
+            this.ChkNegociable.Text = "Negociable";
+            this.ChkNegociable.UseVisualStyleBackColor = true;
+            // 
             // GbListado
             // 
             this.GbListado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -202,14 +212,14 @@ namespace Prestamos
             this.DgvListado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvListado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.DgvListado.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvListado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cdNombre,
@@ -223,23 +233,6 @@ namespace Prestamos
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvListado.Size = new System.Drawing.Size(435, 291);
             this.DgvListado.TabIndex = 2;
-            // 
-            // cdNombre
-            // 
-            this.cdNombre.DataPropertyName = "Nombre";
-            this.cdNombre.HeaderText = "Nombre";
-            this.cdNombre.Name = "cdNombre";
-            this.cdNombre.ReadOnly = true;
-            // 
-            // CdInteres
-            // 
-            this.CdInteres.DataPropertyName = "Interes";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            this.CdInteres.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CdInteres.HeaderText = "Interés";
-            this.CdInteres.Name = "CdInteres";
-            this.CdInteres.ReadOnly = true;
             // 
             // BtnModificar
             // 
@@ -319,15 +312,22 @@ namespace Prestamos
             // 
             this.ErrNotificador.ContainerControl = this;
             // 
-            // ChkNegociable
+            // cdNombre
             // 
-            this.ChkNegociable.AutoSize = true;
-            this.ChkNegociable.Location = new System.Drawing.Point(20, 260);
-            this.ChkNegociable.Name = "ChkNegociable";
-            this.ChkNegociable.Size = new System.Drawing.Size(80, 17);
-            this.ChkNegociable.TabIndex = 6;
-            this.ChkNegociable.Text = "Negociable";
-            this.ChkNegociable.UseVisualStyleBackColor = true;
+            this.cdNombre.DataPropertyName = "Nombre";
+            this.cdNombre.HeaderText = "Nombre";
+            this.cdNombre.Name = "cdNombre";
+            this.cdNombre.ReadOnly = true;
+            // 
+            // CdInteres
+            // 
+            this.CdInteres.DataPropertyName = "InteresAnual";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            this.CdInteres.DefaultCellStyle = dataGridViewCellStyle6;
+            this.CdInteres.HeaderText = "Interés anual";
+            this.CdInteres.Name = "CdInteres";
+            this.CdInteres.ReadOnly = true;
             // 
             // FrmCategoriaCliente
             // 
@@ -372,8 +372,8 @@ namespace Prestamos
         private System.Windows.Forms.Button BtnListar;
         private System.Windows.Forms.Button BtnCerrrar;
         private System.Windows.Forms.ErrorProvider ErrNotificador;
+        private System.Windows.Forms.CheckBox ChkNegociable;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdInteres;
-        private System.Windows.Forms.CheckBox ChkNegociable;
     }
 }

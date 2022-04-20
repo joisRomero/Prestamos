@@ -18,6 +18,7 @@ namespace ReglaNegocio
 
         public void Registrar(ClientePersona persona, Personal personal)
         {
+            int codigoPersona;
             string sql = $@"INSERT INTO clientepersona(CodigoCategoriaCliente, CodigoDistrito, Nombres, Apellidos,
                             CodigoTipoDocumento, NumeroDocumento,FechaNacimiento, Direccion, Correo, Celular, Vigente) 
                           VALUES({persona.Categoria.Codigo}, {persona.Distrito.Codigo}, '{persona.Nombres}', 
@@ -36,8 +37,11 @@ namespace ReglaNegocio
                         {
                             cmd.Transaction = tr;
                             cmd.ExecuteNonQuery();
+                            cmd.CommandText = "SELECT @@IDENTITY AS Codigo";
+                            codigoPersona = Int32.Parse(cmd.ExecuteScalar().ToString());
+
                             sql = $@"INSERT INTO cartera(CodigoClientePersona, CodigoPersonal, Vigente)
-                                     VALUES {persona.Codigo}, {personal.Codigo}, {(persona.Vigente == true ? estadoActivo : estadoInactivo)}";
+                                     VALUES ({codigoPersona}, {personal.Codigo}, {(persona.Vigente == true ? estadoActivo : estadoInactivo)})";
                             cmd.CommandText = sql;
                             cmd.ExecuteNonQuery();
                         }
@@ -47,6 +51,7 @@ namespace ReglaNegocio
             }
             catch (Exception ex)
             {
+                Console.WriteLine("===="+ex.Message);
                 throw ex;
             }
         }
@@ -74,7 +79,7 @@ namespace ReglaNegocio
                             cmd.ExecuteNonQuery();
                             sql = $@"UPDATE cartera
                                      SET CodigoClientePersona = {persona.Codigo} , CodigoPersonal = {personal.Codigo}, 
-                                     Vigente = {(persona.Vigente == true ? estadoActivo : estadoInactivo)})
+                                     Vigente = {(persona.Vigente == true ? estadoActivo : estadoInactivo)}
                                      WHERE CodigoClientePersona = {persona.Codigo}";
                             cmd.CommandText = sql;
                             cmd.ExecuteNonQuery();
@@ -87,6 +92,41 @@ namespace ReglaNegocio
             {
                 throw ex;
             }
+        }
+
+        public Personal LeerPersonal(int codigo)
+        {
+            Personal personal = null;
+            string sql = $@"SELECT CodigoPersonal
+	                        FROM cartera 
+                            WHERE CodigoClientePersona = {codigo}";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                personal = new Personal()
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("CodigoPersonal"))
+                                };
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return personal;
         }
 
         public ClientePersona Leer(int codigo)
