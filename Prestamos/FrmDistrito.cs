@@ -261,5 +261,10 @@ namespace Prestamos
                 BtnListarDistritos.PerformClick();
             }
         }
+
+        private void GbListadoDistritos_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

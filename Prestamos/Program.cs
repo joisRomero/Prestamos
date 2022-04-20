@@ -25,7 +25,7 @@ namespace Prestamos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPrincipal());
+            Application.Run(new FrmEntidadBancaria());
         }
 
         public static void CargarDatos()

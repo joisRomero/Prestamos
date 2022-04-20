@@ -53,6 +53,7 @@
     <Compile Include="RNClienteEmpresa.cs" />
     <Compile Include="RNClientePersona.cs" />
     <Compile Include="RNDistrito.cs" />
+    <Compile Include="RNEntidadBancaria.cs" />
     <Compile Include="RNPersonal.cs" />
     <Compile Include="RNPrestamo.cs" />
     <Compile Include="RNTipoDocumento.cs" />

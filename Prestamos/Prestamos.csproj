@@ -136,6 +136,12 @@
     <Compile Include="FrmDistrito.Designer.cs">
       <DependentUpon>FrmDistrito.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmEntidadBancaria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEntidadBancaria.Designer.cs">
+      <DependentUpon>FrmEntidadBancaria.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmIniciarSesion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDistrito.resx">
       <DependentUpon>FrmDistrito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEntidadBancaria.resx">
+      <DependentUpon>FrmEntidadBancaria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmIniciarSesion.resx">
       <DependentUpon>FrmIniciarSesion.cs</DependentUpon>
