@@ -40,7 +40,8 @@ namespace Prestamos
             this.MnuPersonal = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuSeparador2 = new System.Windows.Forms.ToolStripSeparator();
-            this.MnuSalir = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuCerrarSesion = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuOperaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuPrestamo = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,7 +117,8 @@ namespace Prestamos
             this.MnuPersonal,
             this.MnuUsuarios,
             this.MnuSeparador2,
-            this.MnuSalir});
+            this.MnuCerrarSesion,
+            this.toolStripSeparator2});
             this.MnuDatos.Image = ((System.Drawing.Image)(resources.GetObject("MnuDatos.Image")));
             this.MnuDatos.Name = "MnuDatos";
             this.MnuDatos.Size = new System.Drawing.Size(65, 20);
@@ -181,12 +183,17 @@ namespace Prestamos
             this.MnuSeparador2.Name = "MnuSeparador2";
             this.MnuSeparador2.Size = new System.Drawing.Size(177, 6);
             // 
-            // MnuSalir
+            // MnuCerrarSesion
             // 
-            this.MnuSalir.Name = "MnuSalir";
-            this.MnuSalir.Size = new System.Drawing.Size(180, 22);
-            this.MnuSalir.Text = "Salir";
-            this.MnuSalir.Click += new System.EventHandler(this.MnuSalir_Click);
+            this.MnuCerrarSesion.Name = "MnuCerrarSesion";
+            this.MnuCerrarSesion.Size = new System.Drawing.Size(180, 22);
+            this.MnuCerrarSesion.Text = "Cerrar sesión";
+            this.MnuCerrarSesion.Click += new System.EventHandler(this.MnuCerrarSesion_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // MnuOperaciones
             // 
@@ -761,7 +768,6 @@ namespace Prestamos
         private System.Windows.Forms.ToolStripMenuItem MnuPersonal;
         private System.Windows.Forms.ToolStripMenuItem MnuUsuarios;
         private System.Windows.Forms.ToolStripSeparator MnuSeparador2;
-        private System.Windows.Forms.ToolStripMenuItem MnuSalir;
         private System.Windows.Forms.ToolStripMenuItem MnuOperaciones;
         private System.Windows.Forms.ToolStripMenuItem MnuPrestamo;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
@@ -829,5 +835,7 @@ namespace Prestamos
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel LblBarraPersonal;
+        private System.Windows.Forms.ToolStripMenuItem MnuCerrarSesion;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

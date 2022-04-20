@@ -164,7 +164,7 @@ namespace Prestamos
 
         private void MnuSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void MnuListaPrestamos_Click(object sender, EventArgs e)
@@ -310,6 +310,11 @@ namespace Prestamos
                 {
                 }
             }
+        }
+
+        private void MnuCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

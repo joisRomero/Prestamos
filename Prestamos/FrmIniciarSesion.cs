@@ -21,7 +21,7 @@ namespace Prestamos
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void Control_Validating(object sender, CancelEventArgs e)
@@ -71,8 +71,11 @@ namespace Prestamos
                 Sesion.Usuario = rn.Leer(TxtNombreDeUsuario.Text);
                 FrmPrincipal frm = new FrmPrincipal();
                 this.Hide();
-                frm.FormClosed += (s, args) => this.Close();
                 frm.Show();
+                frm.FormClosed += (s, args) => this.Show();
+                this.TxtNombreDeUsuario.Text = "";
+                this.TxtClave.Text = "";
+            
             }
             catch (Exception)
             {
