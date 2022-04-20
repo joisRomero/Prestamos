@@ -60,7 +60,7 @@ namespace Prestamos
 
             try
             {
-                personal = rn.Listar();
+                personal = rn.ListarExistentes();
                 this.CboPersonalCartera.DataSource = null;
                 if (personal.Count > 0)
                 {

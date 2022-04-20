@@ -38,7 +38,10 @@ namespace Prestamos
             this.BtnListar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.DgvListado = new System.Windows.Forms.DataGridView();
+            this.CdPersonal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbUsuario = new System.Windows.Forms.GroupBox();
+            this.CboTipoUsuario = new System.Windows.Forms.ComboBox();
             this.BtnBuscarAvanzada = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.ChkContineAlMenosUnSimbolo = new System.Windows.Forms.CheckBox();
@@ -52,6 +55,7 @@ namespace Prestamos
             this.LblConfirmar = new System.Windows.Forms.Label();
             this.TxtClave = new System.Windows.Forms.TextBox();
             this.LblClave = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.TxtNombrePersonal = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
@@ -59,10 +63,6 @@ namespace Prestamos
             this.TxtPersonal = new System.Windows.Forms.TextBox();
             this.LblPersonal = new System.Windows.Forms.Label();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.CboTipoUsuario = new System.Windows.Forms.ComboBox();
-            this.CdPersonal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbListado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.GbUsuario.SuspendLayout();
@@ -194,6 +194,20 @@ namespace Prestamos
             this.DgvListado.Size = new System.Drawing.Size(505, 328);
             this.DgvListado.TabIndex = 2;
             // 
+            // CdPersonal
+            // 
+            this.CdPersonal.DataPropertyName = "NombrePersonal";
+            this.CdPersonal.HeaderText = "Personal";
+            this.CdPersonal.Name = "CdPersonal";
+            this.CdPersonal.ReadOnly = true;
+            // 
+            // CdNombre
+            // 
+            this.CdNombre.DataPropertyName = "Nombre";
+            this.CdNombre.HeaderText = "Nombre de usuario";
+            this.CdNombre.Name = "CdNombre";
+            this.CdNombre.ReadOnly = true;
+            // 
             // GbUsuario
             // 
             this.GbUsuario.Controls.Add(this.CboTipoUsuario);
@@ -226,6 +240,19 @@ namespace Prestamos
             this.GbUsuario.TabIndex = 0;
             this.GbUsuario.TabStop = false;
             this.GbUsuario.Text = "Usuario";
+            // 
+            // CboTipoUsuario
+            // 
+            this.CboTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboTipoUsuario.FormattingEnabled = true;
+            this.CboTipoUsuario.Items.AddRange(new object[] {
+            "Limitado",
+            "Administrador"});
+            this.CboTipoUsuario.Location = new System.Drawing.Point(94, 116);
+            this.CboTipoUsuario.Name = "CboTipoUsuario";
+            this.CboTipoUsuario.Size = new System.Drawing.Size(240, 21);
+            this.CboTipoUsuario.TabIndex = 17;
+            this.CboTipoUsuario.Validating += new System.ComponentModel.CancelEventHandler(this.CboTipoUsuario_Validating);
             // 
             // BtnBuscarAvanzada
             // 
@@ -388,6 +415,16 @@ namespace Prestamos
             this.LblClave.TabIndex = 0;
             this.LblClave.Text = "Clave";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 118);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Tipo";
+            // 
             // TxtNombrePersonal
             // 
             this.TxtNombrePersonal.Enabled = false;
@@ -451,42 +488,6 @@ namespace Prestamos
             // ErrNotificador
             // 
             this.ErrNotificador.ContainerControl = this;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 118);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Tipo";
-            // 
-            // CboTipoUsuario
-            // 
-            this.CboTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboTipoUsuario.FormattingEnabled = true;
-            this.CboTipoUsuario.Items.AddRange(new object[] {
-            "Limitado",
-            "Administrador"});
-            this.CboTipoUsuario.Location = new System.Drawing.Point(94, 116);
-            this.CboTipoUsuario.Name = "CboTipoUsuario";
-            this.CboTipoUsuario.Size = new System.Drawing.Size(240, 21);
-            this.CboTipoUsuario.TabIndex = 17;
-            // 
-            // CdPersonal
-            // 
-            this.CdPersonal.DataPropertyName = "NombrePersonal";
-            this.CdPersonal.HeaderText = "Personal";
-            this.CdPersonal.Name = "CdPersonal";
-            this.CdPersonal.ReadOnly = true;
-            // 
-            // CdNombre
-            // 
-            this.CdNombre.DataPropertyName = "Nombre";
-            this.CdNombre.HeaderText = "Nombre de usuario";
-            this.CdNombre.Name = "CdNombre";
-            this.CdNombre.ReadOnly = true;
             // 
             // FrmUsuario
             // 

@@ -75,6 +75,7 @@ namespace Prestamos
             ErrNotificador.SetError(this.ChkContineAlMenosUnaMinuscula, "");
             ErrNotificador.SetError(this.ChkContineAlMenosUnSimbolo, "");
             ErrNotificador.SetError(this.ChkMinimo8Caracteres, "");
+            ErrNotificador.SetError(BtnBuscar, "");
         }
 
 
@@ -103,7 +104,7 @@ namespace Prestamos
                         {
                             rn.ActualizarConClave(usuario);
                         }
-                        
+
                     }
                     this.HabilitarControles(false);
                     this.BtnListar.PerformClick();
@@ -121,7 +122,7 @@ namespace Prestamos
             Usuario usuario = new Usuario()
             {
                 Personal = this.personal,
-                Tipo = this.CboTipoUsuario.Text.Substring(0,1),
+                Tipo = this.CboTipoUsuario.Text.Substring(0, 1),
                 Nombre = this.TxtNombre.Text,
                 Clave = Utilidades.Encriptar(this.TxtClave.Text),
                 Vigente = this.ChkVigente.Checked
@@ -174,7 +175,7 @@ namespace Prestamos
             {
                 band = false;
             }
-            
+
             return band;
         }
 
@@ -383,7 +384,7 @@ namespace Prestamos
 
         private void CheckBoxClave_Validating(object sender, CancelEventArgs e)
         {
-            if (actual != null|| ((CheckBox)sender).Checked)
+            if (actual != null || ((CheckBox)sender).Checked)
             {
                 ErrNotificador.SetError(((CheckBox)sender), "");
             }
@@ -422,24 +423,31 @@ namespace Prestamos
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            RNPersonal rn;
-            try
+            if (string.IsNullOrEmpty(TxtPersonal.Text) == false)
             {
-                rn = new RNPersonal();
-                personal = rn.Leer(TxtPersonal.Text);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se pudo obtener al personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (personal != null)
-            {
-                this.MostrarBusqueda();
+                RNPersonal rn;
+                try
+                {
+                    rn = new RNPersonal();
+                    personal = rn.Leer(TxtPersonal.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se pudo obtener al personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                if (personal != null)
+                {
+                    this.MostrarBusqueda();
+                }
+                else
+                {
+                    MessageBox.Show("Personal no registrado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                ErrNotificador.SetError(BtnBuscar, "");
             }
             else
             {
-                MessageBox.Show("Personal no registrado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                ErrNotificador.SetError(BtnBuscar, "Ingrese número de documento a buscar");
             }
         }
 
@@ -451,10 +459,37 @@ namespace Prestamos
 
             if (rpta == DialogResult.Yes)
             {
-                RNUsuario rn = new RNUsuario();
                 Usuario usuario = (Usuario)this.DgvListado.CurrentRow.DataBoundItem;
-                rn.DarDeBaja(usuario.Codigo);
+                if (usuario.Personal.Nombres.Equals("Administrador"))
+                {
+                    MessageBox.Show("No se le puede dar de baja al administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
+                    {
+                        RNUsuario rn = new RNUsuario();
+                        rn.DarDeBaja(usuario.Codigo);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
                 BtnListar.PerformClick();
+            }
+        }
+
+        private void CboTipoUsuario_Validating(object sender, CancelEventArgs e)
+        {
+            if (CboTipoUsuario.SelectedIndex == 0)
+            {
+                ErrNotificador.SetError(CboTipoUsuario, "");
+            }
+            else
+            {
+                ErrNotificador.SetError(CboTipoUsuario, "Debe hacer una selección");
+                e.Cancel = true;
             }
         }
     }
