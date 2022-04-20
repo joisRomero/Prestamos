@@ -444,10 +444,27 @@ namespace Prestamos
 
             if (rpta == DialogResult.Yes)
             {
-                RNPersonal rn = new RNPersonal();
                 Personal personal = (Personal)this.DgvListado.CurrentRow.DataBoundItem;
-                rn.DarDeBaja(personal.Codigo);
-                BtnListar.PerformClick();
+                if (personal.Nombres.Equals("Administrador"))
+                {
+                    MessageBox.Show("No se le puede dar de baja al administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
+                    {
+                        RNPersonal rn = new RNPersonal();
+                        RNUsuario rnU = new RNUsuario();
+                        rn.DarDeBaja(personal.Codigo);
+                        rnU.DarDeBajaCodPersonal(personal.Codigo);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+
+                    BtnListar.PerformClick();
+                }
             }
         }
     }

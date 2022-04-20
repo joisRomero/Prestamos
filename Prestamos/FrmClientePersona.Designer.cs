@@ -53,6 +53,7 @@ namespace Prestamos
             this.CboTipoDocumento = new System.Windows.Forms.ComboBox();
             this.CboDepartamento = new System.Windows.Forms.ComboBox();
             this.CboProvincia = new System.Windows.Forms.ComboBox();
+            this.CboPersonalCartera = new System.Windows.Forms.ComboBox();
             this.CboDistrito = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtNumDocumento = new System.Windows.Forms.TextBox();
@@ -67,6 +68,7 @@ namespace Prestamos
             this.TxtDireccion = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.TxtNombres = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -74,8 +76,6 @@ namespace Prestamos
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label13 = new System.Windows.Forms.Label();
-            this.CboPersonalCartera = new System.Windows.Forms.ComboBox();
             this.GbListado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.GbPersona.SuspendLayout();
@@ -304,7 +304,7 @@ namespace Prestamos
             this.DtpFechaNacimiento.Location = new System.Drawing.Point(104, 176);
             this.DtpFechaNacimiento.Name = "DtpFechaNacimiento";
             this.DtpFechaNacimiento.Size = new System.Drawing.Size(210, 20);
-            this.DtpFechaNacimiento.TabIndex = 15;
+            this.DtpFechaNacimiento.TabIndex = 11;
             // 
             // LblFechaNacimiento
             // 
@@ -312,7 +312,7 @@ namespace Prestamos
             this.LblFechaNacimiento.Location = new System.Drawing.Point(7, 180);
             this.LblFechaNacimiento.Name = "LblFechaNacimiento";
             this.LblFechaNacimiento.Size = new System.Drawing.Size(93, 13);
-            this.LblFechaNacimiento.TabIndex = 14;
+            this.LblFechaNacimiento.TabIndex = 10;
             this.LblFechaNacimiento.Text = "Fecha Nacimiento";
             // 
             // ChkVigente
@@ -321,7 +321,7 @@ namespace Prestamos
             this.ChkVigente.Location = new System.Drawing.Point(104, 425);
             this.ChkVigente.Name = "ChkVigente";
             this.ChkVigente.Size = new System.Drawing.Size(62, 17);
-            this.ChkVigente.TabIndex = 9;
+            this.ChkVigente.TabIndex = 26;
             this.ChkVigente.Text = "Vigente";
             this.ChkVigente.UseVisualStyleBackColor = true;
             // 
@@ -332,7 +332,7 @@ namespace Prestamos
             this.CboCategoria.Location = new System.Drawing.Point(104, 30);
             this.CboCategoria.Name = "CboCategoria";
             this.CboCategoria.Size = new System.Drawing.Size(210, 21);
-            this.CboCategoria.TabIndex = 0;
+            this.CboCategoria.TabIndex = 1;
             this.CboCategoria.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBox_Validating);
             // 
             // CboTipoDocumento
@@ -342,7 +342,7 @@ namespace Prestamos
             this.CboTipoDocumento.Location = new System.Drawing.Point(104, 117);
             this.CboTipoDocumento.Name = "CboTipoDocumento";
             this.CboTipoDocumento.Size = new System.Drawing.Size(210, 21);
-            this.CboTipoDocumento.TabIndex = 3;
+            this.CboTipoDocumento.TabIndex = 7;
             this.CboTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.CboTipoDocumento_SelectedIndexChanged);
             this.CboTipoDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBox_Validating);
             // 
@@ -353,7 +353,7 @@ namespace Prestamos
             this.CboDepartamento.Location = new System.Drawing.Point(104, 205);
             this.CboDepartamento.Name = "CboDepartamento";
             this.CboDepartamento.Size = new System.Drawing.Size(210, 21);
-            this.CboDepartamento.TabIndex = 5;
+            this.CboDepartamento.TabIndex = 13;
             this.CboDepartamento.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBox_Validating);
             // 
             // CboProvincia
@@ -363,10 +363,19 @@ namespace Prestamos
             this.CboProvincia.Location = new System.Drawing.Point(104, 235);
             this.CboProvincia.Name = "CboProvincia";
             this.CboProvincia.Size = new System.Drawing.Size(210, 21);
-            this.CboProvincia.TabIndex = 5;
+            this.CboProvincia.TabIndex = 15;
             this.CboProvincia.SelectedIndexChanged += new System.EventHandler(this.CboProvincia_SelectedIndexChanged);
             this.CboProvincia.Enter += new System.EventHandler(this.CboProvincia_Enter);
             this.CboProvincia.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBox_Validating);
+            // 
+            // CboPersonalCartera
+            // 
+            this.CboPersonalCartera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboPersonalCartera.FormattingEnabled = true;
+            this.CboPersonalCartera.Location = new System.Drawing.Point(104, 386);
+            this.CboPersonalCartera.Name = "CboPersonalCartera";
+            this.CboPersonalCartera.Size = new System.Drawing.Size(210, 21);
+            this.CboPersonalCartera.TabIndex = 25;
             // 
             // CboDistrito
             // 
@@ -375,7 +384,7 @@ namespace Prestamos
             this.CboDistrito.Location = new System.Drawing.Point(104, 265);
             this.CboDistrito.Name = "CboDistrito";
             this.CboDistrito.Size = new System.Drawing.Size(210, 21);
-            this.CboDistrito.TabIndex = 5;
+            this.CboDistrito.TabIndex = 17;
             this.CboDistrito.Enter += new System.EventHandler(this.CboDistrito_Enter);
             this.CboDistrito.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBox_Validating);
             // 
@@ -386,7 +395,7 @@ namespace Prestamos
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 13);
-            this.label8.TabIndex = 13;
+            this.label8.TabIndex = 0;
             this.label8.Text = "Categoría";
             // 
             // TxtNumDocumento
@@ -396,7 +405,7 @@ namespace Prestamos
             this.TxtNumDocumento.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNumDocumento.Name = "TxtNumDocumento";
             this.TxtNumDocumento.Size = new System.Drawing.Size(210, 20);
-            this.TxtNumDocumento.TabIndex = 4;
+            this.TxtNumDocumento.TabIndex = 9;
             this.TxtNumDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumDocumento_KeyPress);
             this.TxtNumDocumento.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNumDocumento_Validating);
             // 
@@ -406,7 +415,7 @@ namespace Prestamos
             this.TxtApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.TxtApellidos.Name = "TxtApellidos";
             this.TxtApellidos.Size = new System.Drawing.Size(210, 20);
-            this.TxtApellidos.TabIndex = 2;
+            this.TxtApellidos.TabIndex = 5;
             this.TxtApellidos.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
             // label7
@@ -416,7 +425,7 @@ namespace Prestamos
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 13);
-            this.label7.TabIndex = 13;
+            this.label7.TabIndex = 8;
             this.label7.Text = "Num. Documento";
             // 
             // label2
@@ -426,7 +435,7 @@ namespace Prestamos
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 13;
+            this.label2.TabIndex = 4;
             this.label2.Text = "Apellidos";
             // 
             // label10
@@ -436,7 +445,7 @@ namespace Prestamos
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(39, 13);
-            this.label10.TabIndex = 13;
+            this.label10.TabIndex = 22;
             this.label10.Text = "Celular";
             // 
             // label5
@@ -446,7 +455,7 @@ namespace Prestamos
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
-            this.label5.TabIndex = 13;
+            this.label5.TabIndex = 20;
             this.label5.Text = "Correo personal";
             // 
             // label4
@@ -456,7 +465,7 @@ namespace Prestamos
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 13;
+            this.label4.TabIndex = 18;
             this.label4.Text = "Dirección";
             // 
             // TxtCelular
@@ -466,7 +475,7 @@ namespace Prestamos
             this.TxtCelular.MaxLength = 9;
             this.TxtCelular.Name = "TxtCelular";
             this.TxtCelular.Size = new System.Drawing.Size(210, 20);
-            this.TxtCelular.TabIndex = 8;
+            this.TxtCelular.TabIndex = 23;
             this.TxtCelular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCelular_KeyPress);
             this.TxtCelular.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
@@ -476,7 +485,7 @@ namespace Prestamos
             this.TxtCorreoPersonal.Margin = new System.Windows.Forms.Padding(2);
             this.TxtCorreoPersonal.Name = "TxtCorreoPersonal";
             this.TxtCorreoPersonal.Size = new System.Drawing.Size(210, 20);
-            this.TxtCorreoPersonal.TabIndex = 7;
+            this.TxtCorreoPersonal.TabIndex = 21;
             this.TxtCorreoPersonal.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
             // TxtDireccion
@@ -485,7 +494,7 @@ namespace Prestamos
             this.TxtDireccion.Margin = new System.Windows.Forms.Padding(2);
             this.TxtDireccion.Name = "TxtDireccion";
             this.TxtDireccion.Size = new System.Drawing.Size(210, 20);
-            this.TxtDireccion.TabIndex = 6;
+            this.TxtDireccion.TabIndex = 19;
             this.TxtDireccion.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
             // label11
@@ -495,7 +504,7 @@ namespace Prestamos
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(74, 13);
-            this.label11.TabIndex = 13;
+            this.label11.TabIndex = 12;
             this.label11.Text = "Departamento";
             // 
             // label12
@@ -505,8 +514,18 @@ namespace Prestamos
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(51, 13);
-            this.label12.TabIndex = 13;
+            this.label12.TabIndex = 14;
             this.label12.Text = "Provincia";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 389);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 13);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "Personal";
             // 
             // TxtNombres
             // 
@@ -514,7 +533,7 @@ namespace Prestamos
             this.TxtNombres.Margin = new System.Windows.Forms.Padding(2);
             this.TxtNombres.Name = "TxtNombres";
             this.TxtNombres.Size = new System.Drawing.Size(210, 20);
-            this.TxtNombres.TabIndex = 1;
+            this.TxtNombres.TabIndex = 3;
             this.TxtNombres.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
             // label6
@@ -524,7 +543,7 @@ namespace Prestamos
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 13);
-            this.label6.TabIndex = 13;
+            this.label6.TabIndex = 16;
             this.label6.Text = "Distrito";
             // 
             // label1
@@ -534,7 +553,7 @@ namespace Prestamos
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 13;
+            this.label1.TabIndex = 2;
             this.label1.Text = "Nombres";
             // 
             // label3
@@ -544,7 +563,7 @@ namespace Prestamos
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 13);
-            this.label3.TabIndex = 13;
+            this.label3.TabIndex = 6;
             this.label3.Text = "Tipo documento";
             // 
             // BtnCancelar
@@ -555,7 +574,7 @@ namespace Prestamos
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnCancelar.Size = new System.Drawing.Size(102, 40);
-            this.BtnCancelar.TabIndex = 11;
+            this.BtnCancelar.TabIndex = 28;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCancelar.UseVisualStyleBackColor = true;
@@ -569,7 +588,7 @@ namespace Prestamos
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnAceptar.Size = new System.Drawing.Size(102, 40);
-            this.BtnAceptar.TabIndex = 10;
+            this.BtnAceptar.TabIndex = 27;
             this.BtnAceptar.Text = "Aceptar";
             this.BtnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnAceptar.UseVisualStyleBackColor = true;
@@ -578,27 +597,6 @@ namespace Prestamos
             // ErrNotificador
             // 
             this.ErrNotificador.ContainerControl = this;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 389);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(48, 13);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "Personal";
-            // 
-            // CboPersonalCartera
-            // 
-            this.CboPersonalCartera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboPersonalCartera.FormattingEnabled = true;
-            this.CboPersonalCartera.Location = new System.Drawing.Point(104, 386);
-            this.CboPersonalCartera.Name = "CboPersonalCartera";
-            this.CboPersonalCartera.Size = new System.Drawing.Size(210, 21);
-            this.CboPersonalCartera.TabIndex = 5;
-            this.CboPersonalCartera.Enter += new System.EventHandler(this.CboDistrito_Enter);
-            this.CboPersonalCartera.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBox_Validating);
             // 
             // FrmClientePersona
             // 

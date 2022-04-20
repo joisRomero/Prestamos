@@ -68,7 +68,7 @@ namespace Prestamos
             try
             {
                 rn = new RNPersonal();
-                encontrados = rn.ListarBusqueda();
+                encontrados = rn.ListarExistentes();
             }
             catch (Exception)
             {

@@ -230,7 +230,30 @@ namespace ReglaNegocio
         {
             string sql = $@"UPDATE usuario 
                             SET Vigente = {estadoInactivo}
-                         WHERE Codigo = {codigo}";
+                         WHERE Codigo = {codigo} AND Nombre != 'admin'";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void DarDeBajaCodPersonal(int codigo)
+        {
+            string sql = $@"UPDATE usuario 
+                            SET Vigente = {estadoInactivo}
+                         WHERE CodigoPersonal = {codigo} AND Nombre != 'admin'";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
