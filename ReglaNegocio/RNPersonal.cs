@@ -212,7 +212,7 @@ namespace ReglaNegocio
             return personal;
         }
 
-        public List<Personal> ListarBusqueda()
+        public List<Personal> ListarExistentes()
         {
             List<Personal> personal = null;
             string sql = $@"SELECT P.Codigo, P.Nombres, P.Apellidos, P.CodigoTipoDocumento, P.NumeroDocumento, P.Vigente

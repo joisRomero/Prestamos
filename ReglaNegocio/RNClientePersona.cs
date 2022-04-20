@@ -16,8 +16,9 @@ namespace ReglaNegocio
         const string estadoActivo = "1";
         const string estadoInactivo = "0";
 
-        public void Registrar(ClientePersona persona)
+        public void Registrar(ClientePersona persona, Personal personal)
         {
+            int codigoPersona;
             string sql = $@"INSERT INTO clientepersona(CodigoCategoriaCliente, CodigoDistrito, Nombres, Apellidos,
                             CodigoTipoDocumento, NumeroDocumento,FechaNacimiento, Direccion, Correo, Celular, Vigente) 
                           VALUES({persona.Categoria.Codigo}, {persona.Distrito.Codigo}, '{persona.Nombres}', 
@@ -30,19 +31,32 @@ namespace ReglaNegocio
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    using (MySqlTransaction tr = cn.BeginTransaction())
                     {
-                        cmd.ExecuteNonQuery();
+                        using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                        {
+                            cmd.Transaction = tr;
+                            cmd.ExecuteNonQuery();
+                            cmd.CommandText = "SELECT @@IDENTITY AS Codigo";
+                            codigoPersona = Int32.Parse(cmd.ExecuteScalar().ToString());
+
+                            sql = $@"INSERT INTO cartera(CodigoClientePersona, CodigoPersonal, Vigente)
+                                     VALUES ({codigoPersona}, {personal.Codigo}, {(persona.Vigente == true ? estadoActivo : estadoInactivo)})";
+                            cmd.CommandText = sql;
+                            cmd.ExecuteNonQuery();
+                        }
+                        tr.Commit();
                     }
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine("===="+ex.Message);
                 throw ex;
             }
         }
 
-        public void Actualizar(ClientePersona persona)
+        public void Actualizar(ClientePersona persona, Personal personal)
         {
             string sql = $@"UPDATE clientepersona 
                         SET CodigoCategoriaCliente = {persona.Categoria.Codigo}, CodigoDistrito = {persona.Distrito.Codigo},
@@ -57,17 +71,62 @@ namespace ReglaNegocio
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    using (MySqlTransaction tr = cn.BeginTransaction())
                     {
-                        cmd.ExecuteNonQuery();
+                        using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                        {
+                            cmd.Transaction = tr;
+                            cmd.ExecuteNonQuery();
+                            sql = $@"UPDATE cartera
+                                     SET CodigoClientePersona = {persona.Codigo} , CodigoPersonal = {personal.Codigo}, 
+                                     Vigente = {(persona.Vigente == true ? estadoActivo : estadoInactivo)}
+                                     WHERE CodigoClientePersona = {persona.Codigo}";
+                            cmd.CommandText = sql;
+                            cmd.ExecuteNonQuery();
+                        }
+                        tr.Commit();
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public Personal LeerPersonal(int codigo)
+        {
+            Personal personal = null;
+            string sql = $@"SELECT CodigoPersonal
+	                        FROM cartera 
+                            WHERE CodigoClientePersona = {codigo}";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                personal = new Personal()
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("CodigoPersonal"))
+                                };
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return personal;
         }
 
         public ClientePersona Leer(int codigo)
@@ -100,7 +159,7 @@ namespace ReglaNegocio
                                     TipoDocumento = new TipoDocumento()
                                     {
                                         Codigo = dr.GetInt16(dr.GetOrdinal("CodigoTipoDocumento"))
-                                    },                                    
+                                    },
                                     NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento")),
                                     FechaNacimiento = dr.GetDateTime(dr.GetOrdinal("FechaNacimiento")),
                                     CorreoPersonal = dr.GetString(dr.GetOrdinal("Correo")),
@@ -177,7 +236,7 @@ namespace ReglaNegocio
 
             return persona;
         }
-        
+
         public List<ClientePersona> Listar(string nombreCompleto)
         {
             List<ClientePersona> personas = null;

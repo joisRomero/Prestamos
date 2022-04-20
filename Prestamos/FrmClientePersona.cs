@@ -46,6 +46,34 @@ namespace Prestamos
             this.CargarDistritos();
             this.CargarDepartamentos();
             this.CargarTiposDocumentos();
+            this.CargarPersonal();
+            if (Sesion.Usuario.Tipo.Equals("L"))
+            {
+                CboPersonalCartera.Enabled = false;
+            }
+        }
+
+        private void CargarPersonal()
+        {
+            RNPersonal rn = new RNPersonal();
+            List<Personal> personal;
+
+            try
+            {
+                personal = rn.ListarExistentes();
+                this.CboPersonalCartera.DataSource = null;
+                if (personal.Count > 0)
+                {
+                    this.CboPersonalCartera.DataSource = personal;
+                    this.CboPersonalCartera.DisplayMember = "NombreCompleto";
+                    this.CboPersonalCartera.ValueMember = "Codigo"; //BD
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se puede cargar los departamentos", this.Text);
+            }
+
         }
 
         private void CargarDepartamentos()
@@ -177,6 +205,7 @@ namespace Prestamos
             this.actual = null;
             this.HabilitarControles(true);
             this.LimpiarControles();
+            this.CboPersonalCartera.SelectedValue = Sesion.Usuario.Personal.Codigo;
         }
 
         private void LimpiarControles()
@@ -194,6 +223,7 @@ namespace Prestamos
             this.TxtCelular.Text = "";
             this.ChkVigente.Checked = true;
             this.DtpFechaNacimiento.Value = DateTime.Now;
+            this.CboPersonalCartera.SelectedIndex = -1;
         }
 
         private void HabilitarControles(bool v)
@@ -224,21 +254,23 @@ namespace Prestamos
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
             RNClientePersona rn;
-            ClientePersona per;
+            ClientePersona clientePersona;
+            Personal personal;
 
             if (this.ValidateChildren() == true)
             {
-                per = this.CrearEntidad();
+                clientePersona = this.CrearEntidadClientePersonal();
+                personal = this.CrearEntidadPersonal();
                 rn = new RNClientePersona();
                 try
                 {
                     if (this.actual == null)
                     {
-                        rn.Registrar(per);
+                        rn.Registrar(clientePersona, personal);
                     }
                     else
                     {
-                        rn.Actualizar(per);
+                        rn.Actualizar(clientePersona, personal);
                     }
                     this.HabilitarControles(false);
                     this.LimpiarControles();
@@ -251,7 +283,12 @@ namespace Prestamos
             }
         }
 
-        private ClientePersona CrearEntidad()
+        private Personal CrearEntidadPersonal()
+        {
+            return (Personal)CboPersonalCartera.SelectedItem;
+        }
+
+        private ClientePersona CrearEntidadClientePersonal()
         {
             ClientePersona per = new ClientePersona()
             {
@@ -347,12 +384,31 @@ namespace Prestamos
                 this.TxtCorreoPersonal.Text = this.actual.CorreoPersonal;
                 this.TxtCelular.Text = this.actual.Celular;
                 this.ChkVigente.Checked = this.actual.Vigente;
+                this.PresentarPersonal();
+
                 this.HabilitarControles(true);
             }
             catch (Exception)
             {
                 MessageBox.Show("No se pudo recuperar los datos de la persona", this.Text);
             }
+        }
+
+        private void PresentarPersonal()
+        {
+            
+                RNClientePersona rn = new RNClientePersona();
+                try
+                {
+                    Personal personal = rn.LeerPersonal(this.actual.Codigo);
+                    this.CboPersonalCartera.SelectedValue = personal.Codigo;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+            
         }
 
         private void ComboBox_Validating(object sender, CancelEventArgs e)

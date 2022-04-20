@@ -145,17 +145,17 @@ namespace Prestamos
             }
         }
 
-        private ICliente BuscarEmpresa(string numeroDocumento)
-        {
-            return Program.Empresas.Find(e => e.RUC.Equals(numeroDocumento));
-        }
+        //private ICliente BuscarEmpresa(string numeroDocumento)
+        //{
+        //    //return Program.Empresas.Find(e => e.RUC.Equals(numeroDocumento));
+        //}
 
-        private ICliente BuscarPersona(string numeroDocumento, string tipoDocumento)
-        {
-            string tDocumento = tipoDocumento.Substring(0, 1);
-            return Program.Personas.Find(e => e.TipoDocumento.Equals(tDocumento)
-                                    && e.NumeroDocumento.Equals(numeroDocumento));
-        }
+        //private ICliente BuscarPersona(string numeroDocumento, string tipoDocumento)
+        //{
+        //    //string tDocumento = tipoDocumento.Substring(0, 1);
+        //    //return Program.Personas.Find(e => e.TipoDocumento.Equals(tDocumento)
+        //    //                        && e.NumeroDocumento.Equals(numeroDocumento));
+        //}
 
         private void CboTipoCliente_SelectedIndexChanged(object sender, EventArgs e)
         {

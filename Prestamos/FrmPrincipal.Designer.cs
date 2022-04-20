@@ -39,7 +39,7 @@ namespace Prestamos
             this.nToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.MnuPersonal = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.MnuSeparador2 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuOperaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuPrestamo = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,7 +85,6 @@ namespace Prestamos
             this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
             this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
             this.ribbonPanel4 = new System.Windows.Forms.RibbonPanel();
-            this.TsBarraHerramientas = new System.Windows.Forms.ToolStrip();
             this.TsbCategoriaCliente = new System.Windows.Forms.ToolStripButton();
             this.TsbDistritos = new System.Windows.Forms.ToolStripButton();
             this.TsbEmpresas = new System.Windows.Forms.ToolStripButton();
@@ -93,12 +92,21 @@ namespace Prestamos
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.TsbPersonal = new System.Windows.Forms.ToolStripButton();
             this.TsbUsuarios = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.Separador2 = new System.Windows.Forms.ToolStripSeparator();
             this.TsbPrestamo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.TsbConfiguracion = new System.Windows.Forms.ToolStripButton();
+            this.TsBarraHerramientas = new System.Windows.Forms.ToolStrip();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LblBarraPersonal = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LblTipoUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LblBarraNombreUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.MnuBarraPredeterminada.SuspendLayout();
             this.TsBarraHerramientas.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MnuDatos
@@ -111,7 +119,7 @@ namespace Prestamos
             this.nToolStripMenuItem,
             this.MnuPersonal,
             this.MnuUsuarios,
-            this.toolStripMenuItem1,
+            this.MnuSeparador2,
             this.MnuSalir});
             this.MnuDatos.Image = ((System.Drawing.Image)(resources.GetObject("MnuDatos.Image")));
             this.MnuDatos.Name = "MnuDatos";
@@ -172,10 +180,10 @@ namespace Prestamos
             this.MnuUsuarios.Text = "Usuarios";
             this.MnuUsuarios.Click += new System.EventHandler(this.MnuUsuarios_Click);
             // 
-            // toolStripMenuItem1
+            // MnuSeparador2
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(176, 6);
+            this.MnuSeparador2.Name = "MnuSeparador2";
+            this.MnuSeparador2.Size = new System.Drawing.Size(176, 6);
             // 
             // MnuSalir
             // 
@@ -572,27 +580,6 @@ namespace Prestamos
             this.ribbonPanel4.Text = "ribbonPanel4";
             this.ribbonPanel4.Visible = false;
             // 
-            // TsBarraHerramientas
-            // 
-            this.TsBarraHerramientas.ImageScalingSize = new System.Drawing.Size(17, 17);
-            this.TsBarraHerramientas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TsbCategoriaCliente,
-            this.TsbDistritos,
-            this.TsbEmpresas,
-            this.TsbPersonas,
-            this.toolStripSeparator1,
-            this.TsbPersonal,
-            this.TsbUsuarios,
-            this.toolStripSeparator2,
-            this.TsbPrestamo,
-            this.toolStripSeparator3,
-            this.TsbConfiguracion});
-            this.TsBarraHerramientas.Location = new System.Drawing.Point(0, 107);
-            this.TsBarraHerramientas.Name = "TsBarraHerramientas";
-            this.TsBarraHerramientas.Size = new System.Drawing.Size(800, 25);
-            this.TsBarraHerramientas.TabIndex = 7;
-            this.TsBarraHerramientas.Text = "Barra de herramientas";
-            // 
             // TsbCategoriaCliente
             // 
             this.TsbCategoriaCliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -664,10 +651,10 @@ namespace Prestamos
             this.TsbUsuarios.Text = "Usuarios";
             this.TsbUsuarios.Click += new System.EventHandler(this.TsbUsuarios_Click);
             // 
-            // toolStripSeparator2
+            // Separador2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.Separador2.Name = "Separador2";
+            this.Separador2.Size = new System.Drawing.Size(6, 25);
             // 
             // TsbPrestamo
             // 
@@ -696,12 +683,87 @@ namespace Prestamos
             this.TsbConfiguracion.Text = "Configuración";
             this.TsbConfiguracion.Click += new System.EventHandler(this.TsbConfiguracion_Click);
             // 
+            // TsBarraHerramientas
+            // 
+            this.TsBarraHerramientas.ImageScalingSize = new System.Drawing.Size(17, 17);
+            this.TsBarraHerramientas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsbCategoriaCliente,
+            this.TsbDistritos,
+            this.TsbEmpresas,
+            this.TsbPersonas,
+            this.toolStripSeparator1,
+            this.TsbPersonal,
+            this.TsbUsuarios,
+            this.Separador2,
+            this.TsbPrestamo,
+            this.toolStripSeparator3,
+            this.TsbConfiguracion});
+            this.TsBarraHerramientas.Location = new System.Drawing.Point(0, 107);
+            this.TsBarraHerramientas.Name = "TsBarraHerramientas";
+            this.TsBarraHerramientas.Size = new System.Drawing.Size(800, 25);
+            this.TsBarraHerramientas.TabIndex = 7;
+            this.TsBarraHerramientas.Text = "Barra de herramientas";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.LblBarraPersonal,
+            this.toolStripStatusLabel3,
+            this.LblBarraNombreUsuario,
+            this.toolStripStatusLabel2,
+            this.LblTipoUsuario});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(65, 17);
+            this.toolStripStatusLabel1.Text = "Personal:";
+            // 
+            // LblBarraPersonal
+            // 
+            this.LblBarraPersonal.Name = "LblBarraPersonal";
+            this.LblBarraPersonal.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel2.Text = "Tipo usuario:";
+            // 
+            // LblTipoUsuario
+            // 
+            this.LblTipoUsuario.Name = "LblTipoUsuario";
+            this.LblTipoUsuario.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(112, 17);
+            this.toolStripStatusLabel3.Text = "Nombre usuario:";
+            // 
+            // LblBarraNombreUsuario
+            // 
+            this.LblBarraNombreUsuario.Name = "LblBarraNombreUsuario";
+            this.LblBarraNombreUsuario.Size = new System.Drawing.Size(51, 17);
+            this.LblBarraNombreUsuario.Text = "usuario";
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.TsBarraHerramientas);
             this.Controls.Add(this.MnuRibbon);
             this.Controls.Add(this.MnuBarraPredeterminada);
@@ -717,6 +779,8 @@ namespace Prestamos
             this.MnuBarraPredeterminada.PerformLayout();
             this.TsBarraHerramientas.ResumeLayout(false);
             this.TsBarraHerramientas.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -729,7 +793,7 @@ namespace Prestamos
         private System.Windows.Forms.ToolStripMenuItem MnuPersonas;
         private System.Windows.Forms.ToolStripMenuItem MnuPersonal;
         private System.Windows.Forms.ToolStripMenuItem MnuUsuarios;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator MnuSeparador2;
         private System.Windows.Forms.ToolStripMenuItem MnuSalir;
         private System.Windows.Forms.ToolStripMenuItem MnuOperaciones;
         private System.Windows.Forms.ToolStripMenuItem MnuPrestamo;
@@ -769,18 +833,6 @@ namespace Prestamos
         private System.Windows.Forms.RibbonButton RbConfiguracion;
         private System.Windows.Forms.ToolStripSeparator nToolStripMenuItem;
         private System.Windows.Forms.RibbonContext ribbonContext1;
-        private System.Windows.Forms.ToolStrip TsBarraHerramientas;
-        private System.Windows.Forms.ToolStripButton TsbCategoriaCliente;
-        private System.Windows.Forms.ToolStripButton TsbDistritos;
-        private System.Windows.Forms.ToolStripButton TsbEmpresas;
-        private System.Windows.Forms.ToolStripButton TsbPersonas;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton TsbPersonal;
-        private System.Windows.Forms.ToolStripButton TsbUsuarios;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton TsbPrestamo;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton TsbConfiguracion;
         private System.Windows.Forms.ToolStripMenuItem MnuListaPrestamos;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem MnuResumenDeClientePorDistrito;
@@ -795,5 +847,24 @@ namespace Prestamos
         private System.Windows.Forms.RibbonButton RBListadoPrestamos;
         private System.Windows.Forms.RibbonButton RbResumenClientesDistrito;
         private System.Windows.Forms.RibbonButton ribbonButton1;
+        private System.Windows.Forms.ToolStripButton TsbCategoriaCliente;
+        private System.Windows.Forms.ToolStripButton TsbDistritos;
+        private System.Windows.Forms.ToolStripButton TsbEmpresas;
+        private System.Windows.Forms.ToolStripButton TsbPersonas;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton TsbPersonal;
+        private System.Windows.Forms.ToolStripButton TsbUsuarios;
+        private System.Windows.Forms.ToolStripSeparator Separador2;
+        private System.Windows.Forms.ToolStripButton TsbPrestamo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton TsbConfiguracion;
+        private System.Windows.Forms.ToolStrip TsBarraHerramientas;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel LblBarraPersonal;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel LblTipoUsuario;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel LblBarraNombreUsuario;
     }
 }
