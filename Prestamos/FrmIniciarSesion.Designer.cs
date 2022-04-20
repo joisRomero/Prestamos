@@ -29,25 +29,29 @@ namespace Prestamos
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmIniciarSesion));
-            this.TxtC = new System.Windows.Forms.TextBox();
+            this.TxtClave = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtNombreDeUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnIniciarSesion = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrNotificador)).BeginInit();
             this.SuspendLayout();
             // 
-            // TxtC
+            // TxtClave
             // 
-            this.TxtC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtC.Location = new System.Drawing.Point(251, 131);
-            this.TxtC.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtC.Name = "TxtC";
-            this.TxtC.Size = new System.Drawing.Size(210, 21);
-            this.TxtC.TabIndex = 1;
+            this.TxtClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtClave.Location = new System.Drawing.Point(251, 131);
+            this.TxtClave.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtClave.Name = "TxtClave";
+            this.TxtClave.Size = new System.Drawing.Size(210, 21);
+            this.TxtClave.TabIndex = 1;
+            this.TxtClave.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
             // label2
             // 
@@ -68,6 +72,7 @@ namespace Prestamos
             this.TxtNombreDeUsuario.Name = "TxtNombreDeUsuario";
             this.TxtNombreDeUsuario.Size = new System.Drawing.Size(210, 21);
             this.TxtNombreDeUsuario.TabIndex = 0;
+            this.TxtNombreDeUsuario.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);
             // 
             // label1
             // 
@@ -93,6 +98,7 @@ namespace Prestamos
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnIniciarSesion
             // 
@@ -107,6 +113,7 @@ namespace Prestamos
             this.BtnIniciarSesion.Text = "Iniciar sesión";
             this.BtnIniciarSesion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnIniciarSesion.UseVisualStyleBackColor = true;
+            this.BtnIniciarSesion.Click += new System.EventHandler(this.BtnIniciarSesion_Click);
             // 
             // pictureBox1
             // 
@@ -118,18 +125,24 @@ namespace Prestamos
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
             // 
+            // ErrNotificador
+            // 
+            this.ErrNotificador.ContainerControl = this;
+            // 
             // FrmIniciarSesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(501, 248);
-            this.Controls.Add(this.TxtC);
+            this.Controls.Add(this.TxtClave);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TxtNombreDeUsuario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.BtnIniciarSesion);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -137,6 +150,7 @@ namespace Prestamos
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iniciar sesión";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ErrNotificador)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,12 +158,13 @@ namespace Prestamos
 
         #endregion
 
-        private System.Windows.Forms.TextBox TxtC;
+        private System.Windows.Forms.TextBox TxtClave;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtNombreDeUsuario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.Button BtnIniciarSesion;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ErrorProvider ErrNotificador;
     }
 }

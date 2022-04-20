@@ -59,20 +59,20 @@ namespace Prestamos
 
         private void ProcesarClientes()
         {
-            this.listado.Clear();
-            foreach (var dist in Program.Distritos)
-            {
-                this.listado.Add(new ReporteResumenClientesDistrito()
-                { Distrito = dist.DistritoNombre });
-            }
-            foreach (var per in Program.Personas)
-            {
-                this.listado[Program.Distritos.IndexOf(per.Distrito)].CantidadPersonas++;
-            }
-            foreach (var emp in Program.Empresas)
-            {
-                this.listado[Program.Distritos.IndexOf(emp.Distrito)].CantidadEmpresas++;
-            }
+            //this.listado.Clear();
+            //foreach (var dist in Program.Distritos)
+            //{
+            //    this.listado.Add(new ReporteResumenClientesDistrito()
+            //    { Distrito = dist.DistritoNombre });
+            //}
+            //foreach (var per in Program.Personas)
+            //{
+            //    this.listado[Program.Distritos.IndexOf(per.Distrito)].CantidadPersonas++;
+            //}
+            //foreach (var emp in Program.Empresas)
+            //{
+            //    this.listado[Program.Distritos.IndexOf(emp.Distrito)].CantidadEmpresas++;
+            //}
         }
 
         private void BtnExportarExcel_Click(object sender, EventArgs e)
