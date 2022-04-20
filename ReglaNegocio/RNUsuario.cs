@@ -120,7 +120,51 @@ namespace ReglaNegocio
                                         Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
                                         Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
                                         NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento"))
+                                    },
+                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
+                                };
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
+            return usuario;
+        }
+
+        public Usuario Leer(string nombre)
+        {
+            Usuario usuario = null;
+            string sql = $@"SELECT U.Codigo, U.Tipo, U.CodigoPersonal, U.Vigente, P.Nombres, P.Apellidos, P.NumeroDocumento
+	                        FROM usuario U JOIN personal P ON U.CodigoPersonal = P.Codigo
+                            WHERE U.Nombre = '{nombre}'";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                usuario = new Usuario()
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
+                                    Nombre = nombre,
+                                    Tipo = dr.GetString(dr.GetOrdinal("Tipo")),
+                                    Personal = new Personal()
+                                    {
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoPersonal")),
+                                        Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
+                                        Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
+                                        NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento"))
                                     },
                                     Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
                                 };
@@ -203,6 +247,36 @@ namespace ReglaNegocio
             {
                 throw ex;
             }
+        }
+
+        public bool Login(string nombre, string clave)
+        {
+            bool estaRegistrado = false;
+            string sql = $@"SELECT codigo FROM usuario WHERE Nombre = '{nombre}' AND Clave = '{clave}' AND Vigente = 1";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                estaRegistrado = true;
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return estaRegistrado;
         }
 
         public bool EstaRegistradoElUsuario(int codigo)

@@ -74,6 +74,8 @@ namespace Prestamos
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label13 = new System.Windows.Forms.Label();
+            this.CboPersonalCartera = new System.Windows.Forms.ComboBox();
             this.GbListado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.GbPersona.SuspendLayout();
@@ -85,7 +87,7 @@ namespace Prestamos
             this.BtnCerrrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCerrrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerrrar.Image")));
             this.BtnCerrrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCerrrar.Location = new System.Drawing.Point(902, 484);
+            this.BtnCerrrar.Location = new System.Drawing.Point(902, 532);
             this.BtnCerrrar.Name = "BtnCerrrar";
             this.BtnCerrrar.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.BtnCerrrar.Size = new System.Drawing.Size(102, 40);
@@ -108,7 +110,7 @@ namespace Prestamos
             this.GbListado.Controls.Add(this.BtnNuevo);
             this.GbListado.Location = new System.Drawing.Point(363, 9);
             this.GbListado.Name = "GbListado";
-            this.GbListado.Size = new System.Drawing.Size(641, 469);
+            this.GbListado.Size = new System.Drawing.Size(641, 517);
             this.GbListado.TabIndex = 1;
             this.GbListado.TabStop = false;
             this.GbListado.Text = "Listado";
@@ -162,7 +164,7 @@ namespace Prestamos
             this.DgvListado.RowHeadersWidth = 51;
             this.DgvListado.RowTemplate.Height = 24;
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvListado.Size = new System.Drawing.Size(626, 354);
+            this.DgvListado.Size = new System.Drawing.Size(626, 402);
             this.DgvListado.TabIndex = 2;
             // 
             // cdCategoria
@@ -233,7 +235,7 @@ namespace Prestamos
             this.BtnModificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnModificar.Image = ((System.Drawing.Image)(resources.GetObject("BtnModificar.Image")));
             this.BtnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnModificar.Location = new System.Drawing.Point(117, 423);
+            this.BtnModificar.Location = new System.Drawing.Point(117, 471);
             this.BtnModificar.Name = "BtnModificar";
             this.BtnModificar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnModificar.Size = new System.Drawing.Size(102, 40);
@@ -248,7 +250,7 @@ namespace Prestamos
             this.BtnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("BtnNuevo.Image")));
             this.BtnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnNuevo.Location = new System.Drawing.Point(9, 423);
+            this.BtnNuevo.Location = new System.Drawing.Point(9, 471);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.BtnNuevo.Size = new System.Drawing.Size(102, 40);
@@ -267,6 +269,7 @@ namespace Prestamos
             this.GbPersona.Controls.Add(this.CboTipoDocumento);
             this.GbPersona.Controls.Add(this.CboDepartamento);
             this.GbPersona.Controls.Add(this.CboProvincia);
+            this.GbPersona.Controls.Add(this.CboPersonalCartera);
             this.GbPersona.Controls.Add(this.CboDistrito);
             this.GbPersona.Controls.Add(this.label8);
             this.GbPersona.Controls.Add(this.TxtNumDocumento);
@@ -281,6 +284,7 @@ namespace Prestamos
             this.GbPersona.Controls.Add(this.TxtDireccion);
             this.GbPersona.Controls.Add(this.label11);
             this.GbPersona.Controls.Add(this.label12);
+            this.GbPersona.Controls.Add(this.label13);
             this.GbPersona.Controls.Add(this.TxtNombres);
             this.GbPersona.Controls.Add(this.label6);
             this.GbPersona.Controls.Add(this.label1);
@@ -290,7 +294,7 @@ namespace Prestamos
             this.GbPersona.Enabled = false;
             this.GbPersona.Location = new System.Drawing.Point(10, 8);
             this.GbPersona.Name = "GbPersona";
-            this.GbPersona.Size = new System.Drawing.Size(347, 470);
+            this.GbPersona.Size = new System.Drawing.Size(347, 512);
             this.GbPersona.TabIndex = 0;
             this.GbPersona.TabStop = false;
             this.GbPersona.Text = "Persona";
@@ -314,7 +318,7 @@ namespace Prestamos
             // ChkVigente
             // 
             this.ChkVigente.AutoSize = true;
-            this.ChkVigente.Location = new System.Drawing.Point(104, 392);
+            this.ChkVigente.Location = new System.Drawing.Point(104, 425);
             this.ChkVigente.Name = "ChkVigente";
             this.ChkVigente.Size = new System.Drawing.Size(62, 17);
             this.ChkVigente.TabIndex = 9;
@@ -547,7 +551,7 @@ namespace Prestamos
             // 
             this.BtnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.Image")));
             this.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCancelar.Location = new System.Drawing.Point(212, 423);
+            this.BtnCancelar.Location = new System.Drawing.Point(212, 456);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnCancelar.Size = new System.Drawing.Size(102, 40);
@@ -561,7 +565,7 @@ namespace Prestamos
             // 
             this.BtnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAceptar.Image")));
             this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(104, 423);
+            this.BtnAceptar.Location = new System.Drawing.Point(104, 456);
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.BtnAceptar.Size = new System.Drawing.Size(102, 40);
@@ -575,12 +579,33 @@ namespace Prestamos
             // 
             this.ErrNotificador.ContainerControl = this;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 389);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 13);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "Personal";
+            // 
+            // CboPersonalCartera
+            // 
+            this.CboPersonalCartera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboPersonalCartera.FormattingEnabled = true;
+            this.CboPersonalCartera.Location = new System.Drawing.Point(104, 386);
+            this.CboPersonalCartera.Name = "CboPersonalCartera";
+            this.CboPersonalCartera.Size = new System.Drawing.Size(210, 21);
+            this.CboPersonalCartera.TabIndex = 5;
+            this.CboPersonalCartera.Enter += new System.EventHandler(this.CboDistrito_Enter);
+            this.CboPersonalCartera.Validating += new System.ComponentModel.CancelEventHandler(this.ComboBox_Validating);
+            // 
             // FrmClientePersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(1014, 533);
+            this.ClientSize = new System.Drawing.Size(1014, 581);
             this.Controls.Add(this.BtnCerrrar);
             this.Controls.Add(this.GbListado);
             this.Controls.Add(this.GbPersona);
@@ -644,5 +669,7 @@ namespace Prestamos
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DateTimePicker DtpFechaNacimiento;
         private System.Windows.Forms.Label LblFechaNacimiento;
+        private System.Windows.Forms.ComboBox CboPersonalCartera;
+        private System.Windows.Forms.Label label13;
     }
 }

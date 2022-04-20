@@ -45,16 +45,16 @@ namespace Prestamos
 
         private void BtnListar_Click(object sender, EventArgs e)
         {
-            this.DgvListado.DataSource = null;
-            if (Program.Prestamos.Count > 0)
-            {
-                this.DgvListado.AutoGenerateColumns = false;
-                this.DgvListado.DataSource = Program.Prestamos;
-            }
-            else
-            {
-                MessageBox.Show("No se han registrado préstamos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            //this.DgvListado.DataSource = null;
+            //if (Program.Prestamos.Count > 0)
+            //{
+            //    this.DgvListado.AutoGenerateColumns = false;
+            //    this.DgvListado.DataSource = Program.Prestamos;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("No se han registrado préstamos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
         private void BtnExportarExcel_Click(object sender, EventArgs e)

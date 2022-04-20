@@ -17,7 +17,23 @@ namespace Prestamos
         public FrmPrincipal()
         {
             InitializeComponent();
-            //@rodo
+            this.CargarDatosIniciales();
+        }
+
+        private void CargarDatosIniciales()
+        {
+            LblBarraPersonal.Text = Sesion.Usuario.NombrePersonal;
+
+            if (Sesion.Usuario.Tipo.Equals("L"))
+            {
+                MnuPersonal.Visible = false;
+                MnuUsuarios.Visible = false;
+                TsbPersonal.Visible = false;
+                TsbUsuarios.Visible = false;
+                Separador2.Visible = false;
+                MnuSeparador2.Visible = false;
+            }
+
         }
 
         #region Iniciar formularios
@@ -113,7 +129,7 @@ namespace Prestamos
 
         private void MnuEmpresas_Click(object sender, EventArgs e)
         {
-            this.IniciarFrmClienteEmpresa();   
+            this.IniciarFrmClienteEmpresa();
         }
 
         private void MnuPersonas_Click(object sender, EventArgs e)
@@ -203,6 +219,16 @@ namespace Prestamos
         {
             this.IniciarFrmPrestamo();
         }
+
+        private void RBListadoPrestamos_Click(object sender, EventArgs e)
+        {
+            IniciarFrmListaPrestamos();
+        }
+
+        private void RbResumenClientesDistrito_Click(object sender, EventArgs e)
+        {
+            IniciarFrmResumenClientesPorDistrito();
+        }
         #endregion
 
         #region Barra de herramientas
@@ -284,16 +310,6 @@ namespace Prestamos
                 {
                 }
             }
-        }
-
-        private void RBListadoPrestamos_Click(object sender, EventArgs e)
-        {
-            IniciarFrmListaPrestamos();
-        }
-
-        private void RbResumenClientesDistrito_Click(object sender, EventArgs e)
-        {
-            IniciarFrmResumenClientesPorDistrito();
         }
     }
 }
