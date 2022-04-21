@@ -69,7 +69,7 @@ namespace Prestamos
             {
                 RNUsuario rn = new RNUsuario();
                 Sesion.Usuario = rn.Leer(TxtNombreDeUsuario.Text);
-                FrmPrincipal frm = new FrmPrincipal();
+                FrmPrincipall frm = new FrmPrincipall();
                 this.Hide();
                 frm.FormClosed += (s, args) =>
                 {
