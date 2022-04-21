@@ -10,5 +10,6 @@ namespace Entidades
     {
         public static Usuario Usuario;
         public static bool CerrarSesion { get; set; }
+        public static Caja Caja{ get; set; }
     }
 }

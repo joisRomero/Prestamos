@@ -49,6 +49,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RNCaja.cs" />
     <Compile Include="RNCategoriaCliente.cs" />
     <Compile Include="RNClienteEmpresa.cs" />
     <Compile Include="RNClientePersona.cs" />

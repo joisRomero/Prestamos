@@ -94,6 +94,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmIniciarCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIniciarCaja.Designer.cs">
+      <DependentUpon>FrmIniciarCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmBuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,12 @@
     </Compile>
     <Compile Include="FrmCategoriaCliente.Designer.cs">
       <DependentUpon>FrmCategoriaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCerrarCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCerrarCaja.Designer.cs">
+      <DependentUpon>FrmCerrarCaja.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmClienteEmpresa.cs">
       <SubType>Form</SubType>
@@ -172,11 +184,11 @@
     <Compile Include="FrmPrestamo.Designer.cs">
       <DependentUpon>FrmPrestamo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPrincipal.cs">
+    <Compile Include="FrmPrincipall.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPrincipal.Designer.cs">
-      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    <Compile Include="FrmPrincipall.Designer.cs">
+      <DependentUpon>FrmPrincipall.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmResumenClientesPorDistrito.cs">
       <SubType>Form</SubType>
@@ -206,6 +218,9 @@
     <EmbeddedResource Include="FrmCategoriaCliente.resx">
       <DependentUpon>FrmCategoriaCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCerrarCaja.resx">
+      <DependentUpon>FrmCerrarCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmClienteEmpresa.resx">
       <DependentUpon>FrmClienteEmpresa.cs</DependentUpon>
     </EmbeddedResource>
@@ -224,6 +239,9 @@
     <EmbeddedResource Include="FrmEntidadBancaria.resx">
       <DependentUpon>FrmEntidadBancaria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmIniciarCaja.resx">
+      <DependentUpon>FrmIniciarCaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmIniciarSesion.resx">
       <DependentUpon>FrmIniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,8 +254,8 @@
     <EmbeddedResource Include="FrmPrestamo.resx">
       <DependentUpon>FrmPrestamo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPrincipal.resx">
-      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="FrmPrincipall.resx">
+      <DependentUpon>FrmPrincipall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmResumenClientesPorDistrito.resx">
       <DependentUpon>FrmResumenClientesPorDistrito.cs</DependentUpon>
