@@ -185,13 +185,12 @@ namespace ReglaNegocio
             return persona;
         }
 
-        public ClientePersona Leer(string numeroDocumento, string codigoTipoDocumento)
+        public ClientePersona Leer(string numeroDocumento, int codigoTipoDocumento)
         {
             ClientePersona persona = null;
-            string sql = $@"SELECT CP.Codigo, CP.CodigoCategoriaCliente, CP.CodigoDistrito, CP.Nombres, CP.Apellidos,CP.FechaNacimiento,  
-                          CP.Direccion, CP.Correo, CP.Celular, CP.Vigente, CC.InteresAnual
+            string sql = $@"SELECT CP.Codigo, CP.CodigoCategoriaCliente, CP.Nombres, CP.Apellidos, CC.InteresAnual
 	                      FROM clientepersona CP JOIN categoriacliente CC ON CP.CodigoCategoriaCliente = CC.Codigo
-                          WHERE CP.NumeroDocumento = '{numeroDocumento}' AND CP.CodigoTipoDocumento = '{codigoTipoDocumento}'";
+                          WHERE CP.NumeroDocumento = '{numeroDocumento}' AND CP.CodigoTipoDocumento = {codigoTipoDocumento} AND CP.Vigente = 1";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
@@ -208,20 +207,12 @@ namespace ReglaNegocio
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     Categoria = new CategoriaCliente()
                                     {
-                                        Codigo = dr.GetByte(dr.GetOrdinal("CodigoCategoriaCliente")),
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoCategoriaCliente")),
                                         InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual"))
                                     },
                                     Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
                                     Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
-                                    FechaNacimiento = dr.GetDateTime(dr.GetOrdinal("FechaNacimiento")),
-                                    CorreoPersonal = dr.GetString(dr.GetOrdinal("CorreoPersonal")),
-                                    Celular = dr.GetString(dr.GetOrdinal("Celular")),
-                                    Distrito = new Distrito
-                                    {
-                                        Codigo = dr.GetByte(dr.GetOrdinal("CodigoDistrito"))
-                                    },
-                                    Direccion = dr.GetString(dr.GetOrdinal("Direccion")),
-                                    Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
+                                    Vigente = true
                                 };
                             }
                             dr.Close();
@@ -280,6 +271,59 @@ namespace ReglaNegocio
                                         DistritoNombre = dr.GetString(dr.GetOrdinal("Distrito"))
                                     },
                                     Vigente = dr.GetBoolean(dr.GetOrdinal("Vigente"))
+                                });
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return personas;
+        }
+
+        public List<ClientePersona> ListarParaBuscar(string nombreCompleto)
+        {
+            List<ClientePersona> personas = null;
+            string sql = $@"SELECT CP.Codigo, CP.Nombres, CP.Apellidos, CP.NumeroDocumento, CP.CodigoTipoDocumento, 
+						CC.InteresAnual, TD.Siglas 
+	                    FROM clientepersona CP JOIN categoriacliente CC ON CC.codigo = CP.CodigoCategoriaCliente
+		                JOIN tipodocumento TD ON TD.Codigo = CP.CodigoTipoDocumento
+	                    WHERE CP.Nombres LIKE '{nombreCompleto}%' OR CP.Apellidos LIKE '{nombreCompleto}%' AND CP.Vigente = 1
+	                    ORDER BY CP.Nombres";
+
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            personas = new List<ClientePersona>();
+                            while (dr.Read() == true)
+                            {
+                                personas.Add(new ClientePersona()
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
+                                    Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
+                                    Apellidos = dr.GetString(dr.GetOrdinal("Apellidos")),
+                                    TipoDocumento = new TipoDocumento()
+                                    {
+                                        Codigo = dr.GetInt16(dr.GetOrdinal("CodigoTipoDocumento")),
+                                        Siglas = dr.GetString(dr.GetOrdinal("Siglas"))
+                                    },
+                                    NumeroDocumento = dr.GetString(dr.GetOrdinal("NumeroDocumento")),
+                                    Categoria = new CategoriaCliente()
+                                    {
+                                        InteresAnual = (double)dr.GetDecimal(dr.GetOrdinal("InteresAnual"))
+                                    },
+                                    Vigente = true
                                 });
                             }
                             dr.Close();

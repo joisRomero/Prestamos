@@ -36,11 +36,11 @@ namespace Prestamos
             this.LblNombre = new System.Windows.Forms.Label();
             this.BtnSeleccionar = new System.Windows.Forms.Button();
             this.DgvListado = new System.Windows.Forms.DataGridView();
+            this.CdIdentidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.CboTipoCliente = new System.Windows.Forms.ComboBox();
             this.LblTipoCliente = new System.Windows.Forms.Label();
-            this.CdIdentidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,6 +128,21 @@ namespace Prestamos
             this.DgvListado.Size = new System.Drawing.Size(585, 349);
             this.DgvListado.TabIndex = 3;
             // 
+            // CdIdentidad
+            // 
+            this.CdIdentidad.DataPropertyName = "Identidad";
+            this.CdIdentidad.HeaderText = "Identidad";
+            this.CdIdentidad.Name = "CdIdentidad";
+            this.CdIdentidad.ReadOnly = true;
+            // 
+            // CdNombre
+            // 
+            this.CdNombre.DataPropertyName = "Nombre";
+            this.CdNombre.FillWeight = 184.7716F;
+            this.CdNombre.HeaderText = "Nombre";
+            this.CdNombre.Name = "CdNombre";
+            this.CdNombre.ReadOnly = true;
+            // 
             // BtnBuscar
             // 
             this.BtnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -163,21 +178,6 @@ namespace Prestamos
             this.LblTipoCliente.Size = new System.Drawing.Size(62, 13);
             this.LblTipoCliente.TabIndex = 27;
             this.LblTipoCliente.Text = "Tipo cliente";
-            // 
-            // CdIdentidad
-            // 
-            this.CdIdentidad.DataPropertyName = "Identidad";
-            this.CdIdentidad.HeaderText = "Identidad";
-            this.CdIdentidad.Name = "CdIdentidad";
-            this.CdIdentidad.ReadOnly = true;
-            // 
-            // CdNombre
-            // 
-            this.CdNombre.DataPropertyName = "Nombre";
-            this.CdNombre.FillWeight = 184.7716F;
-            this.CdNombre.HeaderText = "Nombre";
-            this.CdNombre.Name = "CdNombre";
-            this.CdNombre.ReadOnly = true;
             // 
             // FrmBuscarCliente
             // 

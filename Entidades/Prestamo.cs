@@ -13,7 +13,7 @@ namespace Entidades
         public DateTime Fecha { get; set; }
         public double Interes { get; set; }
         public double Monto { get; set; }
-        public string TipoPeriodo { get; set; } // D diario, S semanal, Q 2semanas, M mensual
+        public string TipoPeriodo { get; set; } 
         public int CantidadPeriodos { get; set; }
         public bool DejaGarantia { get; set; }
         public bool Vigente { get; set; }
@@ -39,8 +39,8 @@ namespace Entidades
         {
             get
             {
-                string[] nombres = { "Diario", "Semanal", "Quincenal", "Mensual" };
-                string letras = "DSQM";
+                string[] nombres = { "Diario", "Semanal", "Mensual" };
+                string letras = "DSM";
 
                 return nombres[letras.IndexOf(this.TipoPeriodo)];
             }
