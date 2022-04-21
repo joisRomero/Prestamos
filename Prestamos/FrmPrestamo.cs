@@ -24,13 +24,10 @@ namespace Prestamos
         private ICliente Cliente;
         public static FrmPrestamo Instancia = null;
         private List<Cuota> Cuotas = new List<Cuota>();
+        List<TipoDocumento> tipoDocumentos;
         SaveFileDialog GuardarArchivoDialogo = new SaveFileDialog();
-#pragma warning disable CS0414 // El campo 'FrmPrestamo.estaExportanto' está asignado pero su valor nunca se usa
         private bool estaExportanto = false;
-#pragma warning restore CS0414 // El campo 'FrmPrestamo.estaExportanto' está asignado pero su valor nunca se usa
-#pragma warning disable CS0169 // El campo 'FrmPrestamo.subProceso' nunca se usa
         private Thread subProceso;
-#pragma warning restore CS0169 // El campo 'FrmPrestamo.subProceso' nunca se usa
         private FrmPrestamo()
         {
             InitializeComponent();
@@ -89,11 +86,9 @@ namespace Prestamos
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
-        {
-            RNClienteEmpresa rnEmpresa;
-            RNClientePersona rnPersona;
+        {            
             string numeroDocumento = this.TxtNumeroDocumento.Text.Trim();
-            string tipoDocumento = this.CboTipoDocumento.Text;
+            TipoDocumento tipoDocumento = (TipoDocumento)this.CboTipoDocumento.SelectedItem;
 
             if (this.CboTipoCliente.SelectedIndex == -1)
             {
@@ -107,27 +102,11 @@ namespace Prestamos
             }
             else if (this.CboTipoCliente.SelectedIndex == 0)
             {
-                rnPersona = new RNClientePersona();
-                try
-                {
-                    this.Cliente = rnPersona.Leer(numeroDocumento, tipoDocumento.Substring(0,1)); 
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("No se pudo obtener al cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                this.BuscarClientePersona(numeroDocumento, tipoDocumento.Codigo);
             }
             else
             {
-                rnEmpresa = new RNClienteEmpresa();
-                try
-                {
-                    this.Cliente = rnEmpresa.Leer(numeroDocumento);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("No se pudo obtener al cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                this.BuscarClienteEmpresa(numeroDocumento);
             }
 
             if (this.Cliente != null)
@@ -145,29 +124,50 @@ namespace Prestamos
             }
         }
 
-        //private ICliente BuscarEmpresa(string numeroDocumento)
-        //{
-        //    //return Program.Empresas.Find(e => e.RUC.Equals(numeroDocumento));
-        //}
+        private void BuscarClientePersona(string numeroDocumento, int codigoTipoDocumento)
+        {
+            RNClientePersona rnPersona;
+            rnPersona = new RNClientePersona();
+            try
+            {
+                this.Cliente = rnPersona.Leer(numeroDocumento, codigoTipoDocumento);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo obtener al cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-        //private ICliente BuscarPersona(string numeroDocumento, string tipoDocumento)
-        //{
-        //    //string tDocumento = tipoDocumento.Substring(0, 1);
-        //    //return Program.Personas.Find(e => e.TipoDocumento.Equals(tDocumento)
-        //    //                        && e.NumeroDocumento.Equals(numeroDocumento));
-        //}
+        private void BuscarClienteEmpresa(string numeroDocumento)
+        {
+            RNClienteEmpresa rnEmpresa;
+            rnEmpresa = new RNClienteEmpresa();
+            try
+            {
+                this.Cliente = rnEmpresa.Leer(numeroDocumento);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo obtener al cliente", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void CboTipoCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.CboTipoDocumento.Items.Clear();
+            
             if (this.CboTipoCliente.SelectedIndex == 0)
             {
-                this.CboTipoDocumento.Items.Add("DNI");
-                this.CboTipoDocumento.Items.Add("Carnet de extranjería");
-                this.CboTipoDocumento.Items.Add("Pasaporte");
+                this.CboTipoDocumento.DataSource = null;
+                if (tipoDocumentos.Count > 0)
+                {
+                    CboTipoDocumento.DataSource = tipoDocumentos;
+                    this.CboTipoDocumento.DisplayMember = "Nombre";
+                    this.CboTipoDocumento.ValueMember = "Codigo";
+                }
             }
             else
             {
+                this.CboTipoDocumento.DataSource = null;
                 this.CboTipoDocumento.Items.Add("RUC");
                 this.CboTipoDocumento.SelectedIndex = 0;
             }
@@ -398,6 +398,24 @@ namespace Prestamos
                 ErrNotificador.SetError(this.TxtTotalPagar, "Presione el botón Generar para calcular el total a pagar");
                 e.Cancel = true;
             }
+        }
+
+        private void CargarTiposDocumentos()
+        {
+            RNTipoDocumento rn = new RNTipoDocumento();
+            try
+            {
+                tipoDocumentos = rn.Listar();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text);
+            }
+        }
+
+        private void FrmPrestamo_Load(object sender, EventArgs e)
+        {
+            CargarTiposDocumentos();
         }
     }
 }

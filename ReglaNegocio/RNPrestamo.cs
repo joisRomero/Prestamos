@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,10 +20,10 @@ namespace ReglaNegocio
             int codigoPrestamo;
 
             sql = $@"INSERT INTO Prestamo( Fecha, Interes, Monto, TipoPeriodo, CantidadPeriodos, DejaGarantia, Vigente, 
-                      CodigoClienteEmpresa, CodigoClientePersona)
-                  VALUES('{prestamo.Fecha:yyyyMMdd HH:mm}', {prestamo.Interes}, {prestamo.Monto }, 
+                     MontoPagado, CodigoPersonal, CodigoClienteEmpresa, CodigoClientePersona)
+                  VALUES('{prestamo.Fecha:yyyy-MM-dd H:mm:ss}', {prestamo.Interes}, {prestamo.Monto }, 
                       '{prestamo.TipoPeriodo}', {prestamo.CantidadPeriodos}, {(prestamo.DejaGarantia == true ? 1 : 0)},
-                      {(prestamo.Vigente == true ? 1 : 0)}, ";
+                      {(prestamo.Vigente == true ? 1 : 0)}, 0, {Sesion.Usuario.Personal.Codigo}, ";
 
             if (prestamo.Cliente is ClientePersona)
             {
@@ -35,12 +36,12 @@ namespace ReglaNegocio
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(cadenaConexion))
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
                 {
                     cn.Open();
-                    using (SqlTransaction tr = cn.BeginTransaction())
+                    using (MySqlTransaction tr = cn.BeginTransaction())
                     {
-                        using (SqlCommand cmd = new SqlCommand(sql, cn))
+                        using (MySqlCommand cmd = new MySqlCommand(sql, cn))
                         {
                             cmd.Transaction = tr;
 
@@ -59,7 +60,7 @@ namespace ReglaNegocio
                             }
                         }
 
-                        tr.Commit(); // finalizar transacción con visto bueno
+                        tr.Commit(); 
                     }
                 }
             }

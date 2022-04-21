@@ -71,7 +71,7 @@ namespace Prestamos
             try
             {
                 rn = new RNClientePersona();
-                List<ClientePersona> encontradas = rn.Listar(nombreCompleto);
+                List<ClientePersona> encontradas = rn.ListarParaBuscar(nombreCompleto);
                 foreach (var item in encontradas)
                 {
                     encontrados.Add(item);

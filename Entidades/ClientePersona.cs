@@ -25,7 +25,7 @@ namespace Entidades
         {
             get
             {
-                return $"{this.Apellidos} {this.Nombres}";
+                return $"{this.Nombres} {this.Apellidos}";
             }
         }
         public string NombreCategoria

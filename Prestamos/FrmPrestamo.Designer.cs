@@ -30,8 +30,8 @@ namespace Prestamos
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrestamo));
             this.LblTipoCliente = new System.Windows.Forms.Label();
             this.CboTipoCliente = new System.Windows.Forms.ComboBox();
@@ -261,10 +261,10 @@ namespace Prestamos
             // CdFecha
             // 
             this.CdFecha.DataPropertyName = "Fecha";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.CdFecha.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "d";
+            dataGridViewCellStyle13.NullValue = null;
+            this.CdFecha.DefaultCellStyle = dataGridViewCellStyle13;
             this.CdFecha.HeaderText = "Fecha";
             this.CdFecha.Name = "CdFecha";
             this.CdFecha.ReadOnly = true;
@@ -272,10 +272,10 @@ namespace Prestamos
             // CdMonto
             // 
             this.CdMonto.DataPropertyName = "Monto";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.CdMonto.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "N2";
+            dataGridViewCellStyle14.NullValue = null;
+            this.CdMonto.DefaultCellStyle = dataGridViewCellStyle14;
             this.CdMonto.HeaderText = "Monto";
             this.CdMonto.Name = "CdMonto";
             // 
@@ -308,10 +308,9 @@ namespace Prestamos
             this.CboTipoPeriodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboTipoPeriodo.FormattingEnabled = true;
             this.CboTipoPeriodo.Items.AddRange(new object[] {
-            "Diario",
-            "Semanal ",
-            "Quincenal ",
-            "Mensual"});
+            "Mensual",
+            "Semanal",
+            "Diario"});
             this.CboTipoPeriodo.Location = new System.Drawing.Point(77, 29);
             this.CboTipoPeriodo.Name = "CboTipoPeriodo";
             this.CboTipoPeriodo.Size = new System.Drawing.Size(174, 21);
@@ -456,6 +455,7 @@ namespace Prestamos
             this.Name = "FrmPrestamo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Préstamo";
+            this.Load += new System.EventHandler(this.FrmPrestamo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NudInteres)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudMontoPrestar)).EndInit();
             this.GbCuotas.ResumeLayout(false);
