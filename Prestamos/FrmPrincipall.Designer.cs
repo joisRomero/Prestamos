@@ -72,8 +72,8 @@ namespace Prestamos
             this.MnuIniciarCaja = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuCerrarCaja = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MnuListaPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuEstadoDeCuenta = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuListaPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuListaTotalDePrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.TsBarraHerramientas.SuspendLayout();
@@ -423,6 +423,7 @@ namespace Prestamos
             // 
             // MnuPago
             // 
+            this.MnuPago.Image = ((System.Drawing.Image)(resources.GetObject("MnuPago.Image")));
             this.MnuPago.Name = "MnuPago";
             this.MnuPago.Size = new System.Drawing.Size(180, 22);
             this.MnuPago.Text = "Pago";
@@ -435,6 +436,7 @@ namespace Prestamos
             // 
             // MnuIniciarCaja
             // 
+            this.MnuIniciarCaja.Image = ((System.Drawing.Image)(resources.GetObject("MnuIniciarCaja.Image")));
             this.MnuIniciarCaja.Name = "MnuIniciarCaja";
             this.MnuIniciarCaja.Size = new System.Drawing.Size(180, 22);
             this.MnuIniciarCaja.Text = "Iniciar caja";
@@ -442,6 +444,7 @@ namespace Prestamos
             // 
             // MnuCerrarCaja
             // 
+            this.MnuCerrarCaja.Image = ((System.Drawing.Image)(resources.GetObject("MnuCerrarCaja.Image")));
             this.MnuCerrarCaja.Name = "MnuCerrarCaja";
             this.MnuCerrarCaja.Size = new System.Drawing.Size(180, 22);
             this.MnuCerrarCaja.Text = "Cerrar caja";
@@ -458,6 +461,14 @@ namespace Prestamos
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
             this.reportesToolStripMenuItem.Text = "Reportes";
             // 
+            // MnuEstadoDeCuenta
+            // 
+            this.MnuEstadoDeCuenta.Image = ((System.Drawing.Image)(resources.GetObject("MnuEstadoDeCuenta.Image")));
+            this.MnuEstadoDeCuenta.Name = "MnuEstadoDeCuenta";
+            this.MnuEstadoDeCuenta.Size = new System.Drawing.Size(199, 22);
+            this.MnuEstadoDeCuenta.Text = "Estado de cuenta";
+            this.MnuEstadoDeCuenta.Click += new System.EventHandler(this.MnuEstadoDeCuenta_Click);
+            // 
             // MnuListaPrestamos
             // 
             this.MnuListaPrestamos.Image = ((System.Drawing.Image)(resources.GetObject("MnuListaPrestamos.Image")));
@@ -466,15 +477,9 @@ namespace Prestamos
             this.MnuListaPrestamos.Text = "Lista de préstamos";
             this.MnuListaPrestamos.Click += new System.EventHandler(this.MnuListaPrestamos_Click);
             // 
-            // MnuEstadoDeCuenta
-            // 
-            this.MnuEstadoDeCuenta.Name = "MnuEstadoDeCuenta";
-            this.MnuEstadoDeCuenta.Size = new System.Drawing.Size(199, 22);
-            this.MnuEstadoDeCuenta.Text = "Estado de cuenta";
-            this.MnuEstadoDeCuenta.Click += new System.EventHandler(this.MnuEstadoDeCuenta_Click);
-            // 
             // MnuListaTotalDePrestamos
             // 
+            this.MnuListaTotalDePrestamos.Image = ((System.Drawing.Image)(resources.GetObject("MnuListaTotalDePrestamos.Image")));
             this.MnuListaTotalDePrestamos.Name = "MnuListaTotalDePrestamos";
             this.MnuListaTotalDePrestamos.Size = new System.Drawing.Size(199, 22);
             this.MnuListaTotalDePrestamos.Text = "Lista total de préstamos";
