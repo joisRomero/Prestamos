@@ -60,7 +60,7 @@ namespace ReglaNegocio
                             }
                         }
 
-                        tr.Commit(); 
+                        tr.Commit();
                     }
                 }
             }
@@ -70,7 +70,7 @@ namespace ReglaNegocio
             }
 
         }
-        
+
         public List<Prestamo> PrestamosPorPagar(ICliente cliente)
         {
             List<Prestamo> prestamos = null;
@@ -123,6 +123,62 @@ namespace ReglaNegocio
             return prestamos;
         }
 
+        public double MontoPagadoActual(Prestamo prestamo)
+        {
+            double montoPagado = 0.0;
+            string sql = $@"SELECT MontoPagado FROM prestamo Where Codigo = {prestamo.Codigo}";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                montoPagado = dr.GetDouble(dr.GetOrdinal("MontoPagado"));
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return montoPagado;
+        }
+
+        public void ActualizarMontoPagado(Prestamo prestamo, double monto)
+        {
+
+            monto += MontoPagadoActual(prestamo);
+
+            string sql = $@"UPDATE prestamo 
+                            set MontoPagado = {monto}
+                            Where codigo = {prestamo.Codigo}";
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<Cuota> CuotasPorPagar(Prestamo prestamo)
         {
             List<Cuota> cuotas = null;
@@ -149,7 +205,7 @@ namespace ReglaNegocio
                             while (dr.Read() == true)
                             {
                                 cuotas.Add(new Cuota()
-                                { 
+                                {
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     FechaVencimiento = dr.GetDateTime(dr.GetOrdinal("FechaVencimiento")),
                                     Monto = dr.GetDouble(dr.GetOrdinal("Saldo")),

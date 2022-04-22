@@ -41,12 +41,18 @@ namespace Prestamos
             this.LblCliente = new System.Windows.Forms.Label();
             this.LblTipoCliente = new System.Windows.Forms.Label();
             this.GbCuotas = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CboEntidadBancaria = new System.Windows.Forms.ComboBox();
+            this.DtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtNumeroOperacion = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.CboFormaPago = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.CboCuentaBancaria = new System.Windows.Forms.ComboBox();
             this.BtnPagar = new System.Windows.Forms.Button();
             this.DgvCuotas = new System.Windows.Forms.DataGridView();
-            this.CdFechaVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BtnSeleccionar = new System.Windows.Forms.Button();
             this.DgvPrestamos = new System.Windows.Forms.DataGridView();
@@ -55,17 +61,10 @@ namespace Prestamos
             this.CdFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cdMontoPagado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnCancelar = new System.Windows.Forms.Button();
-            this.BtnAceptar = new System.Windows.Forms.Button();
             this.BtnBuscarPrestamo = new System.Windows.Forms.Button();
             this.ErrNotificador = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.DtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TxtNumeroOperacion = new System.Windows.Forms.TextBox();
-            this.CboCuentaBancaria = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.CboEntidadBancaria = new System.Windows.Forms.ComboBox();
+            this.CdFechaVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdSaldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbCuotas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCuotas)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -174,17 +173,86 @@ namespace Prestamos
             this.GbCuotas.Controls.Add(this.DgvCuotas);
             this.GbCuotas.Location = new System.Drawing.Point(428, 104);
             this.GbCuotas.Name = "GbCuotas";
-            this.GbCuotas.Size = new System.Drawing.Size(470, 445);
+            this.GbCuotas.Size = new System.Drawing.Size(470, 383);
             this.GbCuotas.TabIndex = 16;
             this.GbCuotas.TabStop = false;
             this.GbCuotas.Text = "Listado de cuotas";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 298);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Entidad bancaria";
+            // 
+            // CboEntidadBancaria
+            // 
+            this.CboEntidadBancaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.CboEntidadBancaria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboEntidadBancaria.FormattingEnabled = true;
+            this.CboEntidadBancaria.Location = new System.Drawing.Point(106, 294);
+            this.CboEntidadBancaria.Name = "CboEntidadBancaria";
+            this.CboEntidadBancaria.Size = new System.Drawing.Size(200, 21);
+            this.CboEntidadBancaria.TabIndex = 19;
+            this.CboEntidadBancaria.SelectedIndexChanged += new System.EventHandler(this.CboEntidadBancaria_SelectedIndexChanged);
+            // 
+            // DtpFecha
+            // 
+            this.DtpFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DtpFecha.Location = new System.Drawing.Point(106, 233);
+            this.DtpFecha.Name = "DtpFecha";
+            this.DtpFecha.Size = new System.Drawing.Size(200, 20);
+            this.DtpFecha.TabIndex = 18;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 239);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Fecha";
+            // 
+            // TxtNumeroOperacion
+            // 
+            this.TxtNumeroOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TxtNumeroOperacion.Enabled = false;
+            this.TxtNumeroOperacion.Location = new System.Drawing.Point(106, 355);
+            this.TxtNumeroOperacion.Name = "TxtNumeroOperacion";
+            this.TxtNumeroOperacion.Size = new System.Drawing.Size(200, 20);
+            this.TxtNumeroOperacion.TabIndex = 11;
+            this.TxtNumeroOperacion.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNumeroOperacion_Validating);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 358);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Nro. operación";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 329);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Cuenta bancaria";
             // 
             // CboFormaPago
             // 
             this.CboFormaPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CboFormaPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboFormaPago.FormattingEnabled = true;
-            this.CboFormaPago.Location = new System.Drawing.Point(106, 325);
+            this.CboFormaPago.Location = new System.Drawing.Point(106, 263);
             this.CboFormaPago.Name = "CboFormaPago";
             this.CboFormaPago.Size = new System.Drawing.Size(200, 21);
             this.CboFormaPago.TabIndex = 9;
@@ -194,18 +262,28 @@ namespace Prestamos
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 328);
+            this.label1.Location = new System.Drawing.Point(14, 266);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Forma de pago";
+            // 
+            // CboCuentaBancaria
+            // 
+            this.CboCuentaBancaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.CboCuentaBancaria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboCuentaBancaria.FormattingEnabled = true;
+            this.CboCuentaBancaria.Location = new System.Drawing.Point(106, 325);
+            this.CboCuentaBancaria.Name = "CboCuentaBancaria";
+            this.CboCuentaBancaria.Size = new System.Drawing.Size(200, 21);
+            this.CboCuentaBancaria.TabIndex = 9;
             // 
             // BtnPagar
             // 
             this.BtnPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnPagar.Image = ((System.Drawing.Image)(resources.GetObject("BtnPagar.Image")));
             this.BtnPagar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnPagar.Location = new System.Drawing.Point(352, 346);
+            this.BtnPagar.Location = new System.Drawing.Point(352, 284);
             this.BtnPagar.Name = "BtnPagar";
             this.BtnPagar.Padding = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.BtnPagar.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -231,23 +309,11 @@ namespace Prestamos
             this.CdSaldo});
             this.DgvCuotas.Location = new System.Drawing.Point(14, 27);
             this.DgvCuotas.Name = "DgvCuotas";
+            this.DgvCuotas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DgvCuotas.RowHeadersVisible = false;
             this.DgvCuotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvCuotas.Size = new System.Drawing.Size(440, 254);
+            this.DgvCuotas.Size = new System.Drawing.Size(440, 192);
             this.DgvCuotas.TabIndex = 0;
-            // 
-            // CdFechaVencimiento
-            // 
-            this.CdFechaVencimiento.DataPropertyName = "FechaVencimiento";
-            this.CdFechaVencimiento.HeaderText = "Fecha vencimiento";
-            this.CdFechaVencimiento.Name = "CdFechaVencimiento";
-            this.CdFechaVencimiento.ReadOnly = true;
-            // 
-            // CdSaldo
-            // 
-            this.CdSaldo.DataPropertyName = "Monto";
-            this.CdSaldo.HeaderText = "Saldo";
-            this.CdSaldo.Name = "CdSaldo";
             // 
             // groupBox1
             // 
@@ -265,7 +331,7 @@ namespace Prestamos
             this.BtnSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnSeleccionar.Image = ((System.Drawing.Image)(resources.GetObject("BtnSeleccionar.Image")));
             this.BtnSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnSeleccionar.Location = new System.Drawing.Point(293, 319);
+            this.BtnSeleccionar.Location = new System.Drawing.Point(303, 319);
             this.BtnSeleccionar.Name = "BtnSeleccionar";
             this.BtnSeleccionar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.BtnSeleccionar.Size = new System.Drawing.Size(102, 40);
@@ -295,7 +361,7 @@ namespace Prestamos
             this.DgvPrestamos.ReadOnly = true;
             this.DgvPrestamos.RowHeadersVisible = false;
             this.DgvPrestamos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvPrestamos.Size = new System.Drawing.Size(381, 286);
+            this.DgvPrestamos.Size = new System.Drawing.Size(391, 286);
             this.DgvPrestamos.TabIndex = 0;
             // 
             // cdCodigo
@@ -338,7 +404,7 @@ namespace Prestamos
             this.BtnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCancelar.Image")));
             this.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCancelar.Location = new System.Drawing.Point(797, 569);
+            this.BtnCancelar.Location = new System.Drawing.Point(796, 497);
             this.BtnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -347,21 +413,7 @@ namespace Prestamos
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // BtnAceptar
-            // 
-            this.BtnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAceptar.Image")));
-            this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(689, 569);
-            this.BtnAceptar.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnAceptar.Name = "BtnAceptar";
-            this.BtnAceptar.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.BtnAceptar.Size = new System.Drawing.Size(102, 40);
-            this.BtnAceptar.TabIndex = 7;
-            this.BtnAceptar.Text = "Aceptar";
-            this.BtnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnAceptar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // BtnBuscarPrestamo
             // 
@@ -382,93 +434,26 @@ namespace Prestamos
             // 
             this.ErrNotificador.ContainerControl = this;
             // 
-            // label2
+            // CdFechaVencimiento
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 391);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Cuenta bancaria";
+            this.CdFechaVencimiento.DataPropertyName = "FechaVencimiento";
+            this.CdFechaVencimiento.HeaderText = "Fecha vencimiento";
+            this.CdFechaVencimiento.Name = "CdFechaVencimiento";
+            this.CdFechaVencimiento.ReadOnly = true;
             // 
-            // label3
+            // CdSaldo
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 301);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Fecha";
-            // 
-            // DtpFecha
-            // 
-            this.DtpFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DtpFecha.Location = new System.Drawing.Point(106, 295);
-            this.DtpFecha.Name = "DtpFecha";
-            this.DtpFecha.Size = new System.Drawing.Size(200, 20);
-            this.DtpFecha.TabIndex = 18;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 420);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Nro. operación";
-            // 
-            // TxtNumeroOperacion
-            // 
-            this.TxtNumeroOperacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TxtNumeroOperacion.Enabled = false;
-            this.TxtNumeroOperacion.Location = new System.Drawing.Point(106, 417);
-            this.TxtNumeroOperacion.Name = "TxtNumeroOperacion";
-            this.TxtNumeroOperacion.Size = new System.Drawing.Size(200, 20);
-            this.TxtNumeroOperacion.TabIndex = 11;
-            this.TxtNumeroOperacion.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNumeroOperacion_Validating);
-            // 
-            // CboCuentaBancaria
-            // 
-            this.CboCuentaBancaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CboCuentaBancaria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboCuentaBancaria.FormattingEnabled = true;
-            this.CboCuentaBancaria.Location = new System.Drawing.Point(106, 387);
-            this.CboCuentaBancaria.Name = "CboCuentaBancaria";
-            this.CboCuentaBancaria.Size = new System.Drawing.Size(200, 21);
-            this.CboCuentaBancaria.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 360);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 13);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Entidad bancaria";
-            // 
-            // CboEntidadBancaria
-            // 
-            this.CboEntidadBancaria.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CboEntidadBancaria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboEntidadBancaria.FormattingEnabled = true;
-            this.CboEntidadBancaria.Location = new System.Drawing.Point(106, 356);
-            this.CboEntidadBancaria.Name = "CboEntidadBancaria";
-            this.CboEntidadBancaria.Size = new System.Drawing.Size(200, 21);
-            this.CboEntidadBancaria.TabIndex = 19;
-            this.CboEntidadBancaria.SelectedIndexChanged += new System.EventHandler(this.CboEntidadBancaria_SelectedIndexChanged);
+            this.CdSaldo.DataPropertyName = "Monto";
+            this.CdSaldo.HeaderText = "Saldo";
+            this.CdSaldo.Name = "CdSaldo";
             // 
             // FrmPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(910, 620);
+            this.ClientSize = new System.Drawing.Size(910, 548);
             this.Controls.Add(this.BtnCancelar);
-            this.Controls.Add(this.BtnAceptar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.GbCuotas);
             this.Controls.Add(this.BtnBuscarPrestamo);
@@ -512,15 +497,12 @@ namespace Prestamos
         private System.Windows.Forms.DataGridView DgvPrestamos;
         private System.Windows.Forms.Button BtnSeleccionar;
         private System.Windows.Forms.Button BtnCancelar;
-        private System.Windows.Forms.Button BtnAceptar;
         private System.Windows.Forms.Button BtnBuscarPrestamo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdMonto;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn cdMontoPagado;
         private System.Windows.Forms.ErrorProvider ErrNotificador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CdFechaVencimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CdSaldo;
         private System.Windows.Forms.ComboBox CboFormaPago;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnPagar;
@@ -532,5 +514,7 @@ namespace Prestamos
         private System.Windows.Forms.ComboBox CboCuentaBancaria;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox CboEntidadBancaria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CdFechaVencimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CdSaldo;
     }
 }

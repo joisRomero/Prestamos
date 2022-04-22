@@ -287,7 +287,7 @@ namespace Prestamos
                 try
                 {
                     rn.Registrar(prestamo);
-                    MessageBox.Show("Codigo " + prestamo.Codigo, this.Text);
+                    MessageBox.Show("Préstamos realizado con éxito ", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
                 catch (Exception)

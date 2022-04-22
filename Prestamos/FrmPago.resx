@@ -173,12 +173,6 @@
   <metadata name="CdSaldo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="CdFechaVencimiento.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="CdSaldo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="BtnSeleccionar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAuVJREFUWEft
@@ -234,19 +228,6 @@
         KMxxFvKZMGui4iDCzgWyLVRlEZbM6Z4j5YU5dRD8IkRB8I2V/Btz3+fzGO6RnSsdiMdMgUHfCrL0w3u6
         8odOHM9hDHMw147n6ECuk52rxrdiFDyjfaZwXjwnm8PV+N8xSodLC1Ck3SYzE+FOS+2rqdFXsly0OX2y
         GtbhI7vv11Gjr+WTauzDhFMjn2b/qFqtX/3A7n2rrxlAAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="BtnAceptar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAbVJREFUWEft
-        lstKw0AUhvsiunLhw7gQXBQp4kJwoVRarIjPZG9IW6xUe49p6QsoVKGXbIrF6gOMOfFMnE7ntJM4ruwP
-        38Lk/PkykwoTWWcdVXpOb9N27IztdCYu7JdMHp1O1hpaW/j45fmWd6bSQ0ww7Y67G6ihgytXPcAE16ih
-        4w59SCWTvKOGjqJkFNTQUZXC0BpZrDZoLFxHDR25EIbmsMVOKnF2VD5m1UF97h5q6IjDYWiP2yxRPWc7
-        uV2PVP1y7j5q6IjDQWmMmuy0cubL9wsHrPRyOzeDGjricBB05ABq6MgFHVqjNovfJ1fKAdTQUZXSTxl2
-        0bjyvq98D64laz/fPFqIsUK/uDDHQQ0duZB9zrG9m6j3cPhxiS8RVA6gho5cgK2ELeUS+M7wb+Zt+0PC
-        v75s20VQQ0dVglXB6rgMdiJZS/l/66ycgxo6qhJQfr1jsdKhL+XorpyDGjqqEkd+iaByADV0VCUR/hJh
-        5ABq6KhKMsV+Sfuby6CGjqpkEtTQcYc+5ZJBZqih4w7lpZJJVh/JLKe37Q7+xaH0TetQChGO5SbOhzPb
-        6aa15ev8s0QiX7DrcIb2vZs8AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="BtnBuscarPrestamo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
