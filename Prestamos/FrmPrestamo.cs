@@ -25,9 +25,6 @@ namespace Prestamos
         public static FrmPrestamo Instancia = null;
         private List<Cuota> Cuotas = new List<Cuota>();
         List<TipoDocumento> tipoDocumentos;
-        SaveFileDialog GuardarArchivoDialogo = new SaveFileDialog();
-        private bool estaExportanto = false;
-        private Thread subProceso;
         private FrmPrestamo()
         {
             InitializeComponent();
@@ -67,6 +64,7 @@ namespace Prestamos
             if (this.Cliente is ClientePersona)
             {
                 this.CboTipoCliente.SelectedIndex = 0;
+                this.CboTipoDocumento.SelectedValue = ((ClientePersona)this.Cliente).TipoDocumento.Codigo;
                 this.TxtNumeroDocumento.Text = ((ClientePersona)this.Cliente).NumeroDocumento;
             }
             else
@@ -82,7 +80,7 @@ namespace Prestamos
         private void BtnBuscar_Click(object sender, EventArgs e)
         {            
             string numeroDocumento = this.TxtNumeroDocumento.Text.Trim();
-            TipoDocumento tipoDocumento = (TipoDocumento)this.CboTipoDocumento.SelectedItem;
+            
 
             if (this.CboTipoCliente.SelectedIndex == -1)
             {
@@ -96,6 +94,7 @@ namespace Prestamos
             }
             else if (this.CboTipoCliente.SelectedIndex == 0)
             {
+                TipoDocumento tipoDocumento = (TipoDocumento)this.CboTipoDocumento.SelectedItem;
                 this.BuscarClientePersona(numeroDocumento, tipoDocumento.Codigo);
             }
             else
@@ -186,13 +185,12 @@ namespace Prestamos
                 switch (this.CboTipoPeriodo.SelectedIndex)
                 {
                     case 0:
-                        cuota.Fecha = fechaInicio.AddDays(i + 1); break;
+                        cuota.FechaVencimiento = fechaInicio.AddMonths(i + 1); break;
                     case 1:
-                        cuota.Fecha = fechaInicio.AddDays((i + 1) * 7); break;
+                        cuota.FechaVencimiento = fechaInicio.AddDays((i + 1) * 7); break;
                     case 2:
-                        cuota.Fecha = fechaInicio.AddDays((i + 1) * 14); break;
-                    case 3:
-                        cuota.Fecha = fechaInicio.AddMonths(i + 1); break;
+                        cuota.FechaVencimiento = fechaInicio.AddDays(i + 1); break;
+
                 }
                 this.Cuotas.Add(cuota);
                 totalCuota += montoCuota;
@@ -310,8 +308,12 @@ namespace Prestamos
                 DejaGarantia = this.ChkDejaGarantia.Checked,
                 TipoPeriodo = this.CboTipoPeriodo.Text.Substring(0, 1),
                 CantidadPeriodos = (int)this.NudCantidadPeriodos.Value,
+                MontoPagado = 0,
+                Personal = Sesion.Usuario.Personal,
                 Cuotas = this.Cuotas,
                 Vigente = true
+
+
             };
             return prestamo;
         }

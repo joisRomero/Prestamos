@@ -56,6 +56,8 @@
     <Compile Include="RNCuentaBancaria.cs" />
     <Compile Include="RNDistrito.cs" />
     <Compile Include="RNEntidadBancaria.cs" />
+    <Compile Include="RNFomaPago.cs" />
+    <Compile Include="RNPago.cs" />
     <Compile Include="RNPersonal.cs" />
     <Compile Include="RNPrestamo.cs" />
     <Compile Include="RNTipoDocumento.cs" />
