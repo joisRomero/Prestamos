@@ -17,24 +17,24 @@ using System.Windows.Forms;
 
 namespace Prestamos
 {
-    public partial class FrmListaTotalPrestamos : Form
+    public partial class FrmListaPrestamosPorPagar : Form
     {
-        public static FrmListaTotalPrestamos Instancia = null;
+        public static FrmListaPrestamosPorPagar Instancia = null;
         Thread subProceso;
         bool estaExportanto = false;
-        private FrmListaTotalPrestamos()
+        private FrmListaPrestamosPorPagar()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
         }
 
-        public static FrmListaTotalPrestamos LlamarFormulario
+        public static FrmListaPrestamosPorPagar LlamarFormulario
         {
             get
             {
                 if (Instancia == null || Instancia.IsDisposed)
                 {
-                    Instancia = new FrmListaTotalPrestamos();
+                    Instancia = new FrmListaPrestamosPorPagar();
                 }
                 return Instancia;
             }
@@ -76,7 +76,7 @@ namespace Prestamos
             else
             {
                 GuardarArchivoDialogo.Filter = "Libro de Excel|*.xlsx";
-                GuardarArchivoDialogo.FileName = $"{this.Text} - {DateTime.Now}";
+                GuardarArchivoDialogo.FileName = $"{this.Text}{DateTime.Now:ddMMyyHHmmss}";
                 GuardarArchivoDialogo.DefaultExt = ".xlsx";
 
                 if (GuardarArchivoDialogo.ShowDialog() == DialogResult.OK)
@@ -133,7 +133,7 @@ namespace Prestamos
             SLPicture pic = new SLPicture(ruta);
 
             documento.SetCellValue("B2", "GESTION DE PRÉSTAMOS");
-            documento.SetCellValue("B3", "LISTA TOTAL DE PRESTAMOS");
+            documento.SetCellValue("B3", "LISTA PRESTAMOS POR PAGAR");
             SLStyle estilos = documento.CreateStyle();
             estilos.Font.Bold = true;
             estilos.Border.BottomBorder.BorderStyle = BorderStyleValues.Thin;

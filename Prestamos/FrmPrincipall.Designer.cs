@@ -73,10 +73,11 @@ namespace Prestamos
             this.MnuIniciarCaja = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuCerrarCaja = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MnuEstadoDeCuenta = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuEstadoDePrestamo = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuListaPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuListaTotalDePrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuListaPagos = new System.Windows.Forms.ToolStripMenuItem();
+
             this.statusStrip1.SuspendLayout();
             this.TsBarraHerramientas.SuspendLayout();
             this.MnuBarraPredeterminada.SuspendLayout();
@@ -278,7 +279,9 @@ namespace Prestamos
             this.TsbPago.Image = ((System.Drawing.Image)(resources.GetObject("TsbPago.Image")));
             this.TsbPago.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbPago.Name = "TsbPago";
-            this.TsbPago.Size = new System.Drawing.Size(29, 22);
+
+            this.TsbPago.Size = new System.Drawing.Size(23, 22);
+
             this.TsbPago.Text = "Pago";
             this.TsbPago.Click += new System.EventHandler(this.TsbPago_Click);
             // 
@@ -433,7 +436,8 @@ namespace Prestamos
             // 
             this.MnuPrestamo.Image = ((System.Drawing.Image)(resources.GetObject("MnuPrestamo.Image")));
             this.MnuPrestamo.Name = "MnuPrestamo";
-            this.MnuPrestamo.Size = new System.Drawing.Size(163, 26);
+            this.MnuPrestamo.Size = new System.Drawing.Size(130, 22);
+
             this.MnuPrestamo.Text = "Préstamo";
             this.MnuPrestamo.Click += new System.EventHandler(this.MnuPrestamo_Click);
             // 
@@ -441,20 +445,20 @@ namespace Prestamos
             // 
             this.MnuPago.Image = ((System.Drawing.Image)(resources.GetObject("MnuPago.Image")));
             this.MnuPago.Name = "MnuPago";
-            this.MnuPago.Size = new System.Drawing.Size(163, 26);
+            this.MnuPago.Size = new System.Drawing.Size(130, 22);
             this.MnuPago.Text = "Pago";
             this.MnuPago.Click += new System.EventHandler(this.MnuPago_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(160, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(127, 6);
             // 
             // MnuIniciarCaja
             // 
             this.MnuIniciarCaja.Image = ((System.Drawing.Image)(resources.GetObject("MnuIniciarCaja.Image")));
             this.MnuIniciarCaja.Name = "MnuIniciarCaja";
-            this.MnuIniciarCaja.Size = new System.Drawing.Size(163, 26);
+            this.MnuIniciarCaja.Size = new System.Drawing.Size(130, 22);
             this.MnuIniciarCaja.Text = "Iniciar caja";
             this.MnuIniciarCaja.Click += new System.EventHandler(this.MnuIniciarCaja_Click);
             // 
@@ -462,14 +466,14 @@ namespace Prestamos
             // 
             this.MnuCerrarCaja.Image = ((System.Drawing.Image)(resources.GetObject("MnuCerrarCaja.Image")));
             this.MnuCerrarCaja.Name = "MnuCerrarCaja";
-            this.MnuCerrarCaja.Size = new System.Drawing.Size(163, 26);
+            this.MnuCerrarCaja.Size = new System.Drawing.Size(130, 22);
             this.MnuCerrarCaja.Text = "Cerrar caja";
             this.MnuCerrarCaja.Click += new System.EventHandler(this.MnuCerrarCaja_Click);
             // 
             // reportesToolStripMenuItem
             // 
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MnuEstadoDeCuenta,
+            this.MnuEstadoDePrestamo,
             this.MnuListaPrestamos,
             this.MnuListaTotalDePrestamos,
             this.MnuListaPagos});
@@ -478,19 +482,27 @@ namespace Prestamos
             this.reportesToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
             this.reportesToolStripMenuItem.Text = "Reportes";
             // 
-            // MnuEstadoDeCuenta
+            // MnuEstadoDePrestamo
             // 
             this.MnuEstadoDeCuenta.Image = ((System.Drawing.Image)(resources.GetObject("MnuEstadoDeCuenta.Image")));
             this.MnuEstadoDeCuenta.Name = "MnuEstadoDeCuenta";
             this.MnuEstadoDeCuenta.Size = new System.Drawing.Size(251, 26);
             this.MnuEstadoDeCuenta.Text = "Estado de cuenta";
             this.MnuEstadoDeCuenta.Click += new System.EventHandler(this.MnuEstadoDeCuenta_Click);
+
+            this.MnuEstadoDePrestamo.Image = ((System.Drawing.Image)(resources.GetObject("MnuEstadoDePrestamo.Image")));
+            this.MnuEstadoDePrestamo.Name = "MnuEstadoDePrestamo";
+            this.MnuEstadoDePrestamo.Size = new System.Drawing.Size(210, 22);
+            this.MnuEstadoDePrestamo.Text = "Estado de préstamo";
+            this.MnuEstadoDePrestamo.Click += new System.EventHandler(this.MnuEstadoDeCuenta_Click);
+
             // 
             // MnuListaPrestamos
             // 
             this.MnuListaPrestamos.Image = ((System.Drawing.Image)(resources.GetObject("MnuListaPrestamos.Image")));
             this.MnuListaPrestamos.Name = "MnuListaPrestamos";
             this.MnuListaPrestamos.Size = new System.Drawing.Size(251, 26);
+            this.MnuListaPrestamos.Size = new System.Drawing.Size(210, 22);
             this.MnuListaPrestamos.Text = "Lista de préstamos";
             this.MnuListaPrestamos.Click += new System.EventHandler(this.MnuListaPrestamos_Click);
             // 
@@ -582,7 +594,7 @@ namespace Prestamos
         private System.Windows.Forms.ToolStripMenuItem MnuCerrarCaja;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MnuListaPrestamos;
-        private System.Windows.Forms.ToolStripMenuItem MnuEstadoDeCuenta;
+        private System.Windows.Forms.ToolStripMenuItem MnuEstadoDePrestamo;
         private System.Windows.Forms.ToolStripMenuItem MnuListaTotalDePrestamos;
         private System.Windows.Forms.ToolStripButton TsbPago;
         private System.Windows.Forms.ToolStripMenuItem MnuListaPagos;

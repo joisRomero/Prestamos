@@ -87,7 +87,7 @@ namespace Prestamos
             else
             {
                 GuardarArchivoDialogo.Filter = "Libro de Excel|*.xlsx";
-                GuardarArchivoDialogo.FileName = $"{this.Text} - {DateTime.Now}";
+                GuardarArchivoDialogo.FileName = $"{this.Text}{DateTime.Now:ddMMyyHHmmss}";
                 GuardarArchivoDialogo.DefaultExt = ".xlsx";
 
                 if (GuardarArchivoDialogo.ShowDialog() == DialogResult.OK)

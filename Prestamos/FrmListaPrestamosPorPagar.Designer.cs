@@ -1,6 +1,6 @@
 ﻿namespace Prestamos
 {
-    partial class FrmListaTotalPrestamos
+    partial class FrmListaPrestamosPorPagar
     {
         /// <summary>
         /// Required designer variable.
@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListaTotalPrestamos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListaPrestamosPorPagar));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnListar = new System.Windows.Forms.Button();
             this.DgvListado = new System.Windows.Forms.DataGridView();
-            this.BtnExportarExcel = new System.Windows.Forms.Button();
-            this.BtnCerrrar = new System.Windows.Forms.Button();
-            this.GuardarArchivoDialogo = new System.Windows.Forms.SaveFileDialog();
-            this.Notificacion = new System.Windows.Forms.NotifyIcon(this.components);
             this.CdNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CdFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CdMontoPrestado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CdMontoPagado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnExportarExcel = new System.Windows.Forms.Button();
+            this.BtnCerrrar = new System.Windows.Forms.Button();
+            this.GuardarArchivoDialogo = new System.Windows.Forms.SaveFileDialog();
+            this.Notificacion = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,6 +89,39 @@
             this.DgvListado.Size = new System.Drawing.Size(833, 360);
             this.DgvListado.TabIndex = 6;
             // 
+            // CdNombres
+            // 
+            this.CdNombres.DataPropertyName = "Nombres";
+            this.CdNombres.HeaderText = "Nombres";
+            this.CdNombres.Name = "CdNombres";
+            this.CdNombres.ReadOnly = true;
+            // 
+            // CdFecha
+            // 
+            this.CdFecha.DataPropertyName = "Fecha";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.CdFecha.DefaultCellStyle = dataGridViewCellStyle3;
+            this.CdFecha.HeaderText = "Fecha";
+            this.CdFecha.Name = "CdFecha";
+            this.CdFecha.ReadOnly = true;
+            // 
+            // CdMontoPrestado
+            // 
+            this.CdMontoPrestado.DataPropertyName = "MontoPrestado";
+            dataGridViewCellStyle4.Format = "N2";
+            this.CdMontoPrestado.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CdMontoPrestado.HeaderText = "Monto Prestado";
+            this.CdMontoPrestado.Name = "CdMontoPrestado";
+            this.CdMontoPrestado.ReadOnly = true;
+            // 
+            // CdMontoPagado
+            // 
+            this.CdMontoPagado.DataPropertyName = "MontoPagado";
+            this.CdMontoPagado.HeaderText = "Monto Pagado";
+            this.CdMontoPagado.Name = "CdMontoPagado";
+            this.CdMontoPagado.ReadOnly = true;
+            // 
             // BtnExportarExcel
             // 
             this.BtnExportarExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -128,39 +161,6 @@
             this.Notificacion.BalloonTipClicked += new System.EventHandler(this.Notificacion_BalloonTipClicked);
             this.Notificacion.BalloonTipClosed += new System.EventHandler(this.Notificacion_BalloonTipClosed);
             // 
-            // CdNombres
-            // 
-            this.CdNombres.DataPropertyName = "Nombres";
-            this.CdNombres.HeaderText = "Nombres";
-            this.CdNombres.Name = "CdNombres";
-            this.CdNombres.ReadOnly = true;
-            // 
-            // CdFecha
-            // 
-            this.CdFecha.DataPropertyName = "Fecha";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.CdFecha.DefaultCellStyle = dataGridViewCellStyle1;
-            this.CdFecha.HeaderText = "Fecha";
-            this.CdFecha.Name = "CdFecha";
-            this.CdFecha.ReadOnly = true;
-            // 
-            // CdMontoPrestado
-            // 
-            this.CdMontoPrestado.DataPropertyName = "MontoPrestado";
-            dataGridViewCellStyle2.Format = "N2";
-            this.CdMontoPrestado.DefaultCellStyle = dataGridViewCellStyle2;
-            this.CdMontoPrestado.HeaderText = "Monto Prestado";
-            this.CdMontoPrestado.Name = "CdMontoPrestado";
-            this.CdMontoPrestado.ReadOnly = true;
-            // 
-            // CdMontoPagado
-            // 
-            this.CdMontoPagado.DataPropertyName = "MontoPagado";
-            this.CdMontoPagado.HeaderText = "Monto Pagado";
-            this.CdMontoPagado.Name = "CdMontoPagado";
-            this.CdMontoPagado.ReadOnly = true;
-            // 
             // FrmListaTotalPrestamos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,8 +170,10 @@
             this.Controls.Add(this.BtnCerrrar);
             this.Controls.Add(this.DgvListado);
             this.Controls.Add(this.BtnListar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmListaTotalPrestamos";
-            this.Text = "Lista Total de Préstamos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Lista de préstamos por pagar";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmListaTotalPrestamos_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).EndInit();
             this.ResumeLayout(false);

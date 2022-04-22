@@ -49,6 +49,7 @@ namespace Prestamos
             this.TxtClave.Location = new System.Drawing.Point(251, 131);
             this.TxtClave.Margin = new System.Windows.Forms.Padding(2);
             this.TxtClave.Name = "TxtClave";
+            this.TxtClave.PasswordChar = '*';
             this.TxtClave.Size = new System.Drawing.Size(210, 21);
             this.TxtClave.TabIndex = 1;
             this.TxtClave.Validating += new System.ComponentModel.CancelEventHandler(this.Control_Validating);

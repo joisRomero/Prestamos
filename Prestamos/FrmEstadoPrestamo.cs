@@ -1,38 +1,45 @@
-﻿using Entidades;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Entidades;
 using ReglaNegocio;
+using SpreadsheetLight;
+using SpreadsheetLight.Drawing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Prestamos
 {
-    public partial class FrmPago : Form
+    public partial class FrmEstadoPrestamo : Form
     {
         private ICliente Cliente;
-        public static FrmPago Instancia = null;
+        private static FrmEstadoPrestamo Instancia;
         List<TipoDocumento> tipoDocumentos;
-        List<Prestamo> prestamos;
         Prestamo prestamo;
-
-
-        private FrmPago()
+        List<Prestamo> prestamos;
+        Thread subProceso;
+        bool estaExportanto = false;
+        public FrmEstadoPrestamo()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
         }
 
-        public static FrmPago LlamarFormulario
+        public static FrmEstadoPrestamo LlamarFormulario
         {
             get
             {
                 if (Instancia == null || Instancia.IsDisposed)
                 {
-                    Instancia = new FrmPago();
+                    Instancia = new FrmEstadoPrestamo();
                 }
                 return Instancia;
             }
@@ -126,6 +133,7 @@ namespace Prestamos
                 this.TxtCliente.Text = "";
             }
         }
+
         private void PresentarDatos()
         {
             LimpiarTablas();
@@ -166,7 +174,7 @@ namespace Prestamos
             }
         }
 
-        private void CargarTiposDocumentos()
+        private void CboTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
             RNTipoDocumento rn = new RNTipoDocumento();
             try
@@ -179,71 +187,10 @@ namespace Prestamos
             }
         }
 
-        private void FrmPago_Load(object sender, EventArgs e)
+        private void BorrarErrores()
         {
-            CargarTiposDocumentos();
-            CargarFormaPago();
-        }
-
-        private void CargarFormaPago()
-        {
-            RNFomaPago rn = new RNFomaPago();
-            try
-            {
-                List<FormaPago> formasPago = rn.Listar();
-                this.CboFormaPago.DataSource = null;
-                if (formasPago.Count > 0)
-                {
-                    CboFormaPago.DataSource = formasPago;
-                    this.CboFormaPago.DisplayMember = "Nombre";
-                    this.CboFormaPago.ValueMember = "Codigo";
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se pudo cargar las formas de pago", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void CargarCuentaBancaria()
-        {
-            RNCuentaBancaria rn = new RNCuentaBancaria();
-
-            try
-            {
-                EntidadBancaria entidadBancaria = ((EntidadBancaria)this.CboEntidadBancaria.SelectedItem);
-                List<CuentaBancaria> cuentasBancarias = rn.Listar(entidadBancaria.Nombre);
-                this.CboCuentaBancaria.DataSource = null;
-                if (cuentasBancarias.Count > 0)
-                {
-                    CboCuentaBancaria.DataSource = cuentasBancarias;
-                    this.CboCuentaBancaria.DisplayMember = "Numero";
-                    this.CboCuentaBancaria.ValueMember = "Codigo";
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se pudo cargar las cuentas bancarias", this.Text);
-            }
-        }
-        private void CargarEntidadBancaria()
-        {
-            RNEntidadBancaria rn = new RNEntidadBancaria();
-            try
-            {
-                List<EntidadBancaria> entidadesBancarias = rn.Listar();
-                this.CboEntidadBancaria.DataSource = null;
-                if (entidadesBancarias.Count > 0)
-                {
-                    CboEntidadBancaria.DataSource = entidadesBancarias;
-                    this.CboEntidadBancaria.DisplayMember = "Siglas";
-                    this.CboEntidadBancaria.ValueMember = "Codigo";
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se pudo cargar las entidades bancarias", this.Text);
-            }
+            this.ErrNotificador.SetError(this.BtnBuscar, "");
+            this.ErrNotificador.SetError(this.BtnBuscarPrestamo, "");
         }
 
         private void BtnBuscarPrestamo_Click(object sender, EventArgs e)
@@ -275,20 +222,6 @@ namespace Prestamos
             }
         }
 
-        private void BtnBuscarPrestamo_Validating(object sender, CancelEventArgs e)
-        {
-            this.TxtNumeroDocumento.Text = this.TxtNumeroDocumento.Text.Trim();
-            if (string.IsNullOrEmpty(this.TxtNumeroDocumento.Text) == false)
-            {
-                this.ErrNotificador.SetError(this.TxtNumeroDocumento, "");
-            }
-            else
-            {
-                this.ErrNotificador.SetError(this.BtnBuscar, "Debe buscar un cliente");
-                e.Cancel = true;
-            }
-        }
-
         private void BtnSeleccionar_Click(object sender, EventArgs e)
         {
             if (ValidateChildren() && DgvPrestamos.DataSource != null)
@@ -317,113 +250,171 @@ namespace Prestamos
             }
         }
 
-        private void BorrarErrores()
+        private void BtnBuscarPrestamo_Validating(object sender, CancelEventArgs e)
         {
-            this.ErrNotificador.SetError(this.BtnBuscar, "");
-            this.ErrNotificador.SetError(this.BtnBuscarPrestamo, "");
-        }
-
-        private void BtnPagar_Click(object sender, EventArgs e)
-        {
-            if (ValidateChildren())
+            this.TxtNumeroDocumento.Text = this.TxtNumeroDocumento.Text.Trim();
+            if (string.IsNullOrEmpty(this.TxtNumeroDocumento.Text) == false)
             {
-                RNPago rn;
-                RNPrestamo rnp;
-                Pago pago;
-                try
-                {
-                    rn = new RNPago();
-                    rnp = new RNPrestamo();
-                    pago = CrearEntidad();
-                    rn.Registrar(pago);
-                    rnp.ActualizarMontoPagado(prestamo, pago.Monto);
-
-                    BtnSeleccionar.PerformClick();
-                    BtnBuscarPrestamo.PerformClick();
-                    MessageBox.Show("Pago realizado con éxito", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("No se pudo realizar el pago", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private Pago CrearEntidad()
-        {
-
-            List<CuotaPago> cuotasPagos = new List<CuotaPago>();
-            Cuota cuota = (Cuota)this.DgvCuotas.CurrentRow.DataBoundItem;
-            CuotaPago cuotapago = new CuotaPago()
-            {
-                Cuota = cuota,
-                Monto = cuota.Monto
-            };
-            cuotasPagos.Add(cuotapago);
-            Pago pago = new Pago()
-            {
-                Monto = cuota.Monto,
-                NumeroOperacion = TxtNumeroOperacion.Text,
-                Fecha = DtpFecha.Value,
-                Vigente = true,
-                FormaPago = (FormaPago)this.CboFormaPago.SelectedItem,
-                Caja = Sesion.Caja,
-                CuentaBancaria = (CuentaBancaria)CboCuentaBancaria.SelectedItem,
-                CuotasPago = cuotasPagos
-            };
-            return pago;
-        }
-
-        
-
-        private void TxtNumeroOperacion_Validating(object sender, CancelEventArgs e)
-        {
-            TxtNumeroOperacion.Text = TxtNumeroOperacion.Text.Trim();
-            if (((FormaPago)CboFormaPago.SelectedItem).Nombre.Equals("Depósito") &&
-                string.IsNullOrEmpty(TxtNumeroOperacion.Text))
-            {
-                this.ErrNotificador.SetError(this.TxtNumeroOperacion, "Ingrese el numero de operación");
-                e.Cancel = true;
+                this.ErrNotificador.SetError(this.TxtNumeroDocumento, "");
             }
             else
             {
-                this.ErrNotificador.SetError(this.TxtNumeroOperacion, "");
+                this.ErrNotificador.SetError(this.BtnBuscar, "Debe buscar un cliente");
+                e.Cancel = true;
             }
         }
-
-        private void CboFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        private void CargarTiposDocumentos()
         {
-            if (((FormaPago)CboFormaPago.SelectedItem).Nombre.Equals("Depósito") ||
-                ((FormaPago)CboFormaPago.SelectedItem).Nombre.Equals("Tarjeta"))
+            RNTipoDocumento rn = new RNTipoDocumento();
+            try
             {
-                TxtNumeroOperacion.Enabled = true;
-                CboEntidadBancaria.Enabled = true;
-                CboCuentaBancaria.Enabled = true;
-                CargarEntidadBancaria();
+                tipoDocumentos = rn.Listar();
             }
-
-            if (((FormaPago)CboFormaPago.SelectedItem).Nombre.Equals("Efectivo"))
+            catch (Exception)
             {
-                CboEntidadBancaria.Enabled = false;
-                CboCuentaBancaria.Enabled = false;
-                CboCuentaBancaria.DataSource = null;
-                CboEntidadBancaria.DataSource = null;
-                TxtNumeroOperacion.Enabled = false;
+                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void CboEntidadBancaria_SelectedIndexChanged(object sender, EventArgs e)
+        private void FrmEstadoPrestamo_Load(object sender, EventArgs e)
         {
-            if (CboEntidadBancaria.DataSource != null)
+            CargarTiposDocumentos();
+        }
+
+        private void BtnExportarExcel_Click(object sender, EventArgs e)
+        {
+            if (DgvCuotas.RowCount == 0)
             {
-                CargarCuentaBancaria();
+                MessageBox.Show("Primero haga liste todas las cuotas de un préstamo", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                GuardarArchivoDialogo.Filter = "Libro de Excel|*.xlsx";
+                GuardarArchivoDialogo.FileName = $"{this.Text}{DateTime.Now:ddMMyyHHmmss}";
+                GuardarArchivoDialogo.DefaultExt = ".xlsx";
+
+                if (GuardarArchivoDialogo.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        estaExportanto = true;
+                        ThreadStart dlg = new ThreadStart(ExportarAExcel);
+                        subProceso = new Thread(dlg);
+                        subProceso.Start();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
-        private void BtnCancelar_Click(object sender, EventArgs e)
+        private void ExportarAExcel()
+        {
+            DataTable tablaDatos = CrearTablaDatos();
+            SLDocument documento = CrearDocumentoExcel(tablaDatos);
+            documento.SaveAs(GuardarArchivoDialogo.FileName);
+            MostrarNotificacion();
+            estaExportanto = false;
+        }
+
+        private DataTable CrearTablaDatos()
+        {
+            DataTable tablaDatos = new DataTable();
+            tablaDatos.Columns.Add("Fecha vencimiento", typeof(DateTime));
+            tablaDatos.Columns.Add("Saldo", typeof(double));
+
+            foreach (DataGridViewRow row in DgvCuotas.Rows)
+            {
+                tablaDatos.Rows.Add(
+                    DateTime.Parse(row.Cells["CdFechaVencimiento"].Value.ToString()),
+                    double.Parse(row.Cells["CdSaldo"].Value.ToString()));
+            }
+
+            return tablaDatos;
+        }
+
+        private SLDocument CrearDocumentoExcel(DataTable tablaDatos)
+        {
+            SLDocument documento = new SLDocument();
+
+            string ruta = Path.GetFullPath(Path.Combine(Application.StartupPath, @"../../") + @"\Img\principal_32.png");
+
+            SLPicture pic = new SLPicture(ruta);
+
+            documento.SetCellValue("B2", "GESTION DE PRÉSTAMOS");
+            documento.SetCellValue("B3", "LISTA ESTADO PRESTAMO");
+            SLStyle estilos = documento.CreateStyle();
+            estilos.Font.Bold = true;
+            estilos.Border.BottomBorder.BorderStyle = BorderStyleValues.Thin;
+            estilos.Border.RightBorder.BorderStyle = BorderStyleValues.Thin;
+            estilos.Border.LeftBorder.BorderStyle = BorderStyleValues.Thin;
+            estilos.Border.TopBorder.BorderStyle = BorderStyleValues.Thin;
+            estilos.Alignment.Vertical = VerticalAlignmentValues.Center;
+            estilos.Alignment.Horizontal = HorizontalAlignmentValues.Center;
+
+            documento.MergeWorksheetCells("B2", "E2");
+            documento.MergeWorksheetCells("B3", "E3");
+            documento.SetCellStyle("B2", "E3", estilos);
+
+            pic.SetPosition(1, 1.5);
+            documento.InsertPicture(pic);
+
+            int indexFilaInicio = 5;
+            int indexColumnaInicio = 3;
+
+            documento.ImportDataTable(indexFilaInicio, indexColumnaInicio, tablaDatos, true);
+
+            SLStyle style = documento.CreateStyle();
+            style.FormatCode = "dd/mm/yyyy";
+            documento.SetColumnStyle(3, style);
+
+            style.FormatCode = "#,##0.00";
+            documento.SetColumnStyle(4, style);
+
+
+            int indexFilaFin = indexFilaInicio + tablaDatos.Rows.Count;
+            int indexColumnaFin = indexColumnaInicio + tablaDatos.Columns.Count - 1;
+
+            documento.AutoFitColumn(indexColumnaInicio, indexColumnaFin);
+
+            SLTable table = documento.CreateTable(indexFilaInicio, indexColumnaInicio, indexFilaFin, indexColumnaFin);
+            table.SetTableStyle(SLTableStyleTypeValues.Medium9);
+            documento.InsertTable(table);
+            documento.RenameWorksheet(SLDocument.DefaultFirstSheetName, "Listado");
+
+            return documento;
+        }
+
+        private void MostrarNotificacion()
+        {
+            Notificacion.Visible = true;
+            Notificacion.ShowBalloonTip(100, "Lista total de préstamos", "Exportación terminada con éxito", ToolTipIcon.Info);
+        }
+
+        private void FrmEstadoPrestamo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (estaExportanto)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void Notificacion_BalloonTipClicked(object sender, EventArgs e)
+        {
+            Process.Start(GuardarArchivoDialogo.FileName);
+            Notificacion.Visible = false;
+        }
+
+        private void Notificacion_BalloonTipClosed(object sender, EventArgs e)
+        {
+            Notificacion.Visible = false;
+        }
+
+        private void BtnCerrrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
     }
 }

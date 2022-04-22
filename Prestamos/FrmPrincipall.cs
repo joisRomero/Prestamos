@@ -219,7 +219,7 @@ namespace Prestamos
             }
             else
             {
-                FrmListaTotalPrestamos frm = FrmListaTotalPrestamos.LlamarFormulario;
+                FrmListaPrestamosPorPagar frm = FrmListaPrestamosPorPagar.LlamarFormulario;
 
                 frm.MdiParent = this;
                 frm.Show();
@@ -412,9 +412,17 @@ namespace Prestamos
 
         private void MnuEstadoDeCuenta_Click(object sender, EventArgs e)
         {
-            if (Sesion.Caja != null && Sesion.Caja.Estado == true)
+            if (Sesion.Caja == null || Sesion.Caja.Estado == false)
             {
                 MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }else
+            {
+                FrmEstadoPrestamo frm = FrmEstadoPrestamo.LlamarFormulario;
+
+                frm.MdiParent = this;
+                frm.Show();
+                frm.Focus();
+
             }
         }
 

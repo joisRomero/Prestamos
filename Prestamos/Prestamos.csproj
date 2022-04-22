@@ -94,6 +94,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmEstadoPrestamo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEstadoPrestamo.Designer.cs">
+      <DependentUpon>FrmEstadoPrestamo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmIniciarCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,11 @@
     </Compile>
     <Compile Include="FrmListaTotalPrestamos.Designer.cs">
       <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
+    <Compile Include="FrmListaPrestamosPorPagar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListaPrestamosPorPagar.Designer.cs">
+      <DependentUpon>FrmListaPrestamosPorPagar.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPago.cs">
       <SubType>Form</SubType>
@@ -201,12 +212,6 @@
     </Compile>
     <Compile Include="FrmPrincipall.Designer.cs">
       <DependentUpon>FrmPrincipall.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmResumenClientesPorDistrito.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmResumenClientesPorDistrito.Designer.cs">
-      <DependentUpon>FrmResumenClientesPorDistrito.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUsuario.cs">
       <SubType>Form</SubType>
@@ -248,6 +253,9 @@
     <EmbeddedResource Include="FrmEntidadBancaria.resx">
       <DependentUpon>FrmEntidadBancaria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmEstadoPrestamo.resx">
+      <DependentUpon>FrmEstadoPrestamo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmIniciarCaja.resx">
       <DependentUpon>FrmIniciarCaja.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +270,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmListaTotalPrestamos.resx">
       <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
+    <EmbeddedResource Include="FrmListaPrestamosPorPagar.resx">
+      <DependentUpon>FrmListaPrestamosPorPagar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPago.resx">
       <DependentUpon>FrmPago.cs</DependentUpon>
@@ -274,9 +284,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipall.resx">
       <DependentUpon>FrmPrincipall.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmResumenClientesPorDistrito.resx">
-      <DependentUpon>FrmResumenClientesPorDistrito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
