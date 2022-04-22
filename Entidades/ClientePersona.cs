@@ -74,5 +74,12 @@ namespace Entidades
             }
         }
 
+        public string Tipo
+        {
+            get
+            {
+                return "Persona";
+            }
+        }
     }
 }

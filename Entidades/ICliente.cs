@@ -12,5 +12,6 @@ namespace Entidades
         string Identidad { get; }
         string Nombre { get; }
         CategoriaCliente Categoria { get; set; }
+        string Tipo { get; }
     }
 }

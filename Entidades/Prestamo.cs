@@ -28,6 +28,13 @@ namespace Entidades
                 return this.Cliente.Identidad;
             }
         }
+        public string TipoCliente
+        {
+            get
+            {
+                return this.Cliente.Tipo;
+            }
+        }
 
         public string NombreCliente
         {

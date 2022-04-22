@@ -13,5 +13,7 @@ namespace Entidades
         public DateTime FechaFin { get; set; }
         public bool Estado { get; set; }
         public Personal Personal { get; set; }
+
+
     }
 }
