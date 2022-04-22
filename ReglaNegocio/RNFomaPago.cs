@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -7,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace ReglaNegocio
 {
-    class RNFomaPago
+    public class RNFomaPago
     {
         readonly string cadenaConexion = ConfigurationManager.ConnectionStrings["DBConexion"].ConnectionString;
 
-        public List<TipoDocumento> Listar()
+        public List<FormaPago> Listar()
         {
-            List<TipoDocumento> tiposDocumentos = null;
-            string sql = $@"SELECT Codigo, Nombre, Siglas
-                            FROM tipodocumento WHERE Vigente = 1";
+            List<FormaPago> formaPago = null;
+            string sql = $@"SELECT Codigo, Nombre, Descripcion
+                            FROM formapago WHERE Vigente = 1";
             try
             {
                 using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
@@ -25,14 +27,14 @@ namespace ReglaNegocio
                     {
                         using (MySqlDataReader dr = cmd.ExecuteReader())
                         {
-                            tiposDocumentos = new List<TipoDocumento>();
+                            formaPago = new List<FormaPago>();
                             while (dr.Read())
                             {
-                                tiposDocumentos.Add(new TipoDocumento()
+                                formaPago.Add(new FormaPago()
                                 {
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     Nombre = dr.GetString(dr.GetOrdinal("Nombre")),
-                                    Siglas = dr.GetString(dr.GetOrdinal("Siglas")),
+                                    Descripcion = dr.GetString(dr.GetOrdinal("Descripcion")),
                                     Vigente = true
                                 });
                             }
@@ -44,7 +46,7 @@ namespace ReglaNegocio
             {
                 throw ex;
             }
-            return tiposDocumentos;
+            return formaPago;
         }
     }
 }

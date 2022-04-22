@@ -179,6 +179,27 @@ namespace Prestamos
         private void FrmPago_Load(object sender, EventArgs e)
         {
             CargarTiposDocumentos();
+            CargarFormaPago();
+        }
+
+        private void CargarFormaPago()
+        {
+            RNFomaPago rn = new RNFomaPago();
+            try
+            {
+                List<FormaPago> formasPago = rn.Listar();
+                this.CboFormaPago.DataSource = null;
+                if (formasPago.Count > 0)
+                {
+                    CboFormaPago.DataSource = formasPago;
+                    this.CboFormaPago.DisplayMember = "Nombre";
+                    this.CboFormaPago.ValueMember = "Codigo";
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo cargar las formas de pago", this.Text);
+            }
         }
 
         private void BtnBuscarPrestamo_Click(object sender, EventArgs e)
