@@ -160,25 +160,29 @@
     <Compile Include="FrmIniciarSesion.Designer.cs">
       <DependentUpon>FrmIniciarSesion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmListaPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListaPagos.Designer.cs">
+      <DependentUpon>FrmListaPagos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmListaPrestamos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmListaPrestamos.Designer.cs">
       <DependentUpon>FrmListaPrestamos.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FrmListaTotalPrestamos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmListaTotalPrestamos.Designer.cs">
       <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="FrmPago.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmPago.Designer.cs">
       <DependentUpon>FrmPago.cs</DependentUpon>
-
     </Compile>
     <Compile Include="FrmPersonal.cs">
       <SubType>Form</SubType>
@@ -250,16 +254,17 @@
     <EmbeddedResource Include="FrmIniciarSesion.resx">
       <DependentUpon>FrmIniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmListaPagos.resx">
+      <DependentUpon>FrmListaPagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmListaPrestamos.resx">
       <DependentUpon>FrmListaPrestamos.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="FrmListaTotalPrestamos.resx">
       <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPago.resx">
       <DependentUpon>FrmPago.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPersonal.resx">
       <DependentUpon>FrmPersonal.cs</DependentUpon>
@@ -302,6 +307,7 @@
     <None Include="Img\cancel.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Img\ListaPrestamos_32.png" />
     <Content Include="Img\principal_32.png" />
     <None Include="Resources\principal.png" />
     <None Include="Resources\PlantillaCronogramaPagos.html" />

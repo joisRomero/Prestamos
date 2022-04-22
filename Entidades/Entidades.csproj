@@ -61,6 +61,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ReporteListaPagos.cs" />
     <Compile Include="ReporteListaPrestamos.cs" />
     <Compile Include="ReporteResumenClientesDistrito.cs" />
     <Compile Include="ReporteListaTotalPrestamo.cs" />
