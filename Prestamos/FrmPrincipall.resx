@@ -277,6 +277,7 @@
         v8Ikl2TuAfQDhmsoxO+i6VKRkbL6j7+NgICvXjsw2e6ulzoAAAAASUVORK5CYII=
 </value>
   </data>
+
   <data name="TsbPago.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -303,6 +304,7 @@
         5R2hKJzwQnyGXP6PDYCb2986s2Vny2l4IQAAAABJRU5ErkJggg==
 </value>
   </data>
+  
   <metadata name="MnuBarraPredeterminada.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>33, 5</value>
   </metadata>

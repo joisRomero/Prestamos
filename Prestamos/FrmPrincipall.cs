@@ -211,6 +211,22 @@ namespace Prestamos
             }
         }
 
+        private void IniciarFrmListaTotalPrestamos()
+        {
+            if (Sesion.Caja == null || Sesion.Caja.Estado == false)
+            {
+                MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                FrmListaTotalPrestamos frm = FrmListaTotalPrestamos.LlamarFormulario;
+
+                frm.MdiParent = this;
+                frm.Show();
+                frm.Focus();
+            }
+        }
+
         private void IniciarFrmResumenClientesPorDistrito()
         {
             FrmResumenClientesPorDistrito frm = FrmResumenClientesPorDistrito.LlamarFormulario;
@@ -385,15 +401,13 @@ namespace Prestamos
 
         private void MnuListaTotalDePrestamos_Click(object sender, EventArgs e)
         {
-            if (Sesion.Caja != null && Sesion.Caja.Estado == true)
-            {
-                MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            IniciarFrmListaTotalPrestamos();
         }
 
         private void TsbPago_Click(object sender, EventArgs e)
         {
             IniciarFrmPago();
         }
+
     }
 }
