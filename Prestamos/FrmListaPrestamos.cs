@@ -124,7 +124,7 @@ namespace Prestamos
             tablaDatos.Columns.Add("Nombre", typeof(string));
             tablaDatos.Columns.Add("Fecha", typeof(DateTime));
             tablaDatos.Columns.Add("Monto Prestado", typeof(double));
-            tablaDatos.Columns.Add("Perido", typeof(string));
+            tablaDatos.Columns.Add("Periodo", typeof(string));
             tablaDatos.Columns.Add("Cantidad de cuotas", typeof(int));
 
             foreach (DataGridViewRow row in DgvListado.Rows)
