@@ -1,4 +1,6 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
+﻿using Entidades;
+using ReglaNegocio;
+using DocumentFormat.OpenXml.Spreadsheet;
 using SpreadsheetLight;
 using SpreadsheetLight.Drawing;
 using System;
@@ -45,6 +47,24 @@ namespace Prestamos
 
         private void BtnListar_Click(object sender, EventArgs e)
         {
+            RNReporteListaPrestamos rn = new RNReporteListaPrestamos();
+            List<ReporteListaPrestamos> listPres;
+
+            this.DgvListado.DataSource = null;
+
+            try
+            {
+                listPres = rn.Listar();
+                if (listPres.Count > 0)
+                {
+                    this.DgvListado.AutoGenerateColumns = false;
+                    this.DgvListado.DataSource = listPres;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo obtener el listado", this.Text);
+            }
             //this.DgvListado.DataSource = null;
             //if (Program.Prestamos.Count > 0)
             //{

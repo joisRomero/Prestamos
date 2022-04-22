@@ -63,5 +63,13 @@ namespace Entidades
                 return "RUC : " + this.RUC;
             }
         }
+
+        public string Tipo
+        {
+            get
+            {
+                return "Empresa";
+            }
+        }
     }
 }

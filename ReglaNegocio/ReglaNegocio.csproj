@@ -58,6 +58,7 @@
     <Compile Include="RNEntidadBancaria.cs" />
     <Compile Include="RNPersonal.cs" />
     <Compile Include="RNPrestamo.cs" />
+    <Compile Include="RNReporteListaPrestamos.cs" />
     <Compile Include="RNTipoDocumento.cs" />
     <Compile Include="RNUsuario.cs" />
     <Compile Include="Settings.cs" />
