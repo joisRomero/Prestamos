@@ -71,7 +71,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se puede cargar los departamentos", this.Text);
+                MessageBox.Show("No se puede cargar el personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -93,7 +93,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se puede cargar los departamentos", this.Text);
+                MessageBox.Show("No se puede cargar los departamentos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -115,7 +115,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text);
+                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -143,9 +143,9 @@ namespace Prestamos
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar los distritos", this.Text);
+                MessageBox.Show("No se pudo cargar los distritos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -174,7 +174,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar las provincias", this.Text);
+                MessageBox.Show("No se pudo cargar las provincias", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -196,7 +196,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar las categorías", this.Text);
+                MessageBox.Show("No se pudo cargar las categorías", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -278,7 +278,7 @@ namespace Prestamos
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Error al guardar", this.Text);
+                    MessageBox.Show("Error al guardar", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -330,7 +330,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo traer la lista de empresas", this.Text);
+                MessageBox.Show("No se pudo traer la lista de empresas", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -355,7 +355,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar a una persona", this.Text);
+                MessageBox.Show("Debe seleccionar a una persona", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DgvListado.Focus();
             }
         }
@@ -390,7 +390,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo recuperar los datos de la persona", this.Text);
+                MessageBox.Show("No se pudo recuperar los datos de la persona", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -633,7 +633,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar el departamento");
+                MessageBox.Show("Debe seleccionar el departamento", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -650,7 +650,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar la provincia");
+                MessageBox.Show("Debe seleccionar la provincia", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

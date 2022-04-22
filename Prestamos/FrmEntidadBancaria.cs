@@ -101,9 +101,9 @@ namespace Prestamos
                     this.BtnListarEntidadesB.PerformClick();
                     this.LimpiarControles();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("No se pudo registrar la entidad bancaria", this.Text);
+                    MessageBox.Show("No se pudo registrar la entidad bancaria", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -142,7 +142,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo obtener las entidades bancarias", this.Text);
+                MessageBox.Show("No se pudo obtener las entidades bancarias", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -167,7 +167,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una entidad bancaria", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe seleccionar una entidad bancaria", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DgvListado.Focus();
             }
         }
@@ -189,7 +189,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo obtener la entidad bancaria solicitada", this.Text);
+                MessageBox.Show("No se pudo obtener la entidad bancaria solicitada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void Control_Validating(object sender, CancelEventArgs e)
@@ -255,14 +255,22 @@ namespace Prestamos
 
         private void BtnDarDeBajaEntidad_Click(object sender, EventArgs e)
         {
-            var rpta = MessageBox.Show("¿Está seguro que desea darle de baja?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            if(rpta == DialogResult.Yes)
+            if(DgvListado.DataSource != null)
             {
-                RNEntidadBancaria rn = new RNEntidadBancaria();
-                EntidadBancaria eb = (EntidadBancaria)this.DgvListado.CurrentRow.DataBoundItem;
-                rn.DarDeBaja(eb.Codigo);
-                BtnListarEntidadesB.PerformClick();
+                var rpta = MessageBox.Show("¿Está seguro que desea darle de baja?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (rpta == DialogResult.Yes)
+                {
+                    RNEntidadBancaria rn = new RNEntidadBancaria();
+                    EntidadBancaria eb = (EntidadBancaria)this.DgvListado.CurrentRow.DataBoundItem;
+                    rn.DarDeBaja(eb.Codigo);
+                    BtnListarEntidadesB.PerformClick();
+                }
             }
+            else
+            {
+                MessageBox.Show("Debe listar antes de dar de baja", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
 
         private void TxtNombre_TextChanged(object sender, EventArgs e)

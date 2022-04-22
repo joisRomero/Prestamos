@@ -292,7 +292,7 @@ namespace Prestamos
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("No se pudo registrar el préstamo", this.Text);
+                    MessageBox.Show("No se pudo registrar el préstamo", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

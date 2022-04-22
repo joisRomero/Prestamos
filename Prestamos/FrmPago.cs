@@ -172,7 +172,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text);
+                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -198,7 +198,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar las formas de pago", this.Text);
+                MessageBox.Show("No se pudo cargar las formas de pago", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

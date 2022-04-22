@@ -62,7 +62,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo traer la lista total de préstamos", this.Text);
+                MessageBox.Show("No se pudo traer la lista total de préstamos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
