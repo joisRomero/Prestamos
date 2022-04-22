@@ -166,19 +166,17 @@
     <Compile Include="FrmListaPrestamos.Designer.cs">
       <DependentUpon>FrmListaPrestamos.cs</DependentUpon>
     </Compile>
-
     <Compile Include="FrmListaTotalPrestamos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmListaTotalPrestamos.Designer.cs">
       <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="FrmPago.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmPago.Designer.cs">
       <DependentUpon>FrmPago.cs</DependentUpon>
-
     </Compile>
     <Compile Include="FrmPersonal.cs">
       <SubType>Form</SubType>
@@ -197,12 +195,6 @@
     </Compile>
     <Compile Include="FrmPrincipall.Designer.cs">
       <DependentUpon>FrmPrincipall.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FrmResumenClientesPorDistrito.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmResumenClientesPorDistrito.Designer.cs">
-      <DependentUpon>FrmResumenClientesPorDistrito.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUsuario.cs">
       <SubType>Form</SubType>
@@ -253,13 +245,11 @@
     <EmbeddedResource Include="FrmListaPrestamos.resx">
       <DependentUpon>FrmListaPrestamos.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="FrmListaTotalPrestamos.resx">
       <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPago.resx">
       <DependentUpon>FrmPago.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPersonal.resx">
       <DependentUpon>FrmPersonal.cs</DependentUpon>
@@ -269,9 +259,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipall.resx">
       <DependentUpon>FrmPrincipall.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmResumenClientesPorDistrito.resx">
-      <DependentUpon>FrmResumenClientesPorDistrito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
