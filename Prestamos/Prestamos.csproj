@@ -136,12 +136,6 @@
     <Compile Include="FrmClientePersona.Designer.cs">
       <DependentUpon>FrmClientePersona.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmConfiguracion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmConfiguracion.Designer.cs">
-      <DependentUpon>FrmConfiguracion.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmCuentaBancaria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,9 +234,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmClientePersona.resx">
       <DependentUpon>FrmClientePersona.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmConfiguracion.resx">
-      <DependentUpon>FrmConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCuentaBancaria.resx">
       <DependentUpon>FrmCuentaBancaria.cs</DependentUpon>

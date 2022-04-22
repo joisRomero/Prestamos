@@ -207,5 +207,45 @@ namespace ReglaNegocio
 
             return cuentaB;
         }
+
+        public List<CuentaBancaria> Listar()
+        {
+            List<CuentaBancaria> cuentaB = null;
+            string sql = $@"SELECT CB.Codigo, CB.Numero
+                            FROM cuentabancaria CB
+                            WHERE Vigente = 1
+	                        ORDER BY CB.Nombre ";
+
+            try
+            {
+                using (MySqlConnection cn = new MySqlConnection(cadenaConexion))
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, cn))
+                    {
+                        using (MySqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            cuentaB = new List<CuentaBancaria>();
+                            while (dr.Read() == true)
+                            {
+                                cuentaB.Add(new CuentaBancaria()
+                                {
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
+                                    Numero = dr.GetString(dr.GetOrdinal("Numero")),
+                                    Vigente = true
+                                });
+                            }
+                            dr.Close();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return cuentaB;
+        }
     }
 }

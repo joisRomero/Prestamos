@@ -45,13 +45,14 @@
     <Compile Include="CategoriaCliente.cs" />
     <Compile Include="ClienteEmpresa.cs" />
     <Compile Include="ClientePersona.cs" />
-    <Compile Include="Configuracion.cs" />
     <Compile Include="CuentaBancaria.cs" />
     <Compile Include="Cuota.cs" />
+    <Compile Include="CuotaPago.cs" />
     <Compile Include="Distrito.cs" />
     <Compile Include="EntidadBancaria.cs" />
     <Compile Include="FormaPago.cs" />
     <Compile Include="ICliente.cs" />
+    <Compile Include="Pago.cs" />
     <Compile Include="Personal.cs" />
     <Compile Include="Prestamo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -150,6 +150,7 @@ namespace ReglaNegocio
                             {
                                 cuotas.Add(new Cuota()
                                 { 
+                                    Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
                                     FechaVencimiento = dr.GetDateTime(dr.GetOrdinal("FechaVencimiento")),
                                     Monto = dr.GetDouble(dr.GetOrdinal("Saldo")),
                                 });

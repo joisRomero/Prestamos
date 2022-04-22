@@ -74,6 +74,8 @@ namespace ReglaNegocio
             
             return eb;
         }
+
+
         public void Actualizar(EntidadBancaria eb)
         {
             string sql = $@"UPDATE entidadbancaria 
