@@ -50,6 +50,7 @@
     <Compile Include="Cuota.cs" />
     <Compile Include="Distrito.cs" />
     <Compile Include="EntidadBancaria.cs" />
+    <Compile Include="FormaPago.cs" />
     <Compile Include="ICliente.cs" />
     <Compile Include="Personal.cs" />
     <Compile Include="Prestamo.cs" />
@@ -61,6 +62,7 @@
     </Compile>
     <Compile Include="ReporteListaPrestamos.cs" />
     <Compile Include="ReporteResumenClientesDistrito.cs" />
+    <Compile Include="ReporteListaTotalPrestamo.cs" />
     <Compile Include="Sesion.cs" />
     <Compile Include="TipoDocumento.cs" />
     <Compile Include="Usuario.cs" />

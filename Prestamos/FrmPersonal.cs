@@ -63,7 +63,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text);
+                MessageBox.Show("No se pudo cargar los tipos de documentos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
@@ -134,7 +134,7 @@ namespace Prestamos
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("No se pudo registrar el personal", this.Text);
+                    MessageBox.Show("No se pudo registrar el personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -177,7 +177,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo obtener al personal", this.Text);
+                MessageBox.Show("No se pudo obtener al personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -202,7 +202,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar un personal", this.Text);
+                MessageBox.Show("Debe seleccionar un personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DgvListado.Focus();
             }
         }
@@ -229,7 +229,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo obtener al personal solicitado", this.Text); ;
+                MessageBox.Show("No se pudo obtener al personal solicitado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
         }
 
@@ -438,34 +438,43 @@ namespace Prestamos
 
         private void BtnDarDeBaja_Click(object sender, EventArgs e)
         {
-            var rpta = MessageBox.Show("¿Está seguro que deseas darle de baja?", "Salir",
+
+            if(DgvListado.DataSource != null)
+            {
+                var rpta = MessageBox.Show("¿Está seguro que deseas darle de baja?", "Salir",
                   MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                   MessageBoxDefaultButton.Button1);
 
-            if (rpta == DialogResult.Yes)
-            {
-                Personal personal = (Personal)this.DgvListado.CurrentRow.DataBoundItem;
-                if (personal.Nombres.Equals("Administrador"))
+                if (rpta == DialogResult.Yes)
                 {
-                    MessageBox.Show("No se le puede dar de baja al administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    try
+                    Personal personal = (Personal)this.DgvListado.CurrentRow.DataBoundItem;
+                    if (personal.Nombres.Equals("Administrador"))
                     {
-                        RNPersonal rn = new RNPersonal();
-                        RNUsuario rnU = new RNUsuario();
-                        rn.DarDeBaja(personal.Codigo);
-                        rnU.DarDeBajaCodPersonal(personal.Codigo);
+                        MessageBox.Show("No se le puede dar de baja al administrador", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    catch (Exception)
+                    else
                     {
-                        throw;
-                    }
+                        try
+                        {
+                            RNPersonal rn = new RNPersonal();
+                            RNUsuario rnU = new RNUsuario();
+                            rn.DarDeBaja(personal.Codigo);
+                            rnU.DarDeBajaCodPersonal(personal.Codigo);
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
 
-                    BtnListar.PerformClick();
+                        BtnListar.PerformClick();
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Debe listar antes de dar de baja", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
     }
 }

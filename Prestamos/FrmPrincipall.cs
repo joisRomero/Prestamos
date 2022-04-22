@@ -179,6 +179,22 @@ namespace Prestamos
             }
         }
 
+        private void IniciarFrmPago()
+        {
+            if (Sesion.Caja == null || Sesion.Caja.Estado == false)
+            {
+                MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                FrmPago frm = FrmPago.LlamarFormulario;
+
+                frm.MdiParent = this;
+                frm.Show();
+                frm.Focus();
+            }
+        }
+
         private void IniciarFrmListaPrestamos()
         {
             if (Sesion.Caja == null || Sesion.Caja.Estado == false)
@@ -188,6 +204,22 @@ namespace Prestamos
             else
             {
                 FrmListaPrestamos frm = FrmListaPrestamos.LlamarFormulario;
+
+                frm.MdiParent = this;
+                frm.Show();
+                frm.Focus();
+            }
+        }
+
+        private void IniciarFrmListaTotalPrestamos()
+        {
+            if (Sesion.Caja == null || Sesion.Caja.Estado == false)
+            {
+                MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                FrmListaTotalPrestamos frm = FrmListaTotalPrestamos.LlamarFormulario;
 
                 frm.MdiParent = this;
                 frm.Show();
@@ -356,10 +388,7 @@ namespace Prestamos
 
         private void MnuPago_Click(object sender, EventArgs e)
         {
-            if (Sesion.Caja == null || Sesion.Caja.Estado == false)
-            {
-                MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            IniciarFrmPago();
         }
 
         private void MnuEstadoDeCuenta_Click(object sender, EventArgs e)
@@ -372,10 +401,13 @@ namespace Prestamos
 
         private void MnuListaTotalDePrestamos_Click(object sender, EventArgs e)
         {
-            if (Sesion.Caja != null && Sesion.Caja.Estado == true)
-            {
-                MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            IniciarFrmListaTotalPrestamos();
         }
+
+        private void TsbPago_Click(object sender, EventArgs e)
+        {
+            IniciarFrmPago();
+        }
+
     }
 }

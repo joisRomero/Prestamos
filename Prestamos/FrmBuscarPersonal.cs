@@ -36,7 +36,7 @@ namespace Prestamos
             } 
             else
             {
-                MessageBox.Show("Debe seleccionar a un personal", this.Text);
+                MessageBox.Show("Debe seleccionar a un personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DgvListado.Focus();
             }
         }

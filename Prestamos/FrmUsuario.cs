@@ -112,7 +112,7 @@ namespace Prestamos
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("No se pudo registrar el personal", this.Text);
+                    MessageBox.Show("No se pudo registrar el personal", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -311,7 +311,7 @@ namespace Prestamos
             }
             catch (Exception)
             {
-                MessageBox.Show("No se pudo obtener al personal solicitado", this.Text); ;
+                MessageBox.Show("No se pudo obtener al personal solicitado", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

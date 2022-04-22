@@ -109,7 +109,7 @@ namespace Prestamos
             }
             catch
             {
-                MessageBox.Show("No se pudo cargar las entidades bancarias", this.Text);
+                MessageBox.Show("No se pudo cargar las entidades bancarias", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -139,7 +139,7 @@ namespace Prestamos
                 }
                 catch
                 {
-                    MessageBox.Show("Error al guardar", this.Text);
+                    MessageBox.Show("Error al guardar", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -179,7 +179,7 @@ namespace Prestamos
             }
             catch
             {
-                MessageBox.Show("No se pudo traer la lista de cuentas bancarias", this.Text);
+                MessageBox.Show("No se pudo traer la lista de cuentas bancarias", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -204,7 +204,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una cuenta bancaria", this.Text);
+                MessageBox.Show("Debe seleccionar una cuenta bancaria", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DgvListado.Focus();
             }
         }
@@ -226,7 +226,7 @@ namespace Prestamos
             }
             catch
             {
-                MessageBox.Show("No se pudo recuperar los datos de la cuenta bancaria", this.Text);
+                MessageBox.Show("No se pudo recuperar los datos de la cuenta bancaria", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void ComboBox_Validating(object sender, CancelEventArgs e)

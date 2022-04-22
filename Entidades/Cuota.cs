@@ -9,7 +9,7 @@ namespace Entidades
     public class Cuota
     {
         public int Numero { get; set; }
-        public DateTime Fecha { get; set; }
+        public DateTime FechaVencimiento { get; set; }
         public double Monto { get; set; }
     }
 }

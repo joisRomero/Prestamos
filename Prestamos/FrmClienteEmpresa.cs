@@ -104,11 +104,9 @@ namespace Prestamos
                     this.CboDepartamento.DisplayMember = "Departamento";
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
-                MessageBox.Show("No se puede cargar los departamentos", this.Text);
+                MessageBox.Show("No se puede cargar los departamentos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -136,11 +134,9 @@ namespace Prestamos
                     }
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar los distritos", this.Text);
+                MessageBox.Show("No se pudo cargar los distritos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -167,11 +163,9 @@ namespace Prestamos
                     }
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar las provincias", this.Text);
+                MessageBox.Show("No se pudo cargar las provincias", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -191,11 +185,9 @@ namespace Prestamos
                     this.CboCategoria.ValueMember = "Codigo";
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar las categorías", this.Text);
+                MessageBox.Show("No se pudo cargar las categorías", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -223,11 +215,9 @@ namespace Prestamos
                     this.BtnListar.PerformClick();
                     this.LimpiarControles();
                 }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-                catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+                catch (Exception)
                 {
-                    MessageBox.Show("Error al guardar", this.Text);
+                    MessageBox.Show("Error al guardar", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -269,11 +259,9 @@ namespace Prestamos
                     DarFormatoFila(encontradas);
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
-                MessageBox.Show("No se pudo traer la lista de empresas", this.Text);
+                MessageBox.Show("No se pudo traer la lista de empresas", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -298,7 +286,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una empresa", this.Text);
+                MessageBox.Show("Debe seleccionar una empresa", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DgvListado.Focus();
             }
         }
@@ -326,11 +314,9 @@ namespace Prestamos
 
                 this.HabilitarControles(true);
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
-                MessageBox.Show("No se pudo recuperar los datos de la empresa", this.Text);
+                MessageBox.Show("No se pudo recuperar los datos de la empresa", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -484,7 +470,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar el departamento");
+                MessageBox.Show("Debe seleccionar el departamento", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -501,7 +487,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar la provincia");
+                MessageBox.Show("Debe seleccionar la provincia", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

@@ -132,7 +132,7 @@ namespace Prestamos
                     this.DarFormatoFila(categorias);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("No se pudo obtener las categorías", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -159,7 +159,7 @@ namespace Prestamos
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una categoría", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe seleccionar una categoría", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.DgvListado.Focus();
             }
         }
@@ -182,14 +182,12 @@ namespace Prestamos
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo encontrar la categoría solicitada", this.Text);
+                    MessageBox.Show("No se pudo encontrar la categoría solicitada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
-            catch (Exception ex)
-#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
+            catch (Exception)
             {
-                MessageBox.Show("No se pudo obtener la categoría solicitada", this.Text);
+                MessageBox.Show("No se pudo obtener la categoría solicitada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -243,17 +241,25 @@ namespace Prestamos
 
         private void BtnDarDeBaja_Click(object sender, EventArgs e)
         {
-            var rpta = MessageBox.Show("¿Está seguro que deseas darle de baja?", this.Text,
+            if(DgvListado.DataSource != null)
+            {
+                var rpta = MessageBox.Show("¿Está seguro que deseas darle de baja?", this.Text,
                   MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                   MessageBoxDefaultButton.Button1);
 
-            if (rpta == DialogResult.Yes)
-            {
-                RNCategoriaCliente rn = new RNCategoriaCliente();
-                CategoriaCliente categoria = (CategoriaCliente)this.DgvListado.CurrentRow.DataBoundItem;
-                rn.DarDeBaja(categoria.Codigo);
-                BtnListar.PerformClick();
+                if (rpta == DialogResult.Yes)
+                {
+                    RNCategoriaCliente rn = new RNCategoriaCliente();
+                    CategoriaCliente categoria = (CategoriaCliente)this.DgvListado.CurrentRow.DataBoundItem;
+                    rn.DarDeBaja(categoria.Codigo);
+                    BtnListar.PerformClick();
+                }
             }
+            else
+            {
+                MessageBox.Show("Debe listar antes de dar de baja", this.Text, MessageBoxButtons.OK , MessageBoxIcon.Warning);
+            }
+            
         }
 
         private void BtnCerrrar_Click(object sender, EventArgs e)
