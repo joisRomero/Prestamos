@@ -352,9 +352,9 @@ namespace Prestamos
 
         private void ValidarLongitudNumero(CancelEventArgs e)
         {
-            if (this.TxtNumero.TextLength < 13)
+            if (this.TxtNumero.TextLength < 10)
             {
-                ErrNotificador.SetError(this.TxtNumero, "El nro de cuenta debe contener 13 dígitos");
+                ErrNotificador.SetError(this.TxtNumero, "El nro de cuenta debe contener al menos 10 dígitos");
                 e.Cancel = true;
             }
         }
