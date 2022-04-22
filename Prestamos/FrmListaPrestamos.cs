@@ -120,19 +120,21 @@ namespace Prestamos
         private DataTable CrearTablaDatos()
         {
             DataTable tablaDatos = new DataTable();
-            tablaDatos.Columns.Add("Documento", typeof(string));
+            tablaDatos.Columns.Add("TipoCliente", typeof(string));
             tablaDatos.Columns.Add("Nombre", typeof(string));
             tablaDatos.Columns.Add("Fecha", typeof(DateTime));
             tablaDatos.Columns.Add("Monto Prestado", typeof(double));
+            tablaDatos.Columns.Add("Interes", typeof(double));
             tablaDatos.Columns.Add("Periodo", typeof(string));
             tablaDatos.Columns.Add("Cantidad de cuotas", typeof(int));
 
             foreach (DataGridViewRow row in DgvListado.Rows)
             {
-                tablaDatos.Rows.Add(row.Cells["cdDocumento"].Value.ToString(),
+                tablaDatos.Rows.Add(row.Cells["cdTipoC"].Value.ToString(),
                     row.Cells["cdNombre"].Value.ToString(),
                     DateTime.Parse(row.Cells["CdFecha"].Value.ToString()),
                     double.Parse(row.Cells["CdMontoPrestado"].Value.ToString()),
+                    double.Parse(row.Cells["Interes"].Value.ToString()),
                     row.Cells["CdPeriodo"].Value.ToString(),
                     int.Parse(row.Cells["CdCantidadCuotas"].Value.ToString()));
             }
