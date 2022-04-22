@@ -70,17 +70,7 @@ namespace ReglaNegocio
             }
 
         }
-        public List<Prestamo> Listar()
-        {
-            List<Prestamo> pres = null;
-            string sql = $@"SELECT distinct P.Fecha, P.Monto, P.Interes, P.TipoPeriodo, P.CantidadPeriodos, 
-                            IF(CE.Codigo = P.CodigoClienteEmpresa, CE.RazonSocial, CP.Nombres) AS Nombre
-                            FROM prestamo P JOIN clienteempresa CE 
-                            JOIN clientepersona CP ON CP.Codigo = P.CodigoClientePersona
-                            WHERE P.CodigoPersonal = {Sesion.Usuario.Personal.Codigo} AND P.Fecha >= {Sesion.Caja.FechaInicio}
-                            ORDER BY P.Fecha";
-
-
+        
         public List<Prestamo> PrestamosPorPagar(ICliente cliente)
         {
             List<Prestamo> prestamos = null;
