@@ -376,6 +376,10 @@ namespace Prestamos
             {
                 MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else
+            {
+
+            }
         }
     }
 }
