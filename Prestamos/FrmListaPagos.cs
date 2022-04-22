@@ -13,68 +13,51 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Prestamos
 {
-    public partial class FrmListaPrestamos : Form
+    public partial class FrmListaPagos : Form
     {
-        public static FrmListaPrestamos Instancia = null;
+        public static FrmListaPagos Instancia = null;
         Thread subProceso;
         bool estaExportanto = false;
-        private FrmListaPrestamos()
+        public FrmListaPagos()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
         }
-
-        public static FrmListaPrestamos LlamarFormulario
+        public static FrmListaPagos LlamarFormulario
         {
             get
             {
                 if (Instancia == null || Instancia.IsDisposed)
                 {
-                    Instancia = new FrmListaPrestamos();
+                    Instancia = new FrmListaPagos();
                 }
                 return Instancia;
             }
         }
-
-        private void BtnCerrrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void BtnListar_Click(object sender, EventArgs e)
         {
-            RNReporteListaPrestamos rn = new RNReporteListaPrestamos();
-            List<ReporteListaPrestamos> listPres;
+            RNReporteListaPagos rn = new RNReporteListaPagos();
+            List<ReporteListaPagos> listPagos;
 
             this.DgvListado.DataSource = null;
 
             try
             {
-                listPres = rn.Listar();
-                if (listPres.Count > 0)
+                listPagos = rn.Listar();
+                if (listPagos.Count > 0)
                 {
                     this.DgvListado.AutoGenerateColumns = false;
-                    this.DgvListado.DataSource = listPres;
+                    this.DgvListado.DataSource = listPagos;
                 }
             }
             catch (Exception)
             {
                 MessageBox.Show("No se pudo obtener el listado", this.Text);
             }
-            //this.DgvListado.DataSource = null;
-            //if (Program.Prestamos.Count > 0)
-            //{
-            //    this.DgvListado.AutoGenerateColumns = false;
-            //    this.DgvListado.DataSource = Program.Prestamos;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No se han registrado préstamos", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
         }
 
         private void BtnExportarExcel_Click(object sender, EventArgs e)
@@ -87,7 +70,7 @@ namespace Prestamos
             else
             {
                 GuardarArchivoDialogo.Filter = "Libro de Excel|*.xlsx";
-                GuardarArchivoDialogo.FileName = $"{this.Text}{DateTime.Now:ddMMyyHHmmss}";
+                GuardarArchivoDialogo.FileName = $"{this.Text} - {DateTime.Now}";
                 GuardarArchivoDialogo.DefaultExt = ".xlsx";
 
                 if (GuardarArchivoDialogo.ShowDialog() == DialogResult.OK)
@@ -107,7 +90,6 @@ namespace Prestamos
             }
         }
 
-
         private void ExportarAExcel()
         {
             DataTable tablaDatos = CrearTablaDatos();
@@ -117,41 +99,22 @@ namespace Prestamos
             estaExportanto = false;
         }
 
-        private DataTable CrearTablaDatos()
+        private void MostrarNotificacion()
         {
-            DataTable tablaDatos = new DataTable();
-            tablaDatos.Columns.Add("TipoCliente", typeof(string));
-            tablaDatos.Columns.Add("Nombre", typeof(string));
-            tablaDatos.Columns.Add("Fecha", typeof(DateTime));
-            tablaDatos.Columns.Add("Monto Prestado", typeof(double));
-            tablaDatos.Columns.Add("Interes", typeof(double));
-            tablaDatos.Columns.Add("Periodo", typeof(string));
-            tablaDatos.Columns.Add("Cantidad de cuotas", typeof(int));
-
-            foreach (DataGridViewRow row in DgvListado.Rows)
-            {
-                tablaDatos.Rows.Add(row.Cells["cdTipoC"].Value.ToString(),
-                    row.Cells["cdNombre"].Value.ToString(),
-                    DateTime.Parse(row.Cells["CdFecha"].Value.ToString()),
-                    double.Parse(row.Cells["CdMontoPrestado"].Value.ToString()),
-                    double.Parse(row.Cells["Interes"].Value.ToString()),
-                    row.Cells["CdPeriodo"].Value.ToString(),
-                    int.Parse(row.Cells["CdCantidadCuotas"].Value.ToString()));
-            }
-
-            return tablaDatos;
+            Notificacion.Visible = true;
+            Notificacion.ShowBalloonTip(100, "Lista de préstamos", "Exportación terminada con éxito", ToolTipIcon.Info);
         }
 
         private SLDocument CrearDocumentoExcel(DataTable tablaDatos)
         {
             SLDocument documento = new SLDocument();
-            
+
             string ruta = Path.GetFullPath(Path.Combine(Application.StartupPath, @"../../") + @"\Img\principal_32.png");
 
             SLPicture pic = new SLPicture(ruta);
 
-            documento.SetCellValue("B2", "GESTION DE PRESTAMOS");
-            documento.SetCellValue("B3", "LISTA DE PRESTAMOS");
+            documento.SetCellValue("B2", "GESTION DE PAGOS");
+            documento.SetCellValue("B3", "LISTA DE PAGOS");
             SLStyle estilos = documento.CreateStyle();
             estilos.Font.Bold = true;
             estilos.Border.BottomBorder.BorderStyle = BorderStyleValues.Thin;
@@ -161,15 +124,15 @@ namespace Prestamos
             estilos.Alignment.Vertical = VerticalAlignmentValues.Center;
             estilos.Alignment.Horizontal = HorizontalAlignmentValues.Center;
 
-            documento.MergeWorksheetCells("B2", "H2");
-            documento.MergeWorksheetCells("B3", "H3");
-            documento.SetCellStyle("B2", "H3", estilos);
+            documento.MergeWorksheetCells("C2", "F2");
+            documento.MergeWorksheetCells("C3", "F3");
+            documento.SetCellStyle("C2", "F3", estilos);
 
             pic.SetPosition(1, 1.5);
             documento.InsertPicture(pic);
 
             int indexFilaInicio = 5;
-            int indexColumnaInicio = 2;
+            int indexColumnaInicio = 3;
 
             documento.ImportDataTable(indexFilaInicio, indexColumnaInicio, tablaDatos, true);
 
@@ -193,10 +156,23 @@ namespace Prestamos
             return documento;
         }
 
-        private void MostrarNotificacion()
+        private DataTable CrearTablaDatos()
         {
-            Notificacion.Visible = true;
-            Notificacion.ShowBalloonTip(100, "Lista de préstamos", "Exportación terminada con éxito", ToolTipIcon.Info);
+            DataTable tablaDatos = new DataTable();
+            tablaDatos.Columns.Add("Cliente", typeof(string));
+            tablaDatos.Columns.Add("Fecha", typeof(DateTime));
+            tablaDatos.Columns.Add("Monto Pagado", typeof(double));
+            tablaDatos.Columns.Add("Forma Pago", typeof(string));
+
+            foreach (DataGridViewRow row in DgvListado.Rows)
+            {
+                tablaDatos.Rows.Add(row.Cells["cdNombreCliente"].Value.ToString(),
+                    DateTime.Parse(row.Cells["cdFecha"].Value.ToString()),
+                    double.Parse(row.Cells["cdMontoPagado"].Value.ToString()),
+                    row.Cells["cdFormaPago"].Value.ToString());
+            };
+
+            return tablaDatos;
         }
 
         private void Notificacion_BalloonTipClosed(object sender, EventArgs e)
@@ -210,7 +186,7 @@ namespace Prestamos
             Notificacion.Visible = false;
         }
 
-        private void FrmListaPrestamos_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmListaPagos_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (estaExportanto)
             {

@@ -55,7 +55,7 @@ namespace Prestamos
             this.BtnCerrrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnCerrrar.Image")));
             this.BtnCerrrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnCerrrar.Location = new System.Drawing.Point(915, 543);
-            this.BtnCerrrar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnCerrrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnCerrrar.Name = "BtnCerrrar";
             this.BtnCerrrar.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
             this.BtnCerrrar.Size = new System.Drawing.Size(136, 49);
@@ -71,7 +71,7 @@ namespace Prestamos
             this.BtnListar.Image = ((System.Drawing.Image)(resources.GetObject("BtnListar.Image")));
             this.BtnListar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnListar.Location = new System.Drawing.Point(915, 15);
-            this.BtnListar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnListar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnListar.Name = "BtnListar";
             this.BtnListar.Padding = new System.Windows.Forms.Padding(13, 0, 20, 0);
             this.BtnListar.Size = new System.Drawing.Size(136, 49);
@@ -119,7 +119,7 @@ namespace Prestamos
             this.BtnExportarExcel.Image = ((System.Drawing.Image)(resources.GetObject("BtnExportarExcel.Image")));
             this.BtnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnExportarExcel.Location = new System.Drawing.Point(771, 543);
-            this.BtnExportarExcel.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnExportarExcel.Name = "BtnExportarExcel";
             this.BtnExportarExcel.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.BtnExportarExcel.Size = new System.Drawing.Size(136, 49);
@@ -178,7 +178,7 @@ namespace Prestamos
             // Interes
             // 
             this.Interes.DataPropertyName = "Interes";
-            this.Interes.HeaderText = "Interés";
+            this.Interes.HeaderText = "Interes";
             this.Interes.MinimumWidth = 6;
             this.Interes.Name = "Interes";
             this.Interes.ReadOnly = true;
@@ -209,7 +209,7 @@ namespace Prestamos
             this.Controls.Add(this.BtnCerrrar);
             this.Controls.Add(this.BtnListar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmListaPrestamos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lista de Préstamos";

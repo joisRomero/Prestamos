@@ -16,7 +16,7 @@ namespace ReglaNegocio
         {
             List<ReporteListaPrestamos> pres = null;
             string sql = $@"SELECT P.Fecha AS Fecha, P.Monto AS MontoPrestado, P.Interes AS Interes, P.TipoPeriodo AS Periodo, P.CantidadPeriodos AS CantidadCuotas, 
-                            if((P.CodigoClientePersona) is null, CE.RazonSocial, CP.Nombres) AS Nombre,
+                            if((P.CodigoClientePersona) is null, CE.RazonSocial, CONCAT(CP.Apellidos,', ',CP.Nombres)) AS Nombre,
                             if((P.CodigoClientePersona) is null, 'Empresa', 'Persona') AS TipoCliente
                             FROM prestamo P 
                             LEFT JOIN clienteempresa CE ON CE.Codigo = P.CodigoClienteEmpresa

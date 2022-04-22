@@ -76,6 +76,8 @@ namespace Prestamos
             this.MnuEstadoDePrestamo = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuListaPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuListaTotalDePrestamos = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuListaPagos = new System.Windows.Forms.ToolStripMenuItem();
+
             this.statusStrip1.SuspendLayout();
             this.TsBarraHerramientas.SuspendLayout();
             this.MnuBarraPredeterminada.SuspendLayout();
@@ -84,6 +86,7 @@ namespace Prestamos
             // statusStrip1
             // 
             this.statusStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.LblBarraPersonal,
@@ -93,9 +96,10 @@ namespace Prestamos
             this.LblBarraTipoUsuario,
             this.toolStripStatusLabel4,
             this.LblBarraEstado});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 525);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1067, 29);
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -104,7 +108,7 @@ namespace Prestamos
             this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(65, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(81, 23);
             this.toolStripStatusLabel1.Text = "Personal:";
             // 
             // LblBarraPersonal
@@ -112,7 +116,7 @@ namespace Prestamos
             this.LblBarraPersonal.BackColor = System.Drawing.SystemColors.ControlLight;
             this.LblBarraPersonal.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
             this.LblBarraPersonal.Name = "LblBarraPersonal";
-            this.LblBarraPersonal.Size = new System.Drawing.Size(59, 17);
+            this.LblBarraPersonal.Size = new System.Drawing.Size(75, 24);
             this.LblBarraPersonal.Text = "personal";
             // 
             // toolStripStatusLabel3
@@ -120,7 +124,7 @@ namespace Prestamos
             this.toolStripStatusLabel3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripStatusLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(112, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(144, 23);
             this.toolStripStatusLabel3.Text = "Nombre usuario:";
             // 
             // LblBarraNombreUsuario
@@ -128,7 +132,7 @@ namespace Prestamos
             this.LblBarraNombreUsuario.BackColor = System.Drawing.SystemColors.ControlLight;
             this.LblBarraNombreUsuario.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
             this.LblBarraNombreUsuario.Name = "LblBarraNombreUsuario";
-            this.LblBarraNombreUsuario.Size = new System.Drawing.Size(97, 17);
+            this.LblBarraNombreUsuario.Size = new System.Drawing.Size(126, 24);
             this.LblBarraNombreUsuario.Text = "nombreusuario";
             // 
             // toolStripStatusLabel2
@@ -136,7 +140,7 @@ namespace Prestamos
             this.toolStripStatusLabel2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripStatusLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(114, 23);
             this.toolStripStatusLabel2.Text = "Tipo usuario:";
             // 
             // LblBarraTipoUsuario
@@ -144,7 +148,7 @@ namespace Prestamos
             this.LblBarraTipoUsuario.BackColor = System.Drawing.SystemColors.ControlLight;
             this.LblBarraTipoUsuario.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
             this.LblBarraTipoUsuario.Name = "LblBarraTipoUsuario";
-            this.LblBarraTipoUsuario.Size = new System.Drawing.Size(74, 17);
+            this.LblBarraTipoUsuario.Size = new System.Drawing.Size(96, 24);
             this.LblBarraTipoUsuario.Text = "tipousuario";
             // 
             // toolStripStatusLabel4
@@ -152,14 +156,14 @@ namespace Prestamos
             this.toolStripStatusLabel4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripStatusLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(38, 17);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(49, 23);
             this.toolStripStatusLabel4.Text = "Caja:";
             // 
             // LblBarraEstado
             // 
             this.LblBarraEstado.BackColor = System.Drawing.SystemColors.ControlLight;
             this.LblBarraEstado.Name = "LblBarraEstado";
-            this.LblBarraEstado.Size = new System.Drawing.Size(71, 17);
+            this.LblBarraEstado.Size = new System.Drawing.Size(91, 23);
             this.LblBarraEstado.Text = "cajaestado";
             // 
             // TsBarraHerramientas
@@ -176,9 +180,9 @@ namespace Prestamos
             this.Separador2,
             this.TsbPrestamo,
             this.TsbPago});
-            this.TsBarraHerramientas.Location = new System.Drawing.Point(0, 24);
+            this.TsBarraHerramientas.Location = new System.Drawing.Point(0, 28);
             this.TsBarraHerramientas.Name = "TsBarraHerramientas";
-            this.TsBarraHerramientas.Size = new System.Drawing.Size(800, 25);
+            this.TsBarraHerramientas.Size = new System.Drawing.Size(1067, 25);
             this.TsBarraHerramientas.TabIndex = 11;
             this.TsBarraHerramientas.Text = "Barra de herramientas";
             // 
@@ -189,7 +193,7 @@ namespace Prestamos
             this.TsbCategoriaCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbCategoriaCliente.Margin = new System.Windows.Forms.Padding(2);
             this.TsbCategoriaCliente.Name = "TsbCategoriaCliente";
-            this.TsbCategoriaCliente.Size = new System.Drawing.Size(23, 21);
+            this.TsbCategoriaCliente.Size = new System.Drawing.Size(29, 21);
             this.TsbCategoriaCliente.Text = "Categoría de cliente";
             this.TsbCategoriaCliente.Click += new System.EventHandler(this.TsbCategoriaCliente_Click);
             // 
@@ -200,7 +204,7 @@ namespace Prestamos
             this.TsbDistritos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbDistritos.Margin = new System.Windows.Forms.Padding(2);
             this.TsbDistritos.Name = "TsbDistritos";
-            this.TsbDistritos.Size = new System.Drawing.Size(23, 21);
+            this.TsbDistritos.Size = new System.Drawing.Size(29, 21);
             this.TsbDistritos.Text = "Distritos";
             this.TsbDistritos.Click += new System.EventHandler(this.TsbDistritos_Click);
             // 
@@ -211,7 +215,7 @@ namespace Prestamos
             this.TsbEmpresas.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbEmpresas.Margin = new System.Windows.Forms.Padding(2);
             this.TsbEmpresas.Name = "TsbEmpresas";
-            this.TsbEmpresas.Size = new System.Drawing.Size(23, 21);
+            this.TsbEmpresas.Size = new System.Drawing.Size(29, 21);
             this.TsbEmpresas.Text = "Empresas";
             this.TsbEmpresas.Click += new System.EventHandler(this.TsbEmpresas_Click);
             // 
@@ -222,7 +226,7 @@ namespace Prestamos
             this.TsbPersonas.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbPersonas.Margin = new System.Windows.Forms.Padding(2);
             this.TsbPersonas.Name = "TsbPersonas";
-            this.TsbPersonas.Size = new System.Drawing.Size(23, 21);
+            this.TsbPersonas.Size = new System.Drawing.Size(29, 21);
             this.TsbPersonas.Text = "Personas";
             this.TsbPersonas.Click += new System.EventHandler(this.TsbPersonas_Click);
             // 
@@ -238,7 +242,7 @@ namespace Prestamos
             this.TsbPersonal.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbPersonal.Margin = new System.Windows.Forms.Padding(2);
             this.TsbPersonal.Name = "TsbPersonal";
-            this.TsbPersonal.Size = new System.Drawing.Size(23, 21);
+            this.TsbPersonal.Size = new System.Drawing.Size(29, 21);
             this.TsbPersonal.Text = "Personal";
             this.TsbPersonal.Click += new System.EventHandler(this.TsbPersonal_Click);
             // 
@@ -249,7 +253,7 @@ namespace Prestamos
             this.TsbUsuarios.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.TsbUsuarios.Name = "TsbUsuarios";
-            this.TsbUsuarios.Size = new System.Drawing.Size(23, 21);
+            this.TsbUsuarios.Size = new System.Drawing.Size(29, 21);
             this.TsbUsuarios.Text = "Usuarios";
             this.TsbUsuarios.Click += new System.EventHandler(this.TsbUsuarios_Click);
             // 
@@ -265,7 +269,7 @@ namespace Prestamos
             this.TsbPrestamo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbPrestamo.Margin = new System.Windows.Forms.Padding(2);
             this.TsbPrestamo.Name = "TsbPrestamo";
-            this.TsbPrestamo.Size = new System.Drawing.Size(23, 21);
+            this.TsbPrestamo.Size = new System.Drawing.Size(29, 21);
             this.TsbPrestamo.Text = "Prestámo";
             this.TsbPrestamo.Click += new System.EventHandler(this.TsbPrestamo_Click);
             // 
@@ -275,19 +279,22 @@ namespace Prestamos
             this.TsbPago.Image = ((System.Drawing.Image)(resources.GetObject("TsbPago.Image")));
             this.TsbPago.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbPago.Name = "TsbPago";
+
             this.TsbPago.Size = new System.Drawing.Size(23, 22);
+
             this.TsbPago.Text = "Pago";
             this.TsbPago.Click += new System.EventHandler(this.TsbPago_Click);
             // 
             // MnuBarraPredeterminada
             // 
+            this.MnuBarraPredeterminada.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MnuBarraPredeterminada.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuDatos,
             this.MnuOperaciones,
             this.reportesToolStripMenuItem});
             this.MnuBarraPredeterminada.Location = new System.Drawing.Point(0, 0);
             this.MnuBarraPredeterminada.Name = "MnuBarraPredeterminada";
-            this.MnuBarraPredeterminada.Size = new System.Drawing.Size(800, 24);
+            this.MnuBarraPredeterminada.Size = new System.Drawing.Size(1067, 28);
             this.MnuBarraPredeterminada.TabIndex = 10;
             this.MnuBarraPredeterminada.Text = "menuStrip1";
             // 
@@ -310,7 +317,7 @@ namespace Prestamos
             this.MnuSalir});
             this.MnuDatos.Image = ((System.Drawing.Image)(resources.GetObject("MnuDatos.Image")));
             this.MnuDatos.Name = "MnuDatos";
-            this.MnuDatos.Size = new System.Drawing.Size(65, 20);
+            this.MnuDatos.Size = new System.Drawing.Size(82, 24);
             this.MnuDatos.Text = "&Datos";
             this.MnuDatos.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
@@ -318,7 +325,7 @@ namespace Prestamos
             // 
             this.MnuCategoriaCliente.Image = ((System.Drawing.Image)(resources.GetObject("MnuCategoriaCliente.Image")));
             this.MnuCategoriaCliente.Name = "MnuCategoriaCliente";
-            this.MnuCategoriaCliente.Size = new System.Drawing.Size(179, 22);
+            this.MnuCategoriaCliente.Size = new System.Drawing.Size(226, 26);
             this.MnuCategoriaCliente.Text = "Categoría de cliente";
             this.MnuCategoriaCliente.Click += new System.EventHandler(this.MnuCategoriaCliente_Click);
             // 
@@ -326,7 +333,7 @@ namespace Prestamos
             // 
             this.MnuDistritos.Image = ((System.Drawing.Image)(resources.GetObject("MnuDistritos.Image")));
             this.MnuDistritos.Name = "MnuDistritos";
-            this.MnuDistritos.Size = new System.Drawing.Size(179, 22);
+            this.MnuDistritos.Size = new System.Drawing.Size(226, 26);
             this.MnuDistritos.Text = "Distritos";
             this.MnuDistritos.Click += new System.EventHandler(this.MnuDistritos_Click);
             // 
@@ -334,7 +341,7 @@ namespace Prestamos
             // 
             this.MnuEmpresas.Image = ((System.Drawing.Image)(resources.GetObject("MnuEmpresas.Image")));
             this.MnuEmpresas.Name = "MnuEmpresas";
-            this.MnuEmpresas.Size = new System.Drawing.Size(179, 22);
+            this.MnuEmpresas.Size = new System.Drawing.Size(226, 26);
             this.MnuEmpresas.Text = "Empresas";
             this.MnuEmpresas.Click += new System.EventHandler(this.MnuEmpresas_Click);
             // 
@@ -342,20 +349,20 @@ namespace Prestamos
             // 
             this.MnuPersonas.Image = ((System.Drawing.Image)(resources.GetObject("MnuPersonas.Image")));
             this.MnuPersonas.Name = "MnuPersonas";
-            this.MnuPersonas.Size = new System.Drawing.Size(179, 22);
+            this.MnuPersonas.Size = new System.Drawing.Size(226, 26);
             this.MnuPersonas.Text = "Personas";
             this.MnuPersonas.Click += new System.EventHandler(this.MnuPersonas_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(176, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(223, 6);
             // 
             // MnuEntidadBancaria
             // 
             this.MnuEntidadBancaria.Image = ((System.Drawing.Image)(resources.GetObject("MnuEntidadBancaria.Image")));
             this.MnuEntidadBancaria.Name = "MnuEntidadBancaria";
-            this.MnuEntidadBancaria.Size = new System.Drawing.Size(179, 22);
+            this.MnuEntidadBancaria.Size = new System.Drawing.Size(226, 26);
             this.MnuEntidadBancaria.Text = "Entidad bancaria";
             this.MnuEntidadBancaria.Click += new System.EventHandler(this.MnuEntidadBancaria_Click);
             // 
@@ -363,20 +370,20 @@ namespace Prestamos
             // 
             this.MnuCuentaBancaria.Image = ((System.Drawing.Image)(resources.GetObject("MnuCuentaBancaria.Image")));
             this.MnuCuentaBancaria.Name = "MnuCuentaBancaria";
-            this.MnuCuentaBancaria.Size = new System.Drawing.Size(179, 22);
+            this.MnuCuentaBancaria.Size = new System.Drawing.Size(226, 26);
             this.MnuCuentaBancaria.Text = "Cuenta bancaria";
             this.MnuCuentaBancaria.Click += new System.EventHandler(this.MnuCuentaBancaria_Click);
             // 
             // Separador3
             // 
             this.Separador3.Name = "Separador3";
-            this.Separador3.Size = new System.Drawing.Size(176, 6);
+            this.Separador3.Size = new System.Drawing.Size(223, 6);
             // 
             // MnuPersonal
             // 
             this.MnuPersonal.Image = ((System.Drawing.Image)(resources.GetObject("MnuPersonal.Image")));
             this.MnuPersonal.Name = "MnuPersonal";
-            this.MnuPersonal.Size = new System.Drawing.Size(179, 22);
+            this.MnuPersonal.Size = new System.Drawing.Size(226, 26);
             this.MnuPersonal.Text = "Personal";
             this.MnuPersonal.Click += new System.EventHandler(this.MnuPersonal_Click);
             // 
@@ -384,31 +391,31 @@ namespace Prestamos
             // 
             this.MnuUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("MnuUsuarios.Image")));
             this.MnuUsuarios.Name = "MnuUsuarios";
-            this.MnuUsuarios.Size = new System.Drawing.Size(179, 22);
+            this.MnuUsuarios.Size = new System.Drawing.Size(226, 26);
             this.MnuUsuarios.Text = "Usuarios";
             this.MnuUsuarios.Click += new System.EventHandler(this.MnuUsuarios_Click);
             // 
             // MnuSeparador2
             // 
             this.MnuSeparador2.Name = "MnuSeparador2";
-            this.MnuSeparador2.Size = new System.Drawing.Size(176, 6);
+            this.MnuSeparador2.Size = new System.Drawing.Size(223, 6);
             // 
             // MnuCerrarSesion
             // 
             this.MnuCerrarSesion.Name = "MnuCerrarSesion";
-            this.MnuCerrarSesion.Size = new System.Drawing.Size(179, 22);
+            this.MnuCerrarSesion.Size = new System.Drawing.Size(226, 26);
             this.MnuCerrarSesion.Text = "Cerrar sesión";
             this.MnuCerrarSesion.Click += new System.EventHandler(this.MnuCerrarSesion_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(176, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(223, 6);
             // 
             // MnuSalir
             // 
             this.MnuSalir.Name = "MnuSalir";
-            this.MnuSalir.Size = new System.Drawing.Size(179, 22);
+            this.MnuSalir.Size = new System.Drawing.Size(226, 26);
             this.MnuSalir.Text = "Salir";
             this.MnuSalir.Click += new System.EventHandler(this.MnuSalir_Click);
             // 
@@ -422,7 +429,7 @@ namespace Prestamos
             this.MnuCerrarCaja});
             this.MnuOperaciones.Image = ((System.Drawing.Image)(resources.GetObject("MnuOperaciones.Image")));
             this.MnuOperaciones.Name = "MnuOperaciones";
-            this.MnuOperaciones.Size = new System.Drawing.Size(101, 20);
+            this.MnuOperaciones.Size = new System.Drawing.Size(126, 24);
             this.MnuOperaciones.Text = "&Operaciones";
             // 
             // MnuPrestamo
@@ -430,6 +437,7 @@ namespace Prestamos
             this.MnuPrestamo.Image = ((System.Drawing.Image)(resources.GetObject("MnuPrestamo.Image")));
             this.MnuPrestamo.Name = "MnuPrestamo";
             this.MnuPrestamo.Size = new System.Drawing.Size(130, 22);
+
             this.MnuPrestamo.Text = "Préstamo";
             this.MnuPrestamo.Click += new System.EventHandler(this.MnuPrestamo_Click);
             // 
@@ -467,24 +475,33 @@ namespace Prestamos
             this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuEstadoDePrestamo,
             this.MnuListaPrestamos,
-            this.MnuListaTotalDePrestamos});
+            this.MnuListaTotalDePrestamos,
+            this.MnuListaPagos});
             this.reportesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reportesToolStripMenuItem.Image")));
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
             this.reportesToolStripMenuItem.Text = "Reportes";
             // 
             // MnuEstadoDePrestamo
             // 
+            this.MnuEstadoDeCuenta.Image = ((System.Drawing.Image)(resources.GetObject("MnuEstadoDeCuenta.Image")));
+            this.MnuEstadoDeCuenta.Name = "MnuEstadoDeCuenta";
+            this.MnuEstadoDeCuenta.Size = new System.Drawing.Size(251, 26);
+            this.MnuEstadoDeCuenta.Text = "Estado de cuenta";
+            this.MnuEstadoDeCuenta.Click += new System.EventHandler(this.MnuEstadoDeCuenta_Click);
+
             this.MnuEstadoDePrestamo.Image = ((System.Drawing.Image)(resources.GetObject("MnuEstadoDePrestamo.Image")));
             this.MnuEstadoDePrestamo.Name = "MnuEstadoDePrestamo";
             this.MnuEstadoDePrestamo.Size = new System.Drawing.Size(210, 22);
             this.MnuEstadoDePrestamo.Text = "Estado de préstamo";
             this.MnuEstadoDePrestamo.Click += new System.EventHandler(this.MnuEstadoDeCuenta_Click);
+
             // 
             // MnuListaPrestamos
             // 
             this.MnuListaPrestamos.Image = ((System.Drawing.Image)(resources.GetObject("MnuListaPrestamos.Image")));
             this.MnuListaPrestamos.Name = "MnuListaPrestamos";
+            this.MnuListaPrestamos.Size = new System.Drawing.Size(251, 26);
             this.MnuListaPrestamos.Size = new System.Drawing.Size(210, 22);
             this.MnuListaPrestamos.Text = "Lista de préstamos";
             this.MnuListaPrestamos.Click += new System.EventHandler(this.MnuListaPrestamos_Click);
@@ -493,21 +510,30 @@ namespace Prestamos
             // 
             this.MnuListaTotalDePrestamos.Image = ((System.Drawing.Image)(resources.GetObject("MnuListaTotalDePrestamos.Image")));
             this.MnuListaTotalDePrestamos.Name = "MnuListaTotalDePrestamos";
-            this.MnuListaTotalDePrestamos.Size = new System.Drawing.Size(210, 22);
-            this.MnuListaTotalDePrestamos.Text = "Lista préstamos por pagar";
+            this.MnuListaTotalDePrestamos.Size = new System.Drawing.Size(251, 26);
+            this.MnuListaTotalDePrestamos.Text = "Lista total de préstamos";
             this.MnuListaTotalDePrestamos.Click += new System.EventHandler(this.MnuListaTotalDePrestamos_Click);
+            // 
+            // MnuListaPagos
+            // 
+            this.MnuListaPagos.Image = global::Prestamos.Properties.Resources.ListaPrestamos_32;
+            this.MnuListaPagos.Name = "MnuListaPagos";
+            this.MnuListaPagos.Size = new System.Drawing.Size(251, 26);
+            this.MnuListaPagos.Text = "Lista de pagos";
+            this.MnuListaPagos.Click += new System.EventHandler(this.MnuListaPagos_Click);
             // 
             // FrmPrincipall
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.TsBarraHerramientas);
             this.Controls.Add(this.MnuBarraPredeterminada);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.MnuBarraPredeterminada;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPrincipall";
             this.Text = "Gestión de préstamos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -571,5 +597,6 @@ namespace Prestamos
         private System.Windows.Forms.ToolStripMenuItem MnuEstadoDePrestamo;
         private System.Windows.Forms.ToolStripMenuItem MnuListaTotalDePrestamos;
         private System.Windows.Forms.ToolStripButton TsbPago;
+        private System.Windows.Forms.ToolStripMenuItem MnuListaPagos;
     }
 }

@@ -60,6 +60,7 @@
     <Compile Include="RNPago.cs" />
     <Compile Include="RNPersonal.cs" />
     <Compile Include="RNPrestamo.cs" />
+    <Compile Include="RNReporteListaPagos.cs" />
     <Compile Include="RNReporteListaPrestamos.cs" />
     <Compile Include="RNReportes.cs" />
     <Compile Include="RNTipoDocumento.cs" />
