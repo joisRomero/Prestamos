@@ -75,6 +75,7 @@ namespace Prestamos
             this.MnuEstadoDeCuenta = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuListaPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuListaTotalDePrestamos = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsbPago = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.TsBarraHerramientas.SuspendLayout();
             this.MnuBarraPredeterminada.SuspendLayout();
@@ -173,7 +174,8 @@ namespace Prestamos
             this.TsbPersonal,
             this.TsbUsuarios,
             this.Separador2,
-            this.TsbPrestamo});
+            this.TsbPrestamo,
+            this.TsbPago});
             this.TsBarraHerramientas.Location = new System.Drawing.Point(0, 24);
             this.TsBarraHerramientas.Name = "TsBarraHerramientas";
             this.TsBarraHerramientas.Size = new System.Drawing.Size(800, 25);
@@ -485,6 +487,16 @@ namespace Prestamos
             this.MnuListaTotalDePrestamos.Text = "Lista total de préstamos";
             this.MnuListaTotalDePrestamos.Click += new System.EventHandler(this.MnuListaTotalDePrestamos_Click);
             // 
+            // TsbPago
+            // 
+            this.TsbPago.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbPago.Image = ((System.Drawing.Image)(resources.GetObject("TsbPago.Image")));
+            this.TsbPago.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbPago.Name = "TsbPago";
+            this.TsbPago.Size = new System.Drawing.Size(23, 22);
+            this.TsbPago.Text = "Pago";
+            this.TsbPago.Click += new System.EventHandler(this.TsbPago_Click);
+            // 
             // FrmPrincipall
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -558,5 +570,6 @@ namespace Prestamos
         private System.Windows.Forms.ToolStripMenuItem MnuListaPrestamos;
         private System.Windows.Forms.ToolStripMenuItem MnuEstadoDeCuenta;
         private System.Windows.Forms.ToolStripMenuItem MnuListaTotalDePrestamos;
+        private System.Windows.Forms.ToolStripButton TsbPago;
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Cuota.cs" />
     <Compile Include="Distrito.cs" />
     <Compile Include="EntidadBancaria.cs" />
+    <Compile Include="FormaPago.cs" />
     <Compile Include="ICliente.cs" />
     <Compile Include="Personal.cs" />
     <Compile Include="Prestamo.cs" />

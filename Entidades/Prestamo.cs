@@ -13,10 +13,12 @@ namespace Entidades
         public DateTime Fecha { get; set; }
         public double Interes { get; set; }
         public double Monto { get; set; }
+        public double MontoPagado { get; set; }
         public string TipoPeriodo { get; set; } 
         public int CantidadPeriodos { get; set; }
         public bool DejaGarantia { get; set; }
         public bool Vigente { get; set; }
+        public Personal Personal { get; set; }
         public List<Cuota> Cuotas { get; set; }
 
         public string DocumentoCliente
