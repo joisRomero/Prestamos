@@ -202,6 +202,47 @@ namespace Prestamos
             }
         }
 
+        private void CargarCuentaBancaria()
+        {
+            RNCuentaBancaria rn = new RNCuentaBancaria();
+
+            try
+            {
+                EntidadBancaria entidadBancaria = ((EntidadBancaria)this.CboEntidadBancaria.SelectedItem);
+                List<CuentaBancaria> cuentasBancarias = rn.Listar(entidadBancaria.Nombre);
+                this.CboCuentaBancaria.DataSource = null;
+                if (cuentasBancarias.Count > 0)
+                {
+                    CboCuentaBancaria.DataSource = cuentasBancarias;
+                    this.CboCuentaBancaria.DisplayMember = "Numero";
+                    this.CboCuentaBancaria.ValueMember = "Codigo";
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo cargar las cuentas bancarias", this.Text);
+            }
+        }
+        private void CargarEntidadBancaria()
+        {
+            RNEntidadBancaria rn = new RNEntidadBancaria();
+            try
+            {
+                List<EntidadBancaria> entidadesBancarias = rn.Listar();
+                this.CboEntidadBancaria.DataSource = null;
+                if (entidadesBancarias.Count > 0)
+                {
+                    CboEntidadBancaria.DataSource = entidadesBancarias;
+                    this.CboEntidadBancaria.DisplayMember = "Siglas";
+                    this.CboEntidadBancaria.ValueMember = "Codigo";
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo cargar las entidades bancarias", this.Text);
+            }
+        }
+
         private void BtnBuscarPrestamo_Click(object sender, EventArgs e)
         {
             if (ValidateChildren())
@@ -243,9 +284,8 @@ namespace Prestamos
 
         private void BtnSeleccionar_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren())
+            if (ValidateChildren() && DgvPrestamos.DataSource != null)
             {
-                BorrarErrores();
                 RNPrestamo rn = new RNPrestamo(); ;
                 List<Cuota> cuotas = new List<Cuota>();
                 this.DgvCuotas.DataSource = null;
@@ -269,6 +309,88 @@ namespace Prestamos
         private void BorrarErrores()
         {
             this.ErrNotificador.SetError(this.TxtNumeroDocumento, "");
+        }
+
+        private void BtnPagar_Click(object sender, EventArgs e)
+        {
+            if (ValidateChildren())
+            {
+                RNPago rn;
+                Pago pago;
+                try
+                {
+                    rn = new RNPago();
+                    pago = CrearEntidad();
+                    rn.Registrar(pago);
+                    BtnSeleccionar.PerformClick();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se pudo realizar el pago", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private Pago CrearEntidad()
+        {
+            List<CuotaPago> cuotasPagos = new List<CuotaPago>();
+            Cuota cuota = (Cuota)this.DgvCuotas.CurrentRow.DataBoundItem;
+
+            CuotaPago cuotapago = new CuotaPago()
+            {
+                Cuota = cuota,
+                Monto = cuota.Monto
+            };
+
+            cuotasPagos.Add(cuotapago);
+
+            Pago pago = new Pago()
+            {
+                Monto = cuota.Monto,
+                NumeroOperacion = TxtNumeroOperacion.Text,
+                Fecha = DtpFecha.Value,
+                Vigente = true,
+                FormaPago = (FormaPago)this.CboFormaPago.SelectedItem,
+                Caja = Sesion.Caja,
+                CuentaBancaria = (CuentaBancaria)CboCuentaBancaria.SelectedItem,
+                CuotasPago = cuotasPagos
+            };
+            return pago;
+        }
+
+        private void TxtNumeroOperacion_Validating(object sender, CancelEventArgs e)
+        {
+            TxtNumeroOperacion.Text = TxtNumeroOperacion.Text.Trim();
+            if (((FormaPago)CboFormaPago.SelectedItem).Nombre.Equals("Depósito") &&
+                string.IsNullOrEmpty(TxtNumeroOperacion.Text))
+            {
+                this.ErrNotificador.SetError(this.TxtNumeroOperacion, "Ingrese el numero de operación");
+                e.Cancel = true;
+            }
+            else
+            {
+                this.ErrNotificador.SetError(this.TxtNumeroOperacion, "");
+            }
+        }
+
+        private void CboFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((FormaPago)CboFormaPago.SelectedItem).Nombre.Equals("Depósito"))
+            {
+                TxtNumeroOperacion.Enabled = true;
+                CargarEntidadBancaria();
+            }
+            else
+            {
+                TxtNumeroOperacion.Enabled = false;
+            }
+
+            
+        }
+
+        private void CboEntidadBancaria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarCuentaBancaria();
         }
     }
 }

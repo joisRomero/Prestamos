@@ -482,7 +482,7 @@ namespace Prestamos
 
         private void CboTipoUsuario_Validating(object sender, CancelEventArgs e)
         {
-            if (CboTipoUsuario.SelectedIndex == 0)
+            if (CboTipoUsuario.SelectedIndex > -1)
             {
                 ErrNotificador.SetError(CboTipoUsuario, "");
             }

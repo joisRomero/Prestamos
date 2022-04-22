@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Cuota
+    public class CuotaPago
     {
-        public int Codigo { get; set; }
-        public int Numero { get; set; }
-        public DateTime FechaVencimiento { get; set; }
+        public Pago Pago { get; set; }
+        public Cuota Cuota { get; set; }
         public double Monto { get; set; }
+        public bool Vigente { get; set; }
     }
 }
