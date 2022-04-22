@@ -219,21 +219,12 @@ namespace Prestamos
             }
             else
             {
-                FrmListaTotalPrestamos frm = FrmListaTotalPrestamos.LlamarFormulario;
+                FrmListaPrestamosPorPagar frm = FrmListaPrestamosPorPagar.LlamarFormulario;
 
                 frm.MdiParent = this;
                 frm.Show();
                 frm.Focus();
             }
-        }
-
-        private void IniciarFrmResumenClientesPorDistrito()
-        {
-            FrmResumenClientesPorDistrito frm = FrmResumenClientesPorDistrito.LlamarFormulario;
-
-            frm.MdiParent = this;
-            frm.Show();
-            frm.Focus();
         }
 
         private void MnuEntidadBancaria_Click(object sender, EventArgs e)
@@ -343,10 +334,7 @@ namespace Prestamos
             IniciarFrmListaPrestamos();
         }
 
-        private void MnuResumenDeClientePorDistrito_Click(object sender, EventArgs e)
-        {
-            IniciarFrmResumenClientesPorDistrito();
-        }
+ 
         #endregion
 
         #region Barra de herramientas
@@ -393,9 +381,17 @@ namespace Prestamos
 
         private void MnuEstadoDeCuenta_Click(object sender, EventArgs e)
         {
-            if (Sesion.Caja != null && Sesion.Caja.Estado == true)
+            if (Sesion.Caja == null || Sesion.Caja.Estado == false)
             {
                 MessageBox.Show("La caja está cerrada", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }else
+            {
+                FrmEstadoPrestamo frm = FrmEstadoPrestamo.LlamarFormulario;
+
+                frm.MdiParent = this;
+                frm.Show();
+                frm.Focus();
+
             }
         }
 

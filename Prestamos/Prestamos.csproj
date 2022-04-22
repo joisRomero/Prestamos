@@ -94,6 +94,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmEstadoPrestamo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEstadoPrestamo.Designer.cs">
+      <DependentUpon>FrmEstadoPrestamo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmIniciarCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,11 +172,11 @@
     <Compile Include="FrmListaPrestamos.Designer.cs">
       <DependentUpon>FrmListaPrestamos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmListaTotalPrestamos.cs">
+    <Compile Include="FrmListaPrestamosPorPagar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmListaTotalPrestamos.Designer.cs">
-      <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
+    <Compile Include="FrmListaPrestamosPorPagar.Designer.cs">
+      <DependentUpon>FrmListaPrestamosPorPagar.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPago.cs">
       <SubType>Form</SubType>
@@ -236,6 +242,9 @@
     <EmbeddedResource Include="FrmEntidadBancaria.resx">
       <DependentUpon>FrmEntidadBancaria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmEstadoPrestamo.resx">
+      <DependentUpon>FrmEstadoPrestamo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmIniciarCaja.resx">
       <DependentUpon>FrmIniciarCaja.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,8 +254,8 @@
     <EmbeddedResource Include="FrmListaPrestamos.resx">
       <DependentUpon>FrmListaPrestamos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmListaTotalPrestamos.resx">
-      <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
+    <EmbeddedResource Include="FrmListaPrestamosPorPagar.resx">
+      <DependentUpon>FrmListaPrestamosPorPagar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPago.resx">
       <DependentUpon>FrmPago.cs</DependentUpon>
