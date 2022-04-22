@@ -277,6 +277,34 @@
         v8Ikl2TuAfQDhmsoxO+i6VKRkbL6j7+NgICvXjsw2e6ulzoAAAAASUVORK5CYII=
 </value>
   </data>
+
+  <data name="TsbPago.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASmSURBVFhH7VZtTFtVGGZu0YWYaPyzDAwDoz/0h8FsOj5a
+        bktBcP0ABt3AAAXHOkZgGxFtyzKqIAXnWr4p34OCQAFlCLQdTJkoQyhMItsSE3RLMG4uMW4SxoT1vp5z
+        c4BS79bODX4Yn+RJez/O+zznPe97znX7T4Iqop4lfzceScZ3FP5azpKflpNLqamt5PbGQP6F3D2kImzR
+        T8cBTgnPxi3h/fKGNoBPHq8/EtqS+gQVbwI2EFhMwfGBHOCXhy4ElQV/uUvHeYG8tj5I607zDSrl09rR
+        IjgxqAbdaAl8eqUNmi4ZIP3MURsy9FdgCU9PlVNPkyGPFzFNsTMpnamMKBurLtZCfIvsDqeYuh2o48rI
+        sMeD1O7UBF5ZCNRNNawRTTKmgLxr1dTh7nRmeQKKg+5RpaE9ZPijgRqitrxVI55XWLLXiBsutUBQaTAI
+        KsNX7iV3pDAGOMU8bK6ShHg0yNpTGkW1kdByuXWNAcwalPbaqfrV6+/rIbpxP4TrhfNu4LaJhPh3ALX6
+        idGe2FCUevrUiI4pur2npcwM8cxxPTT+0LTGEF4ivFS7lH4LnvFewSSU64AO6ZO0WSKkzaIa2iS60d4R
+        /VtiWzJUTuiBKhMw4vZEhbnGwIFOOYj0keCZ6A0eCd7Xt8u3u5PQzkFbxC/SZvE1MIsB83a/5IYAiVZf
+        rFspLjZqLxQx4jhDePYvHX4FGdgx5xHvFUBCOwdON20SX1gWxzzRJKaP9b7LBN9neJtVHBPvCS1XWiGy
+        IQbCi0R45gseCT4hJLRrQCk/Yi/+nVG4FF4lZCodG0jpPARHq/nwa38U3DobC8frglcMfDKiZUyE6YXw
+        vMxn0SPRW0LCugYwR3ij9Z6zN3CwNgzyzmvI2rbCyNdZYLNEAfzUCXC1G/4wxzDieNb1U40QjLbngByu
+        zVPmFU3Cug6Ueou9OGZzl5QRN15uhmvD6avPxrIBZoww2xcJ8a1JqOpPQ1p3BoironDqH373o/uFifbC
+        y7x7NgquDx2EucG4fzyjLREwMH6SMVhhrWS6Y3cO9TEJ6Rxq9dCW9wsnX6Z7hZ5gEt1yFHBG69iHZGlw
+        ccbB3lrpDAl9HwBsUhZM7lRorApVvnUQ8U52/tjifM++b9gEHsSrwxkr4prhQhBUhNkyLZnPESV2ZH80
+        5qvSWMGR020KVpH78fevZNBOusIw3QJhVXvggPFQHpF5MJQa68+OBtr0jaxCbJwf2A+fTTegltMxG09m
+        XxbugJskvHMgA8WOBj4oHIEl1Ndsgva8axKDqj0O3utXMq3nr+MCt5SPqv+IgIR3DkWBledoAPNHYyar
+        6DLvmURwLHcn7CmXoG9APvgXcdEvBdKm2EkS2jVIOzo2KzXjNx0NfF5dzSqMic6F2VEDPxn19ww+XHyz
+        Xh+OqI+ZpUoFNtU51TYS2nWg6m9wNJB/8jzYzBIiKPoTiZ5Du2IuOphCaVP4U3jctngvH4+EHc3LJ1vG
+        mYzX8O9DA2VA4mgA81tD3im0G76KjuLN5NX1gVo94Y5MzDsaQAWaT15Zf6Bl6EKCC6r88V5lwbgccX2/
+        5R2hKJzwQnyGXP6PDYCb2986s2Vny2l4IQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  
   <metadata name="MnuBarraPredeterminada.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>33, 5</value>
   </metadata>
