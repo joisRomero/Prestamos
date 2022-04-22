@@ -178,7 +178,7 @@
     </Compile>
     <Compile Include="FrmListaTotalPrestamos.Designer.cs">
       <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
-
+	</Compile>
     <Compile Include="FrmPago.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,7 +265,7 @@
 
     <EmbeddedResource Include="FrmListaTotalPrestamos.resx">
       <DependentUpon>FrmListaTotalPrestamos.cs</DependentUpon>
-
+	</EmbeddedResource>
     <EmbeddedResource Include="FrmPago.resx">
       <DependentUpon>FrmPago.cs</DependentUpon>
 
