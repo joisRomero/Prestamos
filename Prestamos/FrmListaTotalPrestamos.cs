@@ -57,7 +57,6 @@ namespace Prestamos
                 {
                     this.DgvListado.AutoGenerateColumns = false;
                     this.DgvListado.DataSource = encontradas;
-                    this.DarFormatoFila(encontradas);
                 }
 
             }
@@ -116,7 +115,7 @@ namespace Prestamos
 
             foreach (DataGridViewRow row in DgvListado.Rows)
             {
-                tablaDatos.Rows.Add(row.Cells["cdNombres"].Value.ToString(),
+                tablaDatos.Rows.Add(row.Cells["CdNombres"].Value.ToString(),
                     DateTime.Parse(row.Cells["CdFecha"].Value.ToString()),
                     double.Parse(row.Cells["CdMontoPrestado"].Value.ToString()),
                     double.Parse(row.Cells["CdMontoPagado"].Value.ToString()));
@@ -202,15 +201,6 @@ namespace Prestamos
             if (estaExportanto)
             {
                 e.Cancel = true;
-            }
-        }
-        private void DarFormatoFila(List<ReporteListaTotalPrestamo> encontradas)
-        {
-            for (int i = 0; i < encontradas.Count; i++)
-            {
-                DgvListado.Rows[i].DefaultCellStyle.ForeColor = System.Drawing.Color.Red;
-                DgvListado.Rows[i].DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Red;
-                
             }
         }
     }

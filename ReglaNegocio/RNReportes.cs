@@ -39,10 +39,10 @@ namespace ReglaNegocio
                                 ReporteListaTotalPrestamo.Add(new ReporteListaTotalPrestamo()
                                 {
                                     Codigo = dr.GetInt16(dr.GetOrdinal("Codigo")),
-                                    Nombres = dr.GetString(dr.GetOrdinal("Nombres")),
+                                    Nombres = dr.GetString(dr.GetOrdinal("CLIENTE")),
                                     Fecha = dr.GetDateTime(dr.GetOrdinal("Fecha")),
-                                    MontoPrestado = dr.GetDouble(dr.GetOrdinal("Monto Prestado")),
-                                    MontoPagado = dr.GetDouble(dr.GetOrdinal("Monto Pagado"))
+                                    MontoPrestado = dr.GetDouble(dr.GetOrdinal("Monto")),
+                                    MontoPagado = dr.GetDouble(dr.GetOrdinal("MontoPagado"))
                                 });
                             }
                             dr.Close();

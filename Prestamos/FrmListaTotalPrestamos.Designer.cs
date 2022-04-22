@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListaTotalPrestamos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnListar = new System.Windows.Forms.Button();
             this.DgvListado = new System.Windows.Forms.DataGridView();
-            this.cdNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdMontoPrestado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CdMontoPagado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.BtnCerrrar = new System.Windows.Forms.Button();
             this.GuardarArchivoDialogo = new System.Windows.Forms.SaveFileDialog();
             this.Notificacion = new System.Windows.Forms.NotifyIcon(this.components);
+            this.CdNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdMontoPrestado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CdMontoPagado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +73,7 @@
             this.DgvListado.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.DgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvListado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cdNombres,
+            this.CdNombres,
             this.CdFecha,
             this.CdMontoPrestado,
             this.CdMontoPagado});
@@ -88,39 +88,6 @@
             this.DgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvListado.Size = new System.Drawing.Size(833, 360);
             this.DgvListado.TabIndex = 6;
-            // 
-            // cdNombres
-            // 
-            this.cdNombres.DataPropertyName = "NombresCliente&Empresa";
-            this.cdNombres.HeaderText = "Nombres";
-            this.cdNombres.Name = "cdNombres";
-            this.cdNombres.ReadOnly = true;
-            // 
-            // CdFecha
-            // 
-            this.CdFecha.DataPropertyName = "Fecha";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.CdFecha.DefaultCellStyle = dataGridViewCellStyle3;
-            this.CdFecha.HeaderText = "Fecha";
-            this.CdFecha.Name = "CdFecha";
-            this.CdFecha.ReadOnly = true;
-            // 
-            // CdMontoPrestado
-            // 
-            this.CdMontoPrestado.DataPropertyName = "Monto";
-            dataGridViewCellStyle4.Format = "N2";
-            this.CdMontoPrestado.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CdMontoPrestado.HeaderText = "Monto Prestado";
-            this.CdMontoPrestado.Name = "CdMontoPrestado";
-            this.CdMontoPrestado.ReadOnly = true;
-            // 
-            // CdMontoPagado
-            // 
-            this.CdMontoPagado.DataPropertyName = "MontoPagado";
-            this.CdMontoPagado.HeaderText = "Monto Pagado";
-            this.CdMontoPagado.Name = "CdMontoPagado";
-            this.CdMontoPagado.ReadOnly = true;
             // 
             // BtnExportarExcel
             // 
@@ -161,6 +128,39 @@
             this.Notificacion.BalloonTipClicked += new System.EventHandler(this.Notificacion_BalloonTipClicked);
             this.Notificacion.BalloonTipClosed += new System.EventHandler(this.Notificacion_BalloonTipClosed);
             // 
+            // CdNombres
+            // 
+            this.CdNombres.DataPropertyName = "Nombres";
+            this.CdNombres.HeaderText = "Nombres";
+            this.CdNombres.Name = "CdNombres";
+            this.CdNombres.ReadOnly = true;
+            // 
+            // CdFecha
+            // 
+            this.CdFecha.DataPropertyName = "Fecha";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.CdFecha.DefaultCellStyle = dataGridViewCellStyle1;
+            this.CdFecha.HeaderText = "Fecha";
+            this.CdFecha.Name = "CdFecha";
+            this.CdFecha.ReadOnly = true;
+            // 
+            // CdMontoPrestado
+            // 
+            this.CdMontoPrestado.DataPropertyName = "MontoPrestado";
+            dataGridViewCellStyle2.Format = "N2";
+            this.CdMontoPrestado.DefaultCellStyle = dataGridViewCellStyle2;
+            this.CdMontoPrestado.HeaderText = "Monto Prestado";
+            this.CdMontoPrestado.Name = "CdMontoPrestado";
+            this.CdMontoPrestado.ReadOnly = true;
+            // 
+            // CdMontoPagado
+            // 
+            this.CdMontoPagado.DataPropertyName = "MontoPagado";
+            this.CdMontoPagado.HeaderText = "Monto Pagado";
+            this.CdMontoPagado.Name = "CdMontoPagado";
+            this.CdMontoPagado.ReadOnly = true;
+            // 
             // FrmListaTotalPrestamos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,7 +171,7 @@
             this.Controls.Add(this.DgvListado);
             this.Controls.Add(this.BtnListar);
             this.Name = "FrmListaTotalPrestamos";
-            this.Text = "FrmListaTotalPrestamos";
+            this.Text = "Lista Total de Préstamos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmListaTotalPrestamos_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.DgvListado)).EndInit();
             this.ResumeLayout(false);
@@ -184,11 +184,11 @@
         private System.Windows.Forms.DataGridView DgvListado;
         private System.Windows.Forms.Button BtnExportarExcel;
         private System.Windows.Forms.Button BtnCerrrar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cdNombres;
+        private System.Windows.Forms.SaveFileDialog GuardarArchivoDialogo;
+        private System.Windows.Forms.NotifyIcon Notificacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CdNombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdMontoPrestado;
         private System.Windows.Forms.DataGridViewTextBoxColumn CdMontoPagado;
-        private System.Windows.Forms.SaveFileDialog GuardarArchivoDialogo;
-        private System.Windows.Forms.NotifyIcon Notificacion;
     }
 }
