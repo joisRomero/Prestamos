@@ -264,5 +264,10 @@ namespace Prestamos
                 BtnListarEntidadesB.PerformClick();
             }
         }
+
+        private void TxtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
